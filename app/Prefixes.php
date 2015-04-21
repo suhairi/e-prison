@@ -2,11 +2,13 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cases extends Model {
+class Prefixes extends Model {
 
-	protected $table = 'case';
+	protected $table = 'prefixes';
+
     protected $primaryKey = 'id';
 
+    protected $fillable = ['desc', 'details', 'status'];
 
     public $timestamps = false;
 

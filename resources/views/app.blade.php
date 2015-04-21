@@ -47,6 +47,10 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('admin/register') }}">Pendaftaran Pengguna Sistem</a></li>
                                 <li><a href="{{ url('admin/staff') }}">Daftar Pegawai</a> </li>
+                                <li><a href="{{ url('admin/prefix-no-kes') }}">Prefix No Kes</a> </li>
+                                <li><a href="{{ url('admin/prefix-memo-terima') }}">Prefix No Memo Terima</a> </li>
+                                <li><a href="{{ url('admin/prefix-memo-polis') }}">Prefix No Memo Polis</a> </li>
+                                <li><a href="{{ url('admin/prefix-memo-selesai') }}">Prefix No Memo Selesai</a> </li>
                             </ul>
                         </li>
                         <li><a href="#">Jana Borang</a></li>

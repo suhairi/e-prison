@@ -6,8 +6,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Profileext;
+use App\Cases;
+use App\Prefixes;
+use App\Parents;
 
-//use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -60,30 +62,25 @@ class ClerkController extends Controller {
         if(Request::hasFile('image')) {
 
             $file           = Request::file('image');
-            $filename       = $file->getClientOriginalName();
             $fileExt        = $file->getClientOriginalExtension();
-            $noKP           = Request::input('noKP');
-            $filename       = $noKP . '.' . $fileExt;
+            $filename       = Request::input('noKP') . '.' . $fileExt;
             $destination    = public_path() . '\uploads\images';
             $profile->photo = $filename;
 
             $file->move($destination, $filename);
         }
 
-        $validation = Validator::make(Request::all(),array(
+        $validation = Validator::make(Request::all(), array(
                 'name'      => 'required|min:3',
-                'noKP'      => 'required|min:5|unique:users',
+                'noKP'      => 'required|min:5',
                 'race'      => 'required',
                 'religion'  => 'required'
-        )
+        ));
 
-        );
-
-        if($validation->fails()){
-
+        if($validation->fails()) {
             return redirect('clerk/profile')
                 ->withInput()
-                ->withErrors($validation);
+                ->withErrors($validation->errors());
         }
 
         $profile->noKP          = Request::input('noKP');
@@ -99,11 +96,10 @@ class ClerkController extends Controller {
             \Session::put('noPKW', Request::input('noKP'));
 
         } else {
-            \Session::flash('fail', 'Daftar KPW Gagal');
+            \Session::flash('fail', 'Daftar PKW Gagal');
         }
 
-        return view('clerk.profile');
-
+        return view('clerk/profile');
     }
 
     public function getProfileExt() {
@@ -154,19 +150,82 @@ class ClerkController extends Controller {
     }
 
     public function getCase() {
-        return view('clerk/case');
+
+        $prefixes = Prefixes::where('status', 'active')->get();
+
+
+        return view('clerk/case')
+            ->with('prefixes', $prefixes);
     }
 
     public function postCase() {
-        return view('clerk/case');
+
+        $validation = Validator::make(Request::all(), array(
+            'noKes'        => 'required',
+            'noKP'          => 'required|numeric',
+            'memoTerima'    => 'required',
+            'memoPolis'     => 'required',
+            'memoSelesai'   => 'required',
+            'noDaftar'      => 'required',
+            'tarikhDaftar'  => 'required'
+
+        ));
+
+        if($validation->fails()) {
+            return redirect('clerk/case')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $prefixes = Prefixes::where('status', 'active')->get();
+
+        $case = new Cases;
+
+        $case->noKP         = Request::input('noKP');
+        $case->caseNo       = Request::input('noKes');
+
+        foreach($prefixes as $prefix) {
+            if($prefix->desc == 'memoTerima')
+                $case->memoTerima   = $prefix->details . '(' . Request::input('memoTerima') . ')';
+        }
+
+        foreach($prefixes as $prefix) {
+            if($prefix->desc == 'memoPolis')
+                $case->memoPolis    = $prefix->details . '(' . Request::input('memoPolis') . ')';
+        }
+
+        foreach($prefixes as $prefix) {
+            if($prefix->desc == 'memoSelesai')
+                $case->memoSelesai  = $prefix->details . '(' . Request::input('memoSelesai') . ')';
+        }
+
+        $case->noDaftar     = Request::input('noDaftar');
+        $case->tarikhMasuk  = Request::input('tarikhDaftar');
+
+        if($case->save()) {
+
+            \Session::flash('success', 'Daftar Maklumat Kes Berjaya!');
+            \Session::put('caseNo', Request::input('noKes'));
+
+        } else {
+
+            \Session::flash('fail', 'Daftar Maklumat Kes Gagal');
+        }
+
+
+        return view('clerk/case')
+            ->with('prefixes', $prefixes);
+
     }
 
     public function getRemitance() {
+
         return view('clerk/remitance');
     }
 
     public function postRemitance() {
-        return 'postCase';
+
+        return 'postRemitance';
     }
 
     public function getParent() {
@@ -174,7 +233,39 @@ class ClerkController extends Controller {
     }
 
     public function postParent() {
-        return 'postCase';
+        $request = Request::all();
+
+        $validation = Validator::make($request, array(
+            'noKP'          => 'required|numeric',
+            'name'          => 'required',
+            'noKPParent'    => 'required|numeric',
+            'relationship'  => 'required',
+            'address'       => 'required|min:5',
+        ));
+
+        if($validation->fails()) {
+            return redirect('clerk/parent')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $parent = new Parents;
+
+        $parent->noKP           = Request::input('noKP');
+        $parent->noKPParent     = Request::input('noKPParent');
+        $parent->name           = Request::input('name');
+        $parent->relationship   = Request::input('relationship');
+        $parent->address        = Request::input('address');
+        $parent->phone          = Request::input('phone');
+
+        if($parent->save()) {
+
+            \Session::flash('success', 'Daftar Maklumat Waris Berjaya!');
+        } else {
+            \Session::flash('fail', 'Daftar Maklumat Waris Gagal');
+        }
+
+        return redirect('clerk/parent');
     }
 
     public function getNoPKW() {

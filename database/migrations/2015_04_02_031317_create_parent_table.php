@@ -15,7 +15,7 @@ class CreateParentTable extends Migration {
 		Schema::create('parent', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->bigInteger('noKP');
+			$table->bigInteger('noKP')->unsigned();
             $table->bigInteger('noKPParent');
             $table->string('name');
             $table->string('relationship');

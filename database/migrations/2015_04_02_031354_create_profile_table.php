@@ -15,11 +15,12 @@ class CreateProfileTable extends Migration {
 		Schema::create('profile', function(Blueprint $table)
 		{
 			$table->bigInteger('noKP');
+            $table->primary('noKP');
 			$table->string('nama');
             $table->string('jobDesc');
             $table->string('race');
             $table->string('religion');
-            $table->string('phone');
+            $table->string('phone')->nullable;
             $table->string('maritalStatus');
             $table->string('photo')->nullable;
 		});

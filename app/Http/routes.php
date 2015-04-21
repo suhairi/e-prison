@@ -40,10 +40,10 @@ Route::get('clerk/profileExt', 'Clerk\ClerkController@getProfileExt');
 Route::post('clerk/profileExt', 'Clerk\ClerkController@postProfileExt');
 
 Route::get('clerk/case', 'Clerk\ClerkController@getCase');
-Route::get('clerk/case', 'Clerk\ClerkController@postCase');
+Route::post('clerk/case', 'Clerk\ClerkController@postCase');
 
 Route::get('clerk/remitance', 'Clerk\ClerkController@getRemitance');
-Route::post('clerk/remitace', 'Clerk\ClerkController@postRemitance');
+Route::post('clerk/remitance', 'Clerk\ClerkController@postRemitance');
 
 Route::get('clerk/parent', 'Clerk\ClerkController@getParent');
 Route::post('clerk/parent', 'Clerk\ClerkController@postParent');

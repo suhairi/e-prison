@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging('suhairi', 'suhairi81@gmail.com', '1');
+        $this->messaging1('suhairi', 'suhairi81@gmail.com', '1');
 
         DB::table('users')->insert(array(
                 'name'      => 'najib',
@@ -43,18 +43,57 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging('najib', 'najib@gmail.com', '2');
+        $this->messaging1('najib', 'najib@gmail.com', '2');
+
+        DB::table('prefixes')->insert(array(
+                'desc'      => 'memoTerima',
+                'details'   => 'JP/PRL/PKW/BLG/20/2',
+                'status'    => 'active'
+            )
+        );
+
+        $this->messaging2('memoTerima', 'JP/PRL/PKW/BLG/20/2');
+
+        DB::table('prefixes')->insert(array(
+                'desc'      => 'memoPolis',
+                'details'   => 'JP/PRL/PKW/BLG/20/4',
+                'status'    => 'active'
+            )
+        );
+
+        $this->messaging2('memoPolis', 'JP/PRL/PKW/BLG/20/4');
+
+        DB::table('prefixes')->insert(array(
+                'desc'      => 'memoSelesai',
+                'details'   => 'JP/PRL/PKW/BLG/20/3',
+                'status'    => 'active'
+            )
+        );
+
+        $this->messaging2('memoSelesai', 'JP/PRL/PKW/BLG/20/3');
+
+
     }
 
-    public function messaging($name, $email, $level) {
+    public function messaging1($name, $email, $level) {
 
-            $this->command->info('    ');
-            $this->command->info('Selesai seeding sampel akses pengguna');
-            $this->command->info('    ');
-            $this->command->info('User       : ' . $name);
-            $this->command->info('Email      : ' . $email);
-            $this->command->info('Password   : *******');
-            $this->command->info('User Level : ' . $level);
-        }
+        $this->command->info('    ');
+        $this->command->info('Seeding sampel akses pengguna');
+        $this->command->info('    ');
+        $this->command->info('User       : ' . $name);
+        $this->command->info('Email      : ' . $email);
+        $this->command->info('Password   : *******');
+        $this->command->info('User Level : ' . $level);
+    }
+
+    public function messaging2($desc, $details, $status = 'active') {
+
+        $this->command->info('    ');
+        $this->command->info('Seeding sampel prefixes');
+        $this->command->info('    ');
+        $this->command->info('Description   : ' . $desc);
+        $this->command->info('Details       : ' . $details);
+        $this->command->info('Status        : ' . $status);
+    }
 }
 

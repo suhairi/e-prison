@@ -32,42 +32,28 @@
                         <div class="form-group">
 							<label class="col-md-4 control-label">No Kes</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="noKes" value="{{ Session::get('noKes') }}" readonly>
+								<input type="text" class="form-control" name="noKes" value="{{ Session::get('caseNo') }}" readonly>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">No Rujukan Memo Terima</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="memoTerima">
-							</div>
-						</div>
-
-						<div class="form-group">
-                            <label class="col-md-4 control-label">No Rujukan Memo Polis</label>
+                            <label class="col-md-4 control-label">Tarikh Jatuh Hukum</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="memoPolis">
+                                <input type="date" class="form-control" id="datepicker" name="tarikhDaftar">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">No Rujukan Memo Selesai</label>
+                            <label class="col-md-4 control-label">Tarikh Lewat Tamat PKW</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="memoSelesai">
+                                <input type="date" class="form-control" id="datepicker" name="tarikhDaftar">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">No Daftar</label>
+                            <label class="col-md-4 control-label">Tarikh Awal Tamat PKW</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="noDaftar">
-                            </div>
-                        </div>
-
-						<div class="form-group">
-                            <label class="col-md-4 control-label">Tarikh Daftar</label>
-                            <div class="col-md-6">
-                                <input type="datetime" class="form-control" name="tarikhDaftar">
+                                <input type="date" class="form-control" id="datepicker" name="tarikhDaftar">
                             </div>
                         </div>
 

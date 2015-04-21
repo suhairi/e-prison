@@ -11,7 +11,7 @@
                       <div class="alert-box success">{{ Session::get('success') }}</div>
                     @endif
                     @if(Session::has('fail'))
-                      <div class="alert-box warning">{{ Session::get('success') }}</div>
+                      <div class="alert-box warning">{{ Session::get('fail') }}</div>
                     @endif
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
@@ -37,42 +37,58 @@
                         <div class="form-group">
 							<label class="col-md-4 control-label">No Kes</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="noKes">
+								<strong>Contoh : </strong>83RS-01-01/2014<input type="text" class="form-control" name="noKes">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">No Rujukan Memo Terima</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="memoTerima">
+								@foreach($prefixes as $prefix)
+								    @if($prefix->desc == 'memoTerima')
+                                        {{ $prefix->details }}(*)
+                                    @endif
+								@endforeach
+								<input type="text" class="form-control" name="memoTerima" maxlength="2">
 							</div>
 						</div>
 
 						<div class="form-group">
                             <label class="col-md-4 control-label">No Rujukan Memo Polis</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="memoPolis">
+                                @foreach($prefixes as $prefix)
+                                    @if($prefix->desc == 'memoPolis')
+                                        {{ $prefix->details }}(*)
+                                    @endif
+                                @endforeach
+                                <input type="text" class="form-control" name="memoPolis" maxlength="2">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">No Rujukan Memo Selesai</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="memoSelesai">
+                                @foreach($prefixes as $prefix)
+                                    @if($prefix->desc == 'memoTerima')
+                                        {{ $prefix->details }}(*)
+                                    @endif
+                                @endforeach
+                                <input type="text" class="form-control" name="memoSelesai" maxlength="2">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">No Daftar</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="noDaftar">
+                                <strong>Contoh : </strong>PKW 000 * - ** - 02 - 14
+                                <input type="text" class="form-control" name="noDaftar" maxlength="3">
                             </div>
                         </div>
 
 						<div class="form-group">
                             <label class="col-md-4 control-label">Tarikh Daftar</label>
                             <div class="col-md-6">
-                                <input type="date" class="form-control" name="tarikhDaftar">
+                                <input type="date" class="form-control" id="datepicker" name="tarikhDaftar">
                             </div>
                         </div>
 
@@ -90,4 +106,5 @@
 		</div>
 	</div>
 </div>
+
 @endsection
