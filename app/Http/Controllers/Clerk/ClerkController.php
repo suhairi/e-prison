@@ -119,7 +119,7 @@ class ClerkController extends Controller {
         return view('clerk.profileExt');
     }
 
-    public function postProfileExt(Request $request) {
+    public function postProfileExt() {
 
         $validation = Validator::make(Request::all(), array(
             'noKP'          => 'required',
