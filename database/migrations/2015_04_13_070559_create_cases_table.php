@@ -15,7 +15,8 @@ class CreateCasesTable extends Migration {
         Schema::create('cases', function(Blueprint $table)
         {
             $table->string('caseNo');
-            $table->bigInteger('noKP')->unsigned();
+            $table->primary('caseNo');
+            $table->bigInteger('noKP');
             $table->string('memoTerima');
             $table->string('memoPolis');
             $table->string('memoSelesai');

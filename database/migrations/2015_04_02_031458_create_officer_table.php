@@ -15,6 +15,7 @@ class CreateOfficerTable extends Migration {
 		Schema::create('officer', function(Blueprint $table)
 		{
 			$table->string('staffId');
+            $table->primary('staffId');
 			$table->bigInteger('noKP');
             $table->string('name');
             $table->string('position');

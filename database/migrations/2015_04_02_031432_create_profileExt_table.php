@@ -14,7 +14,8 @@ class CreateProfileExtTable extends Migration {
 	{
 		Schema::create('profileExt', function(Blueprint $table)
 		{
-			$table->bigInteger('noKP')->unsigned();
+			$table->bigInteger('noKP');
+            $table->primary('noKP');
 			$table->string('hairColor');
             $table->string('skinColor');
             $table->string('weight');
