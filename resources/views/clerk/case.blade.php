@@ -81,12 +81,12 @@
                             <label class="col-md-4 control-label">No Daftar</label>
                             <div class="col-md-6">
                                 <strong>Contoh : </strong>PKW 000 * - ** - 02 - 14
-                                <input type="text" class="form-control" name="noDaftar" maxlength="3">
+                                <input type="text" class="form-control" name="noDaftar">
                             </div>
                         </div>
 
 						<div class="form-group">
-                            <label class="col-md-4 control-label">Tarikh Daftar</label>
+                            <label class="col-md-4 control-label">Tarikh Daftar Masuk</label>
                             <div class="col-md-6">
                                 <input type="date" class="form-control" id="datepicker" name="tarikhDaftar">
                             </div>
@@ -106,5 +106,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+$(function() {
+    $( "#datepicker" ).datepicker({
+        format: 'yyyy-mm-dd',
+        changeMonth: true,
+        changeYear: true
+    });
+});
+
+
+</script>
 
 @endsection

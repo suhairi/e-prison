@@ -9,6 +9,7 @@ use App\Profileext;
 use App\Cases;
 use App\Prefixes;
 use App\Parents;
+use App\Remitance;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -41,11 +42,23 @@ class ClerkController extends Controller {
 
     }
 
-    public function carian(Request $request) {
+    public function carian() {
 
         \Session::put('noPKW', Request::input('noKP'));
 
-        return view('clerk.dashboard');
+        $profiles = Profile::where('noKP', Request::input('noKP'))->get();
+
+//        dd($profiles);
+
+        $cases = Cases::where('noKP', '=', Request::input('noKP'))->get();
+
+        foreach($cases as $case) {
+            \Session::put('caseNo', $case->caseNo);
+        }
+
+        return view('clerk.dashboard')
+            ->with('profiles', $profiles)
+            ->with('cases', $cases);
     }
 
 
@@ -103,7 +116,6 @@ class ClerkController extends Controller {
     }
 
     public function getProfileExt() {
-        session()->regenerate();
         return view('clerk.profileExt');
     }
 
@@ -220,12 +232,61 @@ class ClerkController extends Controller {
 
     public function getRemitance() {
 
+        $cases = Cases::where('caseNo', \Session::get('caseNo'))->get();
+
+        foreach($cases as $case){
+            \Session::put('tarikhMasuk', $case->tarikhMasuk);
+        }
+
         return view('clerk/remitance');
     }
 
     public function postRemitance() {
 
-        return 'postRemitance';
+        $request = Request::all();
+
+//        dd($request);
+
+        $validation = Validator::make($request, array(
+            'noKP'          => 'required|numeric',
+            'caseNo'         => 'required',
+            'tarikhHukum'   => 'required|date',
+            'tarikhLewat'   => 'required|date',
+            'tarikhAwal'    => 'required|date'
+        ));
+
+        if($validation->fails()) {
+            return redirect('clerk/remitance')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $remitance = new Remitance;
+
+        $tarikhHukum = explode('/', Request::input('tarikhHukum'));
+        $tarikhHukum = $tarikhHukum[2] . '-' . $tarikhHukum[0] . '-' . $tarikhHukum[1];
+
+        $tarikhLewat = explode('/', Request::input('tarikhLewat'));
+        $tarikhLewat = $tarikhLewat[2] . '-' . $tarikhLewat[0] . '-' . $tarikhLewat[1];
+
+        $tarikhAwal = explode('/', Request::input('tarikhAwal'));
+        $tarikhAwal = $tarikhAwal[2] . '-' . $tarikhAwal[0] . '-' . $tarikhAwal[1];
+
+
+        $remitance->caseNo          = Request::input('caseNo');
+        $remitance->tarikhHukum     = $tarikhHukum;
+        $remitance->tarikhLewat     = $tarikhLewat;
+        $remitance->tarikhAwal      = $tarikhAwal;
+
+        if($remitance->save()){
+            \Session::put('success', 'Maklumat Remitan berjaya direkod');
+        } else {
+            \Session::put('fail', 'Maklumat Remitan Gagal direkod');
+        }
+
+        return view('clerk/remitance');
+
+
     }
 
     public function getParent() {
