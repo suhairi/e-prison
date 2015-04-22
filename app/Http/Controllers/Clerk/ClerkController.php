@@ -263,6 +263,12 @@ class ClerkController extends Controller {
 
         $remitance = new Remitance;
 
+        /*
+         *  To satisfy the date format in MySQL
+         *  MySQL format        : yyyy-mm-dd
+         *  Input form format   : mm/dd/yyyy
+         */
+
         $tarikhHukum = explode('/', Request::input('tarikhHukum'));
         $tarikhHukum = $tarikhHukum[2] . '-' . $tarikhHukum[0] . '-' . $tarikhHukum[1];
 
