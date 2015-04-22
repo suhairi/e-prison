@@ -245,8 +245,6 @@ class ClerkController extends Controller {
 
         $request = Request::all();
 
-//        dd($request);
-
         $validation = Validator::make($request, array(
             'noKP'          => 'required|numeric',
             'caseNo'         => 'required',
