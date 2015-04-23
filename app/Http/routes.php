@@ -32,6 +32,7 @@ Route::post('admin/staff', 'Admin\AdminController@postStaff');
 // ################## LEVEL TWO ACCESS #####################
 
 
+// ####################### Daftar PKW ######################
 
 Route::get('clerk/profile', 'Clerk\ClerkController@getProfile');
 Route::post('clerk/profile', 'Clerk\ClerkController@postProfile');
@@ -47,6 +48,10 @@ Route::post('clerk/remitance', 'Clerk\ClerkController@postRemitance');
 
 Route::get('clerk/parent', 'Clerk\ClerkController@getParent');
 Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
+
+// ######################## Laporan #######################
+
+Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
 
 
 
