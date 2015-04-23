@@ -47,9 +47,9 @@
 					@else
 					    {{--<li><a href="{{ url('admin/register') }}">Register</a></li>--}}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rekod PKW <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Daftar PKW <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('clerk/profile') }}">Profil ??</a></li>
+                                <li><a href="{{ url('clerk/profile') }}">Profil</a></li>
                                 <li><a href="{{ url('clerk/profileExt') }}">Profil Tambahan</a></li>
                                 <li><a href="{{ url('clerk/case') }}">Maklumat Kes</a></li>
                                 <li><a href="{{ url('clerk/remitance') }}">Maklumat Remitan</a></li>

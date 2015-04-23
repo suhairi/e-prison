@@ -98,6 +98,19 @@
                             </table>
                     @endif
 
+                    @if(count(@$profiles) <= 0)
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"><font color="red">Tiada data!</font></th>
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                    @endif
+
                 </div>
 				</div>
 			</div>

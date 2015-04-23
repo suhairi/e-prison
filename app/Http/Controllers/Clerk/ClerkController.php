@@ -112,7 +112,7 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar PKW Gagal');
         }
 
-        return view('clerk/profile');
+        return view('clerk/profileExt');
     }
 
     public function getProfileExt() {
@@ -158,7 +158,10 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar Profil Tambahan Gagal');
         }
 
-        return view('clerk/profileExt');
+        $prefixes = Prefixes::where('status', 'active')->get();
+
+        return view('clerk/case')
+            ->with('prefixes', $prefixes);
     }
 
     public function getCase() {
@@ -172,7 +175,9 @@ class ClerkController extends Controller {
 
     public function postCase() {
 
-        $validation = Validator::make(Request::all(), array(
+        $request = Request::all();
+
+        $validation = Validator::make($request, array(
             'noKes'        => 'required',
             'noKP'          => 'required|numeric',
             'memoTerima'    => 'required',
@@ -211,8 +216,13 @@ class ClerkController extends Controller {
                 $case->memoSelesai  = $prefix->details . '(' . Request::input('memoSelesai') . ')';
         }
 
+//        dd($request);
+
+        $tarikhDaftar = explode('/', Request::input('tarikhDaftar'));
+        $tarikhDaftar = $tarikhDaftar[2] . '-' . $tarikhDaftar[0] . '-' . $tarikhDaftar[1];
+
         $case->noDaftar     = Request::input('noDaftar');
-        $case->tarikhMasuk  = Request::input('tarikhDaftar');
+        $case->tarikhMasuk  = $tarikhDaftar;
 
         if($case->save()) {
 
@@ -225,7 +235,7 @@ class ClerkController extends Controller {
         }
 
 
-        return view('clerk/case')
+        return view('clerk/remitance')
             ->with('prefixes', $prefixes);
 
     }
@@ -247,7 +257,8 @@ class ClerkController extends Controller {
 
         $validation = Validator::make($request, array(
             'noKP'          => 'required|numeric',
-            'caseNo'         => 'required',
+            'caseNo'        => 'required',
+            'hukuman'       => 'required',
             'tarikhHukum'   => 'required|date',
             'tarikhLewat'   => 'required|date',
             'tarikhAwal'    => 'required|date'
@@ -267,7 +278,9 @@ class ClerkController extends Controller {
          *  Input form format   : mm/dd/yyyy
          */
 
+        dd($request);
         $tarikhHukum = explode('/', Request::input('tarikhHukum'));
+        $tarikhHukum[0] = $tarikhHukum[0] + Request::input('hukuman');
         $tarikhHukum = $tarikhHukum[2] . '-' . $tarikhHukum[0] . '-' . $tarikhHukum[1];
 
         $tarikhLewat = explode('/', Request::input('tarikhLewat'));
@@ -288,9 +301,7 @@ class ClerkController extends Controller {
             \Session::put('fail', 'Maklumat Remitan Gagal direkod');
         }
 
-        return view('clerk/remitance');
-
-
+        return view('clerk/parent');
     }
 
     public function getParent() {
