@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Validator;
 use Request;
 use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\Profileext;
@@ -125,7 +126,8 @@ class ClerkController extends Controller {
             'noKP'          => 'required',
             'hairColor'     => 'required',
             'skinColor'     => 'required',
-            'weight'        => 'required',
+            'weight'        => 'required|numeric',
+            'height'        => 'required|numeric',
             'placeOB'       => 'required',
             'education'     => 'required',
             'marks'         => 'required'
@@ -143,7 +145,8 @@ class ClerkController extends Controller {
         $profileExt->noKP       = strtoupper(Request::input('noKP'));
         $profileExt->hairColor  = strtoupper(Request::input('hairColor'));
         $profileExt->skinColor  = strtoupper(Request::input('skinColor'));
-        $profileExt->weight     = strtoupper(Request::input('weight'));
+        $profileExt->weight     = Request::input('weight');
+        $profileExt->weight     = Request::input('height');
         $profileExt->placeOB    = strtoupper(Request::input('placeOB'));
         $profileExt->education  = strtoupper(Request::input('education'));
         $profileExt->marks      = strtoupper(Request::input('marks'));
@@ -221,7 +224,8 @@ class ClerkController extends Controller {
         $tarikhDaftar = explode('/', Request::input('tarikhDaftar'));
         $tarikhDaftar = $tarikhDaftar[2] . '-' . $tarikhDaftar[0] . '-' . $tarikhDaftar[1];
 
-        $case->noDaftar     = Request::input('noDaftar');
+        $case->noDaftar     = strtoupper(Request::input('noDaftar'));
+        $case->hukuman      = strtoupper(Request::input('hukuman'));
         $case->tarikhMasuk  = $tarikhDaftar;
 
         if($case->save()) {
@@ -245,6 +249,11 @@ class ClerkController extends Controller {
         $cases = Cases::where('caseNo', \Session::get('caseNo'))->get();
 
         foreach($cases as $case){
+
+            $tarikhMasuk = explode('-', $case->tarikhMasuk);
+
+            $tarikhMasuk = $tarikhMasuk[1] . '/' . $tarikhMasuk[2] . '/' . $tarikhMasuk[0];
+
             \Session::put('tarikhMasuk', $case->tarikhMasuk);
         }
 

@@ -48,7 +48,7 @@
                             <label class="col-md-4 control-label">Tarikh Jatuh Hukum</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="datepicker1" name="tarikhHukum" readonly value="{{ date('m/d/Y', strtotime(Session::get('tarikhMasuk'))) }}">
+                                <input type="text" class="form-control" id="datepicker1" name="tarikhHukum" readonly value="{{ Session::get('tarikhMasuk') }}">
                             </div>
                         </div>
 
@@ -162,7 +162,7 @@ $(function() {
 
         var tarikhAwal = tarikhAwalBulan + '/' + tarikhAwalHari + '/' + tarikhAwalTahun;
 
-        alert(tarikhAwal);
+//        alert(tarikhAwal);
 
         $('#datepicker2').val(tarikhLewat);
         $('#datepicker3').val(tarikhAwal);

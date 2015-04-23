@@ -15,14 +15,12 @@ class AdminController extends Controller {
     protected $redirectPath = 'admin';
 
 
-    public function __construct(Guard $auth, Registrar $registrar) {
-        $this->registrar = $registrar;
-        $this->auth = $auth;
+            public function __construct(Guard $auth, Registrar $registrar) {
+            $this->registrar = $registrar;
+            $this->auth = $auth;
 
-        $this->middleware('auth');
-        $this->middleware('userLevelOne', ['except' => 'index']);
-
-
+            $this->middleware('auth');
+            $this->middleware('userLevelOne', ['except' => 'index']);
     }
 
 	/**

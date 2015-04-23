@@ -8,7 +8,7 @@ class Cases extends Model {
 
     protected $primaryKey = 'caseNo';
 
-    protected $fillable = ['caseNo', 'noKP', 'memoTerima', 'memoPolis', 'memoSelesai', 'noDaftar', 'tarikhDaftar'];
+    protected $fillable = ['caseNo', 'noKP', 'memoTerima', 'memoPolis', 'memoSelesai', 'noDaftar', 'hukuman', 'tarikhDaftar'];
 
     public $timestamps = false;
 

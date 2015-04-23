@@ -8,7 +8,7 @@ class Profileext extends Model {
 
     protected $primaryKey = 'noKP';
 
-    protected $fillable = ['noKP', 'hairColor', 'skinColor', 'weight', 'placeOB', 'education', 'marks'];
+    protected $fillable = ['noKP', 'hairColor', 'skinColor', 'weight', 'height', 'placeOB', 'education', 'marks'];
 
     public $timestamps = false;
 

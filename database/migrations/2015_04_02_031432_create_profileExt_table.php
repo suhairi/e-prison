@@ -19,6 +19,7 @@ class CreateProfileExtTable extends Migration {
 			$table->string('hairColor');
             $table->string('skinColor');
             $table->string('weight');
+            $table->string('height');
             $table->string('placeOB');
             $table->string('education');
             $table->text('marks');

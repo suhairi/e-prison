@@ -27,6 +27,13 @@ Route::post('admin/register', 'Admin\AdminController@postRegister');
 Route::get('admin/staff', 'Admin\AdminController@getStaff');
 Route::post('admin/staff', 'Admin\AdminController@postStaff');
 
+Route::get('admin/prefix-no-kes', 'Admin\TetapanController@getNoCase');
+Route::get('admin/prefix-memo-terima', 'Admin\TetapanController@getMemoTerima');
+Route::get('admin/prefix-memo-polis', 'Admin\TetapanController@getMemoPolis');
+
+Route::get('admin/prefix-memo-selesai', 'Admin\TetapanController@getMemoSelesai');
+Route::post('admin/prefix-memo-selesai', 'Admin\TetapanController@postMemoSelesai');
+
 
 // ######################## CLERK ##########################
 // ################## LEVEL TWO ACCESS #####################
@@ -52,6 +59,21 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 // ######################## Laporan #######################
 
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
+
+
+// ########################## PDF #########################
+
+Route::get('/pdf', function() {
+
+    $html = '<html><body>'    .
+            '<p>Hello, Welcome to TechZoo.</p>'    .
+            '</body></html>';
+
+    return PDF::load($html, 'A4', 'portrait')->download('my_pdf');
+
+});
+
+
 
 
 

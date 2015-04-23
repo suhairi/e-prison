@@ -56,6 +56,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-4 control-label">Tinggi (cm)</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="height" maxlength="3">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-md-4 control-label">Tempat Lahir</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="placeOB">
