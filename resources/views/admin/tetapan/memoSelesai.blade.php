@@ -11,6 +11,23 @@
 
 				<div class="panel-body">
 
+				    @if(Session::has('success'))
+                      <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                      <div class="alert alert-warning">{{ Session::get('fail') }}</div>
+                    @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Perhatian!</strong> Terdapat kesalahan pada input yang dimasukkan.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/prefix-memo-selesai') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

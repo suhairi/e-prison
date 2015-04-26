@@ -29,16 +29,102 @@ class TetapanController extends Controller {
     }
 
     public function getMemoTerima() {
-        return view('admin/tetapan/memoTerima');
+
+        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->get();
+
+        return view('admin/tetapan/memoTerima')
+            ->with('prefixes', $prefixes);
+    }
+
+    public function postMemoTerima() {
+
+        $request = Request::all();
+
+        $validation = Validator::make($request, array(
+            'prefixMemoTerima'  => 'required|min:10'
+        ));
+
+        if($validation->fails()) {
+            return redirect('admin/prefix-memo-terima')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $activeMemo = Prefixes::where('status', 'active')
+            ->where('desc', 'memoSelesai')
+            ->update(['status' => 'inactive']);
+
+        $prefix = new Prefixes;
+
+        $prefix->desc       = 'memoTerima';
+        $prefix->details    = strtoupper(Request::input('prefixMemoTerima'));
+        $prefix->status     = 'active';
+
+        if($prefix->save()) {
+            \Session::flash('success', 'Prefix No Rujukan Memo Terima berjaya direkod');
+        } else {
+            \Session::flash('fail', 'Prefix No Rujukan Memo Terima gagal direkod');
+        }
+
+        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->get();
+
+        return view('admin/tetapan/memoTerima')
+            ->with('prefixes', $prefixes);
+
     }
 
     public function getMemoPolis() {
-        return view('admin/tetapan/memoPolis');
+
+        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->get();
+
+        return view('admin/tetapan/memoPolis')
+            ->with('prefixes', $prefixes);
     }
+
+    public function postMemoPolis() {
+
+        $request = Request::all();
+
+
+
+        $validation = Validator::make($request, array(
+            'prefixMemoPolis'   => 'required|min:10'
+        ));
+
+        if($validation->fails()) {
+            return redirect('admin\prefix-memo-polis')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+//        dd($request);
+
+        $activeMemo = Prefixes::where('status', 'active')
+            ->where('desc', 'memoPolis')
+            ->update(['status' => 'inactive']);
+
+        $prefix = new Prefixes;
+
+        $prefix->desc       = 'memoPolis';
+        $prefix->details    = strtoupper(Request::input('prefixMemoPolis'));
+        $prefix->status     = 'active';
+
+        if($prefix->save()) {
+            \Session::flash('success', 'Prefix No Rujukan Memo Polis berjaya direkod');
+        } else {
+            \Session::flash('fail', 'Prefix No Rujukan Memo Terima berjaya direkod');
+        }
+
+        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->get();
+
+        return view('admin/tetapan/memoPolis')
+            ->with('prefixes', $prefixes);
+    }
+
 
 	public function getMemoSelesai() {
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->get();
+        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('status')->get();
 
         return view('admin/tetapan/memoSelesai')
             ->with('prefixes', $prefixes);
@@ -69,12 +155,12 @@ class TetapanController extends Controller {
         $memoSelesai->status    = 'active';
 
         if($memoSelesai->save()) {
-            \Session::put('success', 'Prefix No Rujukan Memo Selesai Berjaya di Rekod');
+            \Session::flash('success', 'Prefix No Rujukan Memo Selesai Berjaya di Rekod');
         } else {
-            \Session::put('fail', 'Gagal di Rekod');
+            \Session::flash('fail', 'Gagal di Rekod');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->get();
+        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('active')->get();
 
         return view('admin/tetapan/memoSelesai')
             ->with('prefixes', $prefixes);

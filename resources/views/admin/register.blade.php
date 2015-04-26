@@ -7,9 +7,15 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Pendaftaran Pengguna Sistem </div>
 				<div class="panel-body">
+				    @if(Session::has('success'))
+                      <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                      <div class="alert alert-warning">{{ Session::get('fail') }}</div>
+                    @endif
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>Perhatian!</strong> Terdapat kesalahan pada input yang dimasukkan.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -24,7 +30,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Nama</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								<input type="text" class="form-control" pattern="[a-zA-Z]{50}" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 
@@ -67,6 +73,46 @@
 							</div>
 						</div>
 					</form>
+
+					@if(count($users) > 0)
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Level</th>
+                                    <th>Pilihan</th>
+                                </tr>
+                            </thead>
+
+                        @foreach($users as $user)
+
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    @if($user->level == 1)
+                                        PENTADBIR
+                                    @endif
+
+                                    @if($user->level == 2)
+                                        KERANI
+                                    @endif
+                                </td>
+                                <td>[ Hapus ]</td>
+                            </tr>
+
+                        @endforeach
+
+
+                    @endif
+
+
+
+
+
+
 				</div>
 			</div>
 		</div>

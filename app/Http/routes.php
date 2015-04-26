@@ -28,8 +28,12 @@ Route::get('admin/staff', 'Admin\AdminController@getStaff');
 Route::post('admin/staff', 'Admin\AdminController@postStaff');
 
 Route::get('admin/prefix-no-kes', 'Admin\TetapanController@getNoCase');
+
 Route::get('admin/prefix-memo-terima', 'Admin\TetapanController@getMemoTerima');
+Route::post('admin/prefix-memo-terima', 'Admin\TetapanController@postMemoTerima');
+
 Route::get('admin/prefix-memo-polis', 'Admin\TetapanController@getMemoPolis');
+Route::post('admin/prefix-memo-polis', 'Admin\TetapanController@postMemoPolis');
 
 Route::get('admin/prefix-memo-selesai', 'Admin\TetapanController@getMemoSelesai');
 Route::post('admin/prefix-memo-selesai', 'Admin\TetapanController@postMemoSelesai');
@@ -61,20 +65,12 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
 
 
-// ########################## PDF #########################
-
-Route::get('/pdf', function() {
-
-    $html = '<html><body>'    .
-            '<p>Hello, Welcome to TechZoo.</p>'    .
-            '</body></html>';
-
-    return PDF::load($html, 'A4', 'portrait')->download('my_pdf');
-
-});
 
 
 
+
+// ######################## LARAVEL ##########################
+// ################ BUILT IN AUTHENTICATION ##################
 
 
 Route::controllers([
