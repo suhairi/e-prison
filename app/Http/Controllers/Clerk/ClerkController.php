@@ -254,7 +254,7 @@ class ClerkController extends Controller {
 
             $tarikhMasuk = $tarikhMasuk[1] . '/' . $tarikhMasuk[2] . '/' . $tarikhMasuk[0];
 
-            \Session::put('tarikhMasuk', $case->tarikhMasuk);
+            \Session::put('tarikhMasuk', $tarikhMasuk);
         }
 
         return view('clerk/remitance');
@@ -287,7 +287,7 @@ class ClerkController extends Controller {
          *  Input form format   : mm/dd/yyyy
          */
 
-        dd($request);
+//        dd($request);
         $tarikhHukum = explode('/', Request::input('tarikhHukum'));
         $tarikhHukum[0] = $tarikhHukum[0] + Request::input('hukuman');
         $tarikhHukum = $tarikhHukum[2] . '-' . $tarikhHukum[0] . '-' . $tarikhHukum[1];

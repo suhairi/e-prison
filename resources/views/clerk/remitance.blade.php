@@ -97,27 +97,27 @@
 
 //$.fn.datepicker.defaults.format = 'yyyy-mm-dd';
 
-//$(function() {
-//    $( "#datepicker1" ).datepicker({
-//        changeMonth: true,
-//        changeYear: true,
-//        startDate: '+3m'
-//    });
-//});
-//
-//$(function() {
-//    $( "#datepicker2" ).datepicker({
-//        changeMonth: true,
-//        changeYear: true
-//    });
-//});
-//
-//$(function() {
-//    $( "#datepicker3" ).datepicker({
-//        changeMonth: true,
-//        changeYear: true
-//    });
-//});
+$(function() {
+    $( "#datepicker1" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        startDate: '+3m'
+    });
+});
+
+$(function() {
+    $( "#datepicker2" ).datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+});
+
+$(function() {
+    $( "#datepicker3" ).datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+});
 
 
 $(function() {
