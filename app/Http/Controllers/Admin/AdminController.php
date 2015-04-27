@@ -49,7 +49,7 @@ class AdminController extends Controller {
 
     public function getRegister() {
 
-        $users = User::orderBy('level')->get();
+        $users = User::orderBy('level')->paginate(10);
 
         return view('admin/register')
             ->with('users', $users);
@@ -95,7 +95,7 @@ class AdminController extends Controller {
 
     public function getStaff() {
 
-        $officers = Officer::all();
+        $officers = Officer::paginate(10);
 
         return view('admin.staff')
             ->with('officers', $officers);

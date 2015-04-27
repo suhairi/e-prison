@@ -105,6 +105,10 @@
 
                         @endforeach
 
+                            <tr>
+                                <td colspan="4" align="center"><?php echo $users->render(); ?></td>
+                            </tr>
+
 
                     @endif
 

@@ -16,9 +16,14 @@ class LaporanController extends Controller {
         $cases = Cases::where('noKP', \Session::get('noPKW'))->first();
         $profile = Profile::where('noKP', \Session::get('noPKW'))->first();
 
+        $tarikhMasuk = explode('-', $cases->tarikhMasuk);
+
+        $tarikhMasuk =  $tarikhMasuk[2] . '/' . $tarikhMasuk[1] . '/' . $tarikhMasuk[0];
+
         return view('clerk/laporan/mt')
             ->with('cases', $cases)
-            ->with('profile', $profile);
+            ->with('profile', $profile)
+            ->with('tarikhMasuk', $tarikhMasuk);
     }
 
 }

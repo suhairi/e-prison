@@ -89,6 +89,9 @@
                             </tr>
 
 					    @endforeach
+					        <tr>
+					            <td colspan="5" align="center"><?php echo $officers->render(); ?></td>
+					        </tr>
 
 					    </table>
 					@endif
