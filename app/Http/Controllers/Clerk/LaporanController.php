@@ -7,9 +7,25 @@ use App\Http\Controllers\Controller;
 use App\Cases;
 use App\Profile;
 
-//use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Registrar;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 
 class LaporanController extends Controller {
+
+    use AuthenticatesAndRegistersUsers;
+
+    protected $redirectPath = 'clerk';
+
+
+    public function __construct(Guard $auth, Registrar $registrar) {
+        $this->registrar = $registrar;
+        $this->auth = $auth;
+
+        $this->middleware('auth');
+        $this->middleware('userLevelTwo');
+    }
 
 	public function getOne() {
 

@@ -77,6 +77,10 @@
 
                         @endforeach
 
+                            <tr>
+                                <td colspan="4" align="center"><?php echo $prefixes->render(); ?></td>
+                            </tr>
+
                         </tbody>
                         </table>
 

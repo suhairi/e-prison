@@ -30,7 +30,7 @@ class TetapanController extends Controller {
 
     public function getMemoTerima() {
 
-        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->get();
+        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->paginate(10);
 
         return view('admin/tetapan/memoTerima')
             ->with('prefixes', $prefixes);
@@ -66,7 +66,7 @@ class TetapanController extends Controller {
             \Session::flash('fail', 'Prefix No Rujukan Memo Terima gagal direkod');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->get();
+        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->paginate(10);
 
         return view('admin/tetapan/memoTerima')
             ->with('prefixes', $prefixes);
@@ -75,7 +75,7 @@ class TetapanController extends Controller {
 
     public function getMemoPolis() {
 
-        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->get();
+        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->paginate(10);
 
         return view('admin/tetapan/memoPolis')
             ->with('prefixes', $prefixes);
@@ -115,16 +115,15 @@ class TetapanController extends Controller {
             \Session::flash('fail', 'Prefix No Rujukan Memo Terima berjaya direkod');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->get();
+        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->paginate(10);
 
         return view('admin/tetapan/memoPolis')
             ->with('prefixes', $prefixes);
     }
 
-
 	public function getMemoSelesai() {
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('status')->get();
+        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('status')->paginate(10);
 
         return view('admin/tetapan/memoSelesai')
             ->with('prefixes', $prefixes);
@@ -160,7 +159,7 @@ class TetapanController extends Controller {
             \Session::flash('fail', 'Gagal di Rekod');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('active')->get();
+        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('active')->paginate(10);
 
         return view('admin/tetapan/memoSelesai')
             ->with('prefixes', $prefixes);

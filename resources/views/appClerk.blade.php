@@ -9,7 +9,8 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	{{--<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>--}}
+    <link href="{{ asset('/css/roboto.css') }}" rel="stylesheet">
 
 	{{--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">--}}
 	<link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">

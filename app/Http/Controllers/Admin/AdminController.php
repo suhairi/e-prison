@@ -22,19 +22,14 @@ class AdminController extends Controller {
     protected $redirectPath = 'admin';
 
 
-            public function __construct(Guard $auth, Registrar $registrar) {
-            $this->registrar = $registrar;
-            $this->auth = $auth;
+    public function __construct(Guard $auth, Registrar $registrar) {
+        $this->registrar = $registrar;
+        $this->auth = $auth;
 
-            $this->middleware('auth');
-            $this->middleware('userLevelOne', ['except' => 'index']);
+        $this->middleware('auth');
+        $this->middleware('userLevelOne', ['except' => 'index']);
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
         if($this->auth->user()->level == 1) {
@@ -87,7 +82,7 @@ class AdminController extends Controller {
             \Session::flash('fail', 'Maklumat Pengguna Sistem Gagal direkod!!');
         }
 
-        $users = User::orderBy('level')->get();
+        $users = User::orderBy('level')->paginate(10);
 
         return view('admin/register')
             ->with('users', $users);
@@ -133,7 +128,7 @@ class AdminController extends Controller {
             \Seesion::flash('fail', 'Maklumat Pegawai Gagal Direkod!');
         }
 
-        $officers = Officer::all();
+        $officers = Officer::paginate(10);
 
         return view('admin/staff')
             ->with('officers', $officers);
