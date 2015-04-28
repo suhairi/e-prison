@@ -98,7 +98,7 @@
                             </table>
                     @endif
 
-                    @if(count(@$profiles) <= 0)
+                    @if(!Session::get('noPKWFound'))
 
                         <table class="table table-hover">
                             <thead>

@@ -25,6 +25,8 @@
 						</div>
 					@endif
 
+					{{--{{ Session::get('caseNo') }}--}}
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/clerk/remitance') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

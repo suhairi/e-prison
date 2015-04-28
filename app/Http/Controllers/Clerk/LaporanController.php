@@ -29,6 +29,9 @@ class LaporanController extends Controller {
 
 	public function getOne() {
 
+        if(!\Session::get('noPKWFound'))
+            return view('clerk\dashboard');
+
         $cases = Cases::where('noKP', \Session::get('noPKW'))->first();
         $profile = Profile::where('noKP', \Session::get('noPKW'))->first();
 

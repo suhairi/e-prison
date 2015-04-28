@@ -45,9 +45,18 @@ class ClerkController extends Controller {
 
     public function carian() {
 
-        \Session::put('noPKW', Request::input('noKP'));
-
         $profiles = Profile::where('noKP', Request::input('noKP'))->get();
+
+        \Session::put('noPKWFound', false);
+        \Session::put('noPKW', '');
+
+        if(count($profiles) > 0) {
+            foreach($profiles as $profile) {
+                \Session::put('noPKW', $profile->noKP);
+                \Session::put('noPKWFound', true);
+            }
+        }
+
 
 //        dd($profiles);
 
@@ -61,7 +70,6 @@ class ClerkController extends Controller {
             ->with('profiles', $profiles)
             ->with('cases', $cases);
     }
-
 
     public function getProfile() {
         return view('clerk.profile');
@@ -238,6 +246,15 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar Maklumat Kes Gagal');
         }
 
+        $cases = Cases::where('caseNo', \Session::get('caseNo'))->get();
+        foreach($cases as $case){
+
+            $tarikhMasuk = explode('-', $case->tarikhMasuk);
+
+            $tarikhMasuk = $tarikhMasuk[1] . '/' . $tarikhMasuk[2] . '/' . $tarikhMasuk[0];
+
+            \Session::put('tarikhMasuk', $tarikhMasuk);
+        }
 
         return view('clerk/remitance')
             ->with('prefixes', $prefixes);
@@ -350,7 +367,7 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar Maklumat Waris Gagal');
         }
 
-        return redirect('clerk/parent');
+        return redirect('clerk/lapoarn/1');
     }
 
     public function getNoPKW() {
