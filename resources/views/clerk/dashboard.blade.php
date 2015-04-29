@@ -73,6 +73,7 @@
                         </tbody>
                         </table>
 
+
                         <table class="table table-hover">
                         @foreach($cases as $key => $case)
 
@@ -80,7 +81,7 @@
                                 <td colspan="2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <th colspan="2" bgcolor="#CCC">Kes {{ ++$key }}</th>
+                                <th colspan="2" bgcolor="#CCC" class="alert alert-warning">Kes {{ ++$key }}</th>
                             </tr>
 
                             <tr>
@@ -111,6 +112,7 @@
                         </table>
                     @endif
 
+
                     @if(!Session::get('noPKWFound'))
 
                         <table class="table table-hover">
@@ -130,4 +132,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+
+    $(".maklumatKes").hide();
+
+//    $(".expand_maklumatKes").click(function() {
+//        $(".maklumatKes").slideDown();
+//    });
+
+})
+
+</script>
 @endsection

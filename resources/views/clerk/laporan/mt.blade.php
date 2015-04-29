@@ -25,7 +25,7 @@ td {
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">MT</div>
+				<div class="panel-heading">Laporan MT</div>
 
 				<div class="panel-body" align="center">
 
@@ -66,7 +66,11 @@ td {
                             <tr>
                                 <td valign="top"><strong>Daripada</strong></td>
                                 <td valign="top"><strong>:</strong></td>
-                                <td><strong>Pegawai Pusat Kehadiran Wajib  Daerah Baling / Sik Kedah</strong></td>
+                                <td>
+                                    <select name="pusatKehadiran">
+                                        <option value=""
+                                    </select>
+                                </td>
                             </tr>
 
                             <tr>

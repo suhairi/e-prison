@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('UserTableSeeder');
-
     }
 
 }
@@ -23,7 +22,7 @@ class UserTableSeeder extends Seeder {
 
     public function run() {
 
-        DB::table('users')->delete();
+//        DB::table('users')->delete();
 
         DB::table('users')->insert(array(
                 'name'      => 'suhairi',
@@ -33,8 +32,6 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging1('suhairi', 'suhairi81@gmail.com', '1');
-
         DB::table('users')->insert(array(
                 'name'      => 'najib',
                 'email'     => 'najib@gmail.com',
@@ -43,16 +40,12 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging1('najib', 'najib@gmail.com', '2');
-
         DB::table('prefixes')->insert(array(
                 'desc'      => 'memoTerima',
                 'details'   => 'JP/PRL/PKW/BLG/20/2',
                 'status'    => 'active'
             )
         );
-
-        $this->messaging2('memoTerima', 'JP/PRL/PKW/BLG/20/2');
 
         DB::table('prefixes')->insert(array(
                 'desc'      => 'memoPolis',
@@ -61,8 +54,6 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging2('memoPolis', 'JP/PRL/PKW/BLG/20/4');
-
         DB::table('prefixes')->insert(array(
                 'desc'      => 'memoSelesai',
                 'details'   => 'JP/PRL/PKW/BLG/20/3',
@@ -70,30 +61,33 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        $this->messaging2('memoSelesai', 'JP/PRL/PKW/BLG/20/3');
+        DB::table('daerah')->insert(array(              // ID
+            [ 'desc'    => 'KUALA MUDA' ],              //  1
+            [ 'desc'    => 'KOTA SETAR' ],              //  2
+            [ 'desc'    => 'KUBANG PASU / JITRA' ],     //  3
+            [ 'desc'    => 'KULIM' ],                   //  4
+            [ 'desc'    => 'LANGKAWI' ],                //  5
+            [ 'desc'    => 'POKOK SENA' ],              //  6
+            [ 'desc'    => 'PENDANG' ],                 //  7
+            [ 'desc'    => 'BANDAR BAHARU' ],           //  8
+            [ 'desc'    => 'YAN' ],                     //  9
+            [ 'desc'    => 'PADANG TERAP' ],            // 10
+            [ 'desc'    => 'BALING' ],                  // 11
+            [ 'desc'    => 'SIK' ]                      // 12
+        ));
 
+        //Selesai
+
+        $this->messaging();
 
     }
 
-    public function messaging1($name, $email, $level) {
+    public function messaging() {
 
-        $this->command->info('    ');
-        $this->command->info('Seeding sampel akses pengguna');
-        $this->command->info('    ');
-        $this->command->info('User       : ' . $name);
-        $this->command->info('Email      : ' . $email);
-        $this->command->info('Password   : *******');
-        $this->command->info('User Level : ' . $level);
+        $this->command->info('Proses seeding Selesai!');
+
     }
 
-    public function messaging2($desc, $details, $status = 'active') {
 
-        $this->command->info('    ');
-        $this->command->info('Seeding sampel prefixes');
-        $this->command->info('    ');
-        $this->command->info('Description   : ' . $desc);
-        $this->command->info('Details       : ' . $details);
-        $this->command->info('Status        : ' . $status);
-    }
 }
 

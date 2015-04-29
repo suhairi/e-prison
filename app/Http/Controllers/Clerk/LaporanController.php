@@ -45,4 +45,10 @@ class LaporanController extends Controller {
             ->with('tarikhMasuk', $tarikhMasuk);
     }
 
+    public function postOne() {
+
+        return 'here';
+
+    }
+
 }

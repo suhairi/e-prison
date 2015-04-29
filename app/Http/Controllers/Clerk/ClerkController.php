@@ -402,8 +402,8 @@ class ClerkController extends Controller {
         return redirect('clerk/lapoarn/1');
     }
 
-    public function getNoPKW() {
-        return \Session::get('noPKW');
-    }
+//    public function getNoPKW() {
+//        return \Session::get('noPKW');
+//    }
 
 }

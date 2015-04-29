@@ -63,6 +63,7 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 // ######################## Laporan #######################
 
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
+Route::post('clerk/laporan/1', 'Clerk\LaporanController@postOne');
 
 
 
