@@ -8,10 +8,10 @@
 				<div class="panel-heading">Maklumat Waris</div>
 				<div class="panel-body">
 				    @if(Session::has('success'))
-                      <div class="alert-box success">{{ Session::get('success') }}</div>
+                      <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
                     @if(Session::has('fail'))
-                      <div class="alert-box warning">{{ Session::get('success') }}</div>
+                      <div class="alert alert-warning">{{ Session::get('success') }}</div>
                     @endif
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">

@@ -11,6 +11,7 @@ use App\Cases;
 use App\Prefixes;
 use App\Parents;
 use App\Remitance;
+use App\User;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -58,8 +59,6 @@ class ClerkController extends Controller {
         }
 
 
-//        dd($profiles);
-
         $cases = Cases::where('noKP', '=', Request::input('noKP'))->get();
 
         foreach($cases as $case) {
@@ -84,7 +83,7 @@ class ClerkController extends Controller {
         if(Request::hasFile('image')) {
 
             $file           = Request::file('image');
-            $fileExt        = $file->getClientOriginalExtension();
+            $fileExt        = strtolower($file->getClientOriginalExtension());
             $filename       = Request::input('noKP') . '.' . $fileExt;
             $destination    = public_path() . '\uploads\images';
             $profile->photo = $filename;
@@ -192,12 +191,9 @@ class ClerkController extends Controller {
             return view('clerk/dashboard');
         }
 
-        if(!\Session::get('noPKWFound')){
+        $cases = Cases::where('noKP', \Session::get('noPKW'))->get();
 
-            \Session::flash('message', 'Sila buat carian No KP dahulu.');
-
-            return view('clerk/dashboard');
-        }
+        \Session::flash('message', 'Profil ini mempunyai ' . count($cases) . ' rekod kes lampau.');
 
         $prefixes = Prefixes::where('status', 'active')->get();
 
@@ -366,7 +362,7 @@ class ClerkController extends Controller {
 
             return view('clerk/dashboard');
         }
-        
+
         return view('clerk/parent');
     }
 

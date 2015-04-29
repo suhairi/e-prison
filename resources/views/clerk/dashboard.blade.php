@@ -70,8 +70,18 @@
                                 <td>{{ $profile->jobDesc }}</td>
                             </tr>
                         @endforeach
+                        </tbody>
+                        </table>
 
-                        @foreach($cases as $case)
+                        <table class="table table-hover">
+                        @foreach($cases as $key => $case)
+
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" bgcolor="#CCC">Kes {{ ++$key }}</th>
+                            </tr>
 
                             <tr>
                                 <th>No Kes</th>
@@ -98,10 +108,7 @@
                                 <td>{{ $case->tarikhMasuk }}</td>
                             </tr>
                         @endforeach
-
-
-                        </tbody>
-                            </table>
+                        </table>
                     @endif
 
                     @if(!Session::get('noPKWFound'))
