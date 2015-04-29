@@ -125,6 +125,14 @@ class ClerkController extends Controller {
     }
 
     public function getProfileExt() {
+
+        if(!\Session::get('noPKWFound')){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
+
         return view('clerk.profileExt');
     }
 
@@ -176,6 +184,20 @@ class ClerkController extends Controller {
     }
 
     public function getCase() {
+
+        if(!\Session::get('noPKWFound')){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
+
+        if(!\Session::get('noPKWFound')){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
 
         $prefixes = Prefixes::where('status', 'active')->get();
 
@@ -263,6 +285,13 @@ class ClerkController extends Controller {
 
     public function getRemitance() {
 
+        if(!\Session::get('noPKWFound')){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
+
         $cases = Cases::where('caseNo', \Session::get('caseNo'))->get();
 
         foreach($cases as $case){
@@ -331,6 +360,13 @@ class ClerkController extends Controller {
     }
 
     public function getParent() {
+        if(!\Session::get('noPKWFound')){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
+        
         return view('clerk/parent');
     }
 

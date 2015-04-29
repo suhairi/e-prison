@@ -45,7 +45,12 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">No KP</label>
 							<div class="col-md-6">
-								<input type="number" class="form-control" name="noKP" label="No KP" value="{{ old('noKP') }}">
+							    @if(\Session::has('noPKW'))
+							        <?php $noPKW = Session::get('noPKW'); ?>
+                                @else
+                                    <?php $noPKW = old('KP'); ?>
+                                @endif
+								<input type="number" class="form-control" name="noKP" label="No KP" value="{{ $noPKW }}">
 							</div>
 						</div>
 

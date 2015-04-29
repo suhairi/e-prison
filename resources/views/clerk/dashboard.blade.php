@@ -9,6 +9,12 @@
 
 				<div class="panel-body">
 
+				    @if(Session::has('message'))
+
+				        <div class="alert alert-warning">{{ Session::get('message') }}</div>
+
+				    @endif
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin') }}" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
