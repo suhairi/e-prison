@@ -83,6 +83,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Tanda Badan</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="bodyMarks" placeholder="Contoh: Tatu, Tindik">
+                            </div>
+                        </div>
+
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">

@@ -35,6 +35,9 @@ class AdminController extends Controller {
         if($this->auth->user()->level == 1) {
             return view('admin.dashboard');
         } else if($this->auth->user()->level == 2) {
+
+            \Session::forget('noPKW');
+
             return view('clerk.dashboard');
         } else {
             return view('auth.login');

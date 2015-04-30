@@ -47,6 +47,13 @@
 						</div>
 
 						<div class="form-group">
+                            <label class="col-md-4 control-label">Seksyen Kesalahan</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="seksyenKesalahan">
+                            </div>
+                        </div>
+
+						<div class="form-group">
 							<label class="col-md-4 control-label">No Rujukan Memo Terima</label>
 							<div class="col-md-6">
 								@foreach($prefixes as $prefix)

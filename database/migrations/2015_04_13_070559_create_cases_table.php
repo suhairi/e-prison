@@ -17,6 +17,7 @@ class CreateCasesTable extends Migration {
             $table->string('caseNo');
             $table->primary('caseNo');
             $table->bigInteger('noKP');
+            $table->string('seksyenKesalahan');
             $table->string('memoTerima');
             $table->string('memoPolis');
             $table->string('memoSelesai');

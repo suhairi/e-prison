@@ -37,6 +37,9 @@ class ClerkController extends Controller {
         if($this->auth->user()->level == 1) {
             return view('admin.dashboard');
         } else if($this->auth->user()->level == 2) {
+
+            \Session::forget('noPKW');
+
             return view('clerk.dashboard');
         } else {
             return view('auth.login');
@@ -145,7 +148,8 @@ class ClerkController extends Controller {
             'height'        => 'required|numeric',
             'placeOB'       => 'required',
             'education'     => 'required',
-            'marks'         => 'required'
+            'marks'         => 'required',
+            'bodyMarks'     => 'required'
         ));
 
         if($validation->fails()) {
@@ -165,6 +169,8 @@ class ClerkController extends Controller {
         $profileExt->placeOB    = strtoupper(Request::input('placeOB'));
         $profileExt->education  = strtoupper(Request::input('education'));
         $profileExt->marks      = strtoupper(Request::input('marks'));
+        $profileExt->bodyMarks      = strtoupper(Request::input('bodyMarks'));
+
 
         if($profileExt->save()) {
 
@@ -207,13 +213,14 @@ class ClerkController extends Controller {
         $request = Request::all();
 
         $validation = Validator::make($request, array(
-            'noKes'        => 'required',
-            'noKP'          => 'required|numeric',
-            'memoTerima'    => 'required',
-            'memoPolis'     => 'required',
-            'memoSelesai'   => 'required',
-            'noDaftar'      => 'required',
-            'tarikhDaftar'  => 'required'
+            'noKes'             => 'required',
+            'noKP'              => 'required|numeric',
+            'memoTerima'        => 'required',
+            'memoPolis'         => 'required',
+            'memoSelesai'       => 'required',
+            'noDaftar'          => 'required',
+            'tarikhDaftar'      => 'required',
+            'seksyenKesalahan'  => 'required'
 
         ));
 
@@ -227,8 +234,9 @@ class ClerkController extends Controller {
 
         $case = new Cases;
 
-        $case->noKP         = Request::input('noKP');
-        $case->caseNo       = Request::input('noKes');
+        $case->noKP             = Request::input('noKP');
+        $case->caseNo           = Request::input('noKes');
+        $case->seksyenKesalahan = Request::input('seksyenKesalahan');
 
         foreach($prefixes as $prefix) {
             if($prefix->desc == 'memoTerima')

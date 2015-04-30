@@ -76,9 +76,64 @@ class UserTableSeeder extends Seeder {
             [ 'desc'    => 'SIK' ]                      // 12
         ));
 
-        //Selesai
+        //  Sample Profil
+
+        DB::table('profile')->insert(array(
+            'noKP'          => '900918026209',
+            'nama'          => 'MOHD ARIF BIN MOHD JASNI ',
+            'jobDesc'       => 'PEMBANTU KEDAI MAKAN',
+            'race'          => 'MELAYU',
+            'religion'      => 'ISLAM',
+            'phone'         => '0125780003',
+            'maritalStatus' => 'BUJANG',
+            'photo'         => '900918026209.jpg'
+        ));
+
+        DB::table('profileext')->insert(array(
+            'noKP'          => '900918026209',
+            'hairColor'     => 'HITAM',
+            'skinColor'     => 'HITAM MANIS',
+            'weight'        => '51',
+            'height'        => '163',
+            'placeOB'       => 'HOSPITAL DAERAH BALING, KEDAH',
+            'education'     => 'TINGKATAN LIMA',
+            'marks'         => 'PARUT CACAR DI LENGAN KIRI DAN PARUT LUKA DI BAWAH LENGAN KIRI',
+            'bodyMarks'     => 'TIADA'
+        ));
+
+        DB::table('cases')->insert(array(
+            'caseNo'            => '83RS-01-01/2014',
+            'noKP'              => '900918026209',
+            'seksyenKesalahan'  => 'SEK 380 KK',
+            'memoTerima'        => 'JP/PRL/PKW/BLG/20/2(18)',
+            'memoPolis'         => 'JP/PRL/PKW/BLG/20/4(14)',
+            'memoSelesai'       => 'JP/PRL/PKW/BLG/20/3(14)',
+            'noDaftar'          => 'PKW 0002-14-02-04',
+            'hukuman'           => '3 BULAN DAN 4 JAM',
+            'tarikhMasuk'       => '2014-01-09'
+        ));
+
+        DB::table('remitance')->insert(array(
+            'caseNo'         => '83RS-01-01/2014',
+            'tarikhHukum'   => '2014-01-09',
+            'tarikhLewat'   => '2014-04-08',
+            'tarikhAwal'    => '2014-03-25'
+        ));
+
+        DB::table('parent')->insert(array(
+            'noKP'          => '900918026209',
+            'noKPParent'    => '',
+            'name'          => 'MOHD JASNI BIN AB SANI',
+            'relationship'  => 'BAPA',
+            'address'       => 'KAMPUNG SEBERANG WAT, JLN. HOSPITAL, BALING',
+            'phone'         => ''
+        ));
+
+        // #################   Mesej Selesai   #######################
 
         $this->messaging();
+
+        // #################                    #######################
 
     }
 

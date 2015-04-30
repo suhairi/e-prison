@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">No KP KPW</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" name="noKP" value="{{ Session::get('noPKW') }}">
+                                <input type="number" class="form-control" name="noKP" placeholder="Sampel : 900918026209" value="{{ Session::get('noPKW') }}" required="">
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                                 <td colspan="2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <th colspan="2" bgcolor="#CCC" class="alert alert-warning">Kes {{ ++$key }}</th>
+                                <th colspan="2" bgcolor="#CCC" class="alert alert-warning">Maklumat Kes {{ ++$key }}</th>
                             </tr>
 
                             <tr>
@@ -118,7 +118,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th colspan="2"><font color="red">Tiada data!</font></th>
+                                    <th colspan="2" class="alert alert-warning"><font color="red">No KP tidak dijumpai.</font></th>
                                 </tr>
                             </thead>
                         </table>

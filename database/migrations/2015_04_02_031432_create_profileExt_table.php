@@ -23,6 +23,7 @@ class CreateProfileExtTable extends Migration {
             $table->string('placeOB');
             $table->string('education');
             $table->text('marks');
+            $table->text('bodyMarks');
 		});
 	}
 
