@@ -79,14 +79,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Tanda Lahir</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="marks">
+                                <textarea class="form-control" name="marks"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Tanda Badan</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="bodyMarks" placeholder="Contoh: Tatu, Tindik">
+                                <textarea class="form-control" name="bodyMarks" placeholder="Contoh: Tatu, Tindik"></textarea>
                             </div>
                         </div>
 
