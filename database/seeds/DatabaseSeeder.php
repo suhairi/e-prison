@@ -61,21 +61,6 @@ class UserTableSeeder extends Seeder {
             )
         );
 
-        DB::table('daerah')->insert(array(              // ID
-            [ 'desc'    => 'KUALA MUDA' ],              //  1
-            [ 'desc'    => 'KOTA SETAR' ],              //  2
-            [ 'desc'    => 'KUBANG PASU / JITRA' ],     //  3
-            [ 'desc'    => 'KULIM' ],                   //  4
-            [ 'desc'    => 'LANGKAWI' ],                //  5
-            [ 'desc'    => 'POKOK SENA' ],              //  6
-            [ 'desc'    => 'PENDANG' ],                 //  7
-            [ 'desc'    => 'BANDAR BAHARU' ],           //  8
-            [ 'desc'    => 'YAN' ],                     //  9
-            [ 'desc'    => 'PADANG TERAP' ],            // 10
-            [ 'desc'    => 'BALING' ],                  // 11
-            [ 'desc'    => 'SIK' ]                      // 12
-        ));
-
         //  Sample Profil
 
         DB::table('profile')->insert(array(
@@ -127,6 +112,30 @@ class UserTableSeeder extends Seeder {
             'relationship'  => 'BAPA',
             'address'       => 'KAMPUNG SEBERANG WAT, JLN. HOSPITAL, BALING',
             'phone'         => ''
+        ));
+
+        DB::table('penempatan')->insert(array(
+            'organisasi'    => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH',
+            'alamat'        => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,
+                                TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,
+                                JALAN KAMPUNG BARU, 05000 ALOR SETAR, KEDAH.',
+            'noTel'         => '04-7342673'
+        ));
+
+        DB::table('penempatan')->insert(array(
+            'organisasi'    => 'BAHAGIAN PAROL DAN PERKHIDMATAN KOMUNITI, IBU PEJABAT PENJARA MALAYSIA',
+            'alamat'        => 'IBU PEJABAT PENJARA MALAYSIA, BUKIT WIRA 04300 KAJANG, SELANGOR.',
+            'noTel'         => '03-87341805'
+        ));
+
+        DB::table('penempatan')->insert(array(
+            'organisasi'    => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI, DAERAH BALING/SIK KEDAH',
+            'alamat'        => 'NO 109, JALAN PERSISIRAN KOTA 4/5, PULAI, 09100 BALING KEDAH.',
+            'noTel'         => '04-4746079'
+        ));
+
+        DB::table('kehadiran')->insert(array(
+           'desc'   => 'PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK KEDAH'
         ));
 
         // #################   Mesej Selesai   #######################

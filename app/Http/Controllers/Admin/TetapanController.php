@@ -3,13 +3,18 @@
 use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 
-use App\Prefixes;
+use App\Officer;
+use App\User;
+use App\Penempatan;
 
+//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Support\Facades\Validator;
 
 class TetapanController extends Controller {
 
@@ -24,145 +29,187 @@ class TetapanController extends Controller {
         $this->middleware('userLevelOne');
     }
 
-    public function getNoCase() {
-        return view('admin/tetapan/noKes');
+    public function getRegister() {
+
+        $users = User::orderBy('level')->paginate(10);
+
+        return view('admin/tetapan/register')
+            ->with('users', $users);
     }
 
-    public function getMemoTerima() {
-
-        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->paginate(10);
-
-        return view('admin/tetapan/memoTerima')
-            ->with('prefixes', $prefixes);
-    }
-
-    public function postMemoTerima() {
+    public function postRegister() {
 
         $request = Request::all();
 
         $validation = Validator::make($request, array(
-            'prefixMemoTerima'  => 'required|min:10'
+            'name'                  => 'required',
+            'email'                 => 'required|email',
+            'password'              => 'required|min:3',
+            'password_confirmation' => 'required|same:password',
+            'level'                 => 'required'
+        ));
+
+        if ($validation->fails()) {
+
+            return redirect('admin/tetapan/register')
+                ->withInput(Input::except('password'))
+                ->withErrors($validation->errors());
+        }
+
+        $user = new User;
+
+        $user->name         = strtoupper(Request::input('name'));
+        $user->email        = strtolower(Request::input('email'));
+        $user->password     = Hash::make(Request::Input('password'));
+        $user->level        = Request::Input('level');
+
+        if($user->save()) {
+            \Session::flash('success', 'Maklumat Pengguna Sistem berjaya direkod');
+        } else {
+            \Session::flash('fail', 'Maklumat Pengguna Sistem Gagal direkod!!');
+        }
+
+        $users = User::orderBy('level')->paginate(10);
+
+        return view('admin/tetapan/register')
+            ->with('users', $users);
+    }
+
+    public function getStaff() {
+
+        $officers = Officer::paginate(10);
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers);
+    }
+
+    public function postStaff()
+    {
+
+        $request = Request::all();
+
+        $validation = Validator::make($request, array(
+            'name' => 'required',
+            'staffId' => 'required|numeric|min:7',
+            'noKP' => 'required|numeric|min:12',
+            'pangkat' => 'required|min:4'
+        ));
+
+        if ($validation->fails()) {
+            return redirect('admin/tetapan/staff')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $staff = new Officer;
+
+        $staff->staffId = Request::input('staffId');
+        $staff->noKP = Request::input('noKP');
+        $staff->name = strtoupper(Request::input('name'));
+        $staff->position = strtoupper(Request::input('pangkat'));
+
+        if ($staff->save()) {
+            \Session::flash('success', 'Maklumat Pegawai Berjaya direkod!');
+
+        } else {
+            \Seesion::flash('fail', 'Maklumat Pegawai Gagal Direkod!');
+        }
+
+        $officers = Officer::paginate(10);
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers);
+    }
+
+    public function getPenempatan() {
+
+        $penempatans = Penempatan::paginate(10);
+
+        return view('admin/tetapan/penempatan')
+            ->with('penempatans', $penempatans);
+    }
+
+    public function postPenempatan() {
+
+        $input = Request::all();
+
+        $validation = Validator::make($input, array(
+            'organisasi'    => 'required',
+            'alamat'        => 'required',
+            'noTel'         => 'required'
         ));
 
         if($validation->fails()) {
-            return redirect('admin/prefix-memo-terima')
-                ->withInput()
-                ->withErrors($validation->errors());
+            return redirect('admin\tetapan\penempatan')
+                ->withInputs()
+                ->withErrors($validation);
         }
 
-        $activeMemo = Prefixes::where('status', 'active')
-            ->where('desc', 'memoSelesai')
-            ->update(['status' => 'inactive']);
+        $penempatan = new Penempatan;
 
-        $prefix = new Prefixes;
+        $penempatan->organisasi = Request::input('organisasi');
+        $penempatan->alamat     = Request::input('alamat');
+        $penempatan->noTel      = Request::input('noTel');
 
-        $prefix->desc       = 'memoTerima';
-        $prefix->details    = strtoupper(Request::input('prefixMemoTerima'));
-        $prefix->status     = 'active';
-
-        if($prefix->save()) {
-            \Session::flash('success', 'Prefix No Rujukan Memo Terima berjaya direkod');
+        if($penempatan->save()) {
+            \Session::flash('success', 'Berjaya Direkod');
         } else {
-            \Session::flash('fail', 'Prefix No Rujukan Memo Terima gagal direkod');
+            \Session::flash('fail', 'Gagal Direkod');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoTerima')->orderBy('status')->paginate(10);
+        $penempatans = Penempatan::paginate(10);
 
-        return view('admin/tetapan/memoTerima')
-            ->with('prefixes', $prefixes);
+        return view('admin/tetapan/penempatan')
+            ->with('penempatans', $penempatans);
 
     }
 
-    public function getMemoPolis() {
+    public function deletePenempatan($id) {
 
-        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->paginate(10);
+        $penempatan = Penempatan::find($id);
 
-        return view('admin/tetapan/memoPolis')
-            ->with('prefixes', $prefixes);
-    }
-
-    public function postMemoPolis() {
-
-        $request = Request::all();
-
-
-
-        $validation = Validator::make($request, array(
-            'prefixMemoPolis'   => 'required|min:10'
-        ));
-
-        if($validation->fails()) {
-            return redirect('admin\prefix-memo-polis')
-                ->withInput()
-                ->withErrors($validation->errors());
-        }
-
-//        dd($request);
-
-        $activeMemo = Prefixes::where('status', 'active')
-            ->where('desc', 'memoPolis')
-            ->update(['status' => 'inactive']);
-
-        $prefix = new Prefixes;
-
-        $prefix->desc       = 'memoPolis';
-        $prefix->details    = strtoupper(Request::input('prefixMemoPolis'));
-        $prefix->status     = 'active';
-
-        if($prefix->save()) {
-            \Session::flash('success', 'Prefix No Rujukan Memo Polis berjaya direkod');
+        if($penempatan->delete()){
+            \Session::flash('success', 'Berjaya Dihapus.');
         } else {
-            \Session::flash('fail', 'Prefix No Rujukan Memo Terima berjaya direkod');
+            \Session::flash('fail', 'Gagal Dihapus');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoPolis')->orderBy('status')->paginate(10);
+        $penempatans = Penempatan::paginate(10);
 
-        return view('admin/tetapan/memoPolis')
-            ->with('prefixes', $prefixes);
+        return view('admin/tetapan/penempatan')
+            ->with('penempatans', $penempatans);
     }
 
-	public function getMemoSelesai() {
+    public function kemaskiniPenempatan($id) {
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('status')->paginate(10);
+        $penempatan = Penempatan::find($id);
 
-        return view('admin/tetapan/memoSelesai')
-            ->with('prefixes', $prefixes);
+//        dd($penempatan->organisasi);
+
+        return view('admin/tetapan/kemaskiniPenempatan')
+            ->with('penempatans', $penempatan);
     }
 
-    public function postMemoSelesai() {
+    public function postKemaskiniPenempatan($id) {
 
-        $request = Request::all();
+        $penempatan = Penempatan::find($id);
 
-        $validation = Validator::make($request, array(
-            'prefixMemoSelesai'     => 'required'
-        ));
+        $penempatan->organisasi = Request::input('organisasi');
+        $penempatan->alamat     = Request::input('alamat');
+        $penempatan->noTel      = Request::input('noTel');
 
-        if($validation->fails()){
-            return redirect('admin/tetapan/memoSelesai')
-                ->withInput()
-                ->withErrors($validation->errors());
-        }
-
-        $activeMemo = Prefixes::where('status', 'active')
-                            ->where('desc', 'memoSelesai')
-                            ->update(['status' => 'inactive']);
-
-        $memoSelesai = new Prefixes;
-
-        $memoSelesai->desc      = 'memoSelesai';
-        $memoSelesai->details   = Request::input('prefixMemoSelesai');
-        $memoSelesai->status    = 'active';
-
-        if($memoSelesai->save()) {
-            \Session::flash('success', 'Prefix No Rujukan Memo Selesai Berjaya di Rekod');
+        if($penempatan->save()) {
+            \Session::flash('success', 'Berjaya Dikemaskini');
         } else {
-            \Session::flash('fail', 'Gagal di Rekod');
+            \Session::flash('fail', 'Gagal Dikemaskini');
         }
 
-        $prefixes = Prefixes::where('desc', 'memoSelesai')->orderBy('active')->paginate(10);
+        $penempatans = Penempatan::paginate(10);
 
-        return view('admin/tetapan/memoSelesai')
-            ->with('prefixes', $prefixes);
+        return view('admin/tetapan/penempatan')
+            ->with('penempatans', $penempatans);
     }
+
+
 
 }

@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Daerah extends Model {
+class Kehadiran extends Model {
 
-	protected $table = 'daerah';
+	protected $table = 'kehadiran';
 
     protected $fillable = ['desc'];
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePusatKehadiransTable extends Migration {
+class CreateKehadiransTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,10 @@ class CreatePusatKehadiransTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pusat_kehadiran', function(Blueprint $table)
+		Schema::create('kehadiran', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('desc');
-            $table->integer('daerah');
+			$table->text('desc');
 		});
 	}
 
@@ -27,7 +26,7 @@ class CreatePusatKehadiransTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pusat_kehadiran');
+		Schema::drop('kehadiran');
 	}
 
 }

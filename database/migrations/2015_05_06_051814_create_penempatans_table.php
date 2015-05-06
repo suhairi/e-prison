@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDaerahsTable extends Migration {
+class CreatePenempatansTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,12 @@ class CreateDaerahsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('daerah', function(Blueprint $table)
+		Schema::create('penempatan', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('desc');
+            $table->text('organisasi');
+            $table->text('alamat');
+            $table->string('noTel');
 		});
 	}
 
@@ -26,7 +28,7 @@ class CreateDaerahsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('daerah');
+		Schema::drop('penempatan');
 	}
 
 }

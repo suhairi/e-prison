@@ -21,22 +21,38 @@ Route::post('admin', 'Clerk\ClerkController@carian');
 // ######################## ADMIN ##########################
 // ################## LEVEL ONE ACCESS #####################
 
-Route::get('admin/register', 'Admin\AdminController@getRegister');
-Route::post('admin/register', 'Admin\AdminController@postRegister');
+Route::get('admin/register', 'Admin\TetapanController@getRegister');
+Route::post('admin/register', 'Admin\TetapanController@postRegister');
 
-Route::get('admin/staff', 'Admin\AdminController@getStaff');
-Route::post('admin/staff', 'Admin\AdminController@postStaff');
+Route::get('admin/staff', 'Admin\TetapanController@getStaff');
+Route::post('admin/staff', 'Admin\TetapanController@postStaff');
 
-Route::get('admin/prefix-no-kes', 'Admin\TetapanController@getNoCase');
+Route::get('admin/prefix-no-kes', 'Admin\PrefixController@getNoCase');
 
-Route::get('admin/prefix-memo-terima', 'Admin\TetapanController@getMemoTerima');
-Route::post('admin/prefix-memo-terima', 'Admin\TetapanController@postMemoTerima');
+Route::get('admin/prefix-memo-terima', 'Admin\PrefixController@getMemoTerima');
+Route::post('admin/prefix-memo-terima', 'Admin\PrefixController@postMemoTerima');
 
-Route::get('admin/prefix-memo-polis', 'Admin\TetapanController@getMemoPolis');
-Route::post('admin/prefix-memo-polis', 'Admin\TetapanController@postMemoPolis');
+Route::get('admin/prefix-memo-polis', 'Admin\PrefixController@getMemoPolis');
+Route::post('admin/prefix-memo-polis', 'Admin\PrefixController@postMemoPolis');
 
-Route::get('admin/prefix-memo-selesai', 'Admin\TetapanController@getMemoSelesai');
-Route::post('admin/prefix-memo-selesai', 'Admin\TetapanController@postMemoSelesai');
+Route::get('admin/prefix-memo-selesai', 'Admin\PrefixController@getMemoSelesai');
+Route::post('admin/prefix-memo-selesai', 'Admin\PrefixController@postMemoSelesai');
+
+Route::get('admin/penempatan', 'Admin\TetapanController@getPenempatan');
+Route::post('admin/penempatan', 'Admin\TetapanController@postPenempatan');
+Route::get('admin/penempatan/delete/{id}', [
+    'as' => 'deletePenempatan',
+    'uses' =>'Admin\TetapanController@deletePenempatan'
+]);
+Route::get('admin/penempatan/kemaskini/{id}', [
+    'as' => 'kemaskiniPenempatan',
+    'uses' =>'Admin\TetapanController@kemaskiniPenempatan'
+]);
+
+Route::post('admin/penempatan/kemaskini/{id}', [
+    'as' => 'kemaskiniPenempatan',
+    'uses' =>'Admin\TetapanController@postKemaskiniPenempatan'
+]);
 
 
 // ######################## CLERK ##########################

@@ -46,17 +46,26 @@
 
 					@else
 
-					    <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tetapan <span class="caret"></span></a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tetapan
+                            <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('admin/register') }}">Pendaftaran Pengguna Sistem</a></li>
                                 <li><a href="{{ url('admin/staff') }}">Daftar Pegawai</a> </li>
-                                {{--<li><a href="{{ url('admin/prefix-no-kes') }}">Prefix No Kes</a> </li>--}}
-                                <li><a href="{{ url('admin/prefix-memo-terima') }}">Prefix No Memo Terima</a> </li>
-                                <li><a href="{{ url('admin/prefix-memo-polis') }}">Prefix No Memo Polis</a> </li>
-                                <li><a href="{{ url('admin/prefix-memo-selesai') }}">Prefix No Memo Selesai</a> </li>
+                                <li><a href="{{ url('admin/penempatan') }}">Penempatan</a> </li>
+
+                                <li class="dropdown-submenu">
+                                <a href="#">Prefix</a>
+                                <ul class="dropdown-menu">
+                                    {{--<li><a href="{{ url('admin/prefix-no-kes') }}">No Kes</a> </li>--}}
+                                    <li><a href="{{ url('admin/prefix-memo-terima') }}">No Memo Terima</a> </li>
+                                    <li><a href="{{ url('admin/prefix-memo-polis') }}">No Memo Polis</a> </li>
+                                    <li><a href="{{ url('admin/prefix-memo-selesai') }}">No Memo Selesai</a> </li>
+                                </ul>
+                              </li>
                             </ul>
                         </li>
+
                         <li><a href="#">Jana Borang</a></li>
 
 						<li class="dropdown">

@@ -7,15 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateCasesTable' => $baseDir . '/database/migrations/2015_04_13_070559_create_cases_table.php',
-    'CreateDaerahsTable' => $baseDir . '/database/migrations/2015_04_29_074208_create_daerahs_table.php',
+    'CreateKehadiransTable' => $baseDir . '/database/migrations/2015_05_06_065353_create_kehadirans_table.php',
     'CreateLevelTable' => $baseDir . '/database/migrations/2015_04_02_031101_create_level_table.php',
     'CreateOfficerTable' => $baseDir . '/database/migrations/2015_04_02_031458_create_officer_table.php',
     'CreateParentTable' => $baseDir . '/database/migrations/2015_04_02_031317_create_parent_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePenempatansTable' => $baseDir . '/database/migrations/2015_05_06_051814_create_penempatans_table.php',
     'CreatePrefixesTable' => $baseDir . '/database/migrations/2015_04_16_064358_create_prefixes_table.php',
     'CreateProfileExtTable' => $baseDir . '/database/migrations/2015_04_02_031432_create_profileExt_table.php',
     'CreateProfileTable' => $baseDir . '/database/migrations/2015_04_02_031354_create_profile_table.php',
-    'CreatePusatKehadiransTable' => $baseDir . '/database/migrations/2015_04_29_073641_create_pusat_kehadirans_table.php',
     'CreateRemitanceTable' => $baseDir . '/database/migrations/2015_04_02_031616_create_remitance_table.php',
     'CreateSessionTable' => $baseDir . '/database/migrations/2015_04_12_041312_create_session_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

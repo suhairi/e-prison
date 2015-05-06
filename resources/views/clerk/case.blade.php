@@ -29,6 +29,8 @@
 						</div>
 					@endif
 
+					 here {{ Session::get('noPKW') }}
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/clerk/case') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

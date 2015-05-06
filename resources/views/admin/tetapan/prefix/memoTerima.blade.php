@@ -1,4 +1,4 @@
-@extends('app')
+@extends('.........app')
 
 
 @section('content');
@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Tetapan Prefix Memo Selesai</div>
+				<div class="panel-heading">Tetapan Prefix Memo Terima</div>
 
 				<div class="panel-body">
 
@@ -28,13 +28,13 @@
                         </div>
                     @endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/prefix-memo-selesai') }}">
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/prefix-memo-terima') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Prefix No Rujukan Memo Selesai</label>
+                            <label class="col-md-4 control-label">Prefix No Rujukan Memo Terima</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="prefixMemoSelesai" placeholder="Contoh : JP/PRL/PKW/BLG/20/3" value="{{ old('prefixMemoSelesai') }}">
+                                <input type="text" class="form-control" name="prefixMemoTerima" placeholder="Contoh : JP/PRL/PKW/BLG/20/2" value="{{ old('prefixMemoTerima') }}">
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@
                         <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th colspan="4" class="success">Senarai Prefix No Rujukan Memo Selesai</th>
+                                <th colspan="4" class="success">Senarai Prefix No Rujukan Memo Terima</th>
                             </tr>
                         </thead>
                         <tbody>
