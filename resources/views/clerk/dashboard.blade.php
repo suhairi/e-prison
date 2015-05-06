@@ -112,8 +112,7 @@
                         </table>
                     @endif
 
-
-                    @if(!Session::get('noPKWFound'))
+                    @if(count(@$profiles) <= 0 && Session::get('carian') == true)
 
                         <table class="table table-hover">
                             <thead>
@@ -123,8 +122,8 @@
                             </thead>
                         </table>
 
-
                     @endif
+
 
                 </div>
 				</div>

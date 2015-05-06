@@ -29,8 +29,13 @@ class LaporanController extends Controller {
 
 	public function getOne() {
 
-        if(!\Session::get('noPKWFound'))
+        if(!\Session::get('noPKWFound')) {
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu');
             return view('clerk\dashboard');
+
+        }
+
 
         $cases = Cases::where('noKP', \Session::get('noPKW'))->first();
         $profile = Profile::where('noKP', \Session::get('noPKW'))->first();
