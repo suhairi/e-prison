@@ -6,7 +6,7 @@ class Cases extends Model {
 
 	protected $table = 'cases';
 
-    protected $primaryKey = 'caseNo';
+    protected $primaryKey = 'id';
 
     protected $fillable = ['caseNo', 'noKP', 'memoTerima', 'memoPolis', 'memoSelesai', 'noDaftar', 'hukuman', 'tarikhDaftar'];
 

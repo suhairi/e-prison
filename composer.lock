@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "90aca1c4cdf2431d94751bd606e6b347",
+    "hash": "16a617267604e25237d0f21e5a27bba2",
     "packages": [
         {
             "name": "anouar/fpdf",

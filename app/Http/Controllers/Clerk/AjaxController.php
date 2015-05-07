@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Kehadiran;
+use App\Cases;
 
 
 class AjaxController extends Controller {
@@ -27,18 +28,50 @@ class AjaxController extends Controller {
         }
     }
 
-    public function getTarikh() {
+    public function getDaerah($id) {
 
-        $id = Request::input('data');
-        console.log(Request::input('data'));
+        if(Request::ajax()) {
+            if($id != '') {
+
+//                dd($id);
+
+                $kehadiran = Kehadiran::find($id);
+
+                $output = $kehadiran->desc;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getTarikh($id) {
+
         if(Request::ajax()) {
             if($id != '') {
 
                 $case = Cases::find($id);
 
-                $output = $case->tarikhMasuk;
+                $output2 = $case->tarikhMasuk;
 
-                console.log($output);
+                $output = explode('-', $output2);
+
+                $output = $output[2] . '/' . $output[1] . '/' . $output[0];
+
+                return $output;
+            }
+        }
+    }
+
+    public function getNoDaftar($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $case = Cases::find($id);
+
+                $output = $case->noDaftar;
+
+                return $output;
             }
         }
     }

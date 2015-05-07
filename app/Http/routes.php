@@ -105,14 +105,24 @@ Route::get('clerk/laporan/ajax/', [
     'uses'  => 'Clerk\AjaxController@ajax'
 ]);
 
-Route::get('clerk/laporan/ajax/kehadiran/{id}', [
-    'as'    => 'ajax-kehadiran',
+Route::get('clerk/laporan/ajax/kehadiran/negeri/{id}', [
+    'as'    => 'ajax-negeri',
     'uses'  => 'Clerk\AjaxController@getNegeri'
 ]);
 
-Route::post('clerk/laporan/ajax/rujukanFail/', [
-    'as'    => 'ajax-rujukanFail',
+Route::get('clerk/laporan/ajax/kehadiran/daerah/{id}', [
+    'as'    => 'ajax-daerah',
+    'uses'  => 'Clerk\AjaxController@getDaerah'
+]);
+
+Route::get('clerk/laporan/ajax/cases/tarikh/{id}', [
+    'as'    => 'ajax-tarikh',
     'uses'  => 'Clerk\AjaxController@getTarikh'
+]);
+
+Route::get('clerk/laporan/ajax/cases/noDaftar/{id}', [
+    'as'    => 'ajax-noDaftar',
+    'uses'  => 'Clerk\AjaxController@getNoDaftar'
 ]);
 
 

@@ -14,8 +14,8 @@ class CreateCasesTable extends Migration {
     {
         Schema::create('cases', function(Blueprint $table)
         {
+            $table->increments('id');
             $table->string('caseNo');
-            $table->primary('caseNo');
             $table->bigInteger('noKP');
             $table->string('seksyenKesalahan');
             $table->string('memoTerima');

@@ -142,7 +142,8 @@ class UserTableSeeder extends Seeder {
         ));
 
         DB::table('kehadiran')->insert(array(
-           'desc'   => 'PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK KEDAH'
+           'desc'           => 'BALING/SIK',
+           'negeri'         => 'KEDAH'
         ));
 
         // #################   Mesej Selesai   #######################
