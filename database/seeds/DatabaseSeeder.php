@@ -122,6 +122,13 @@ class UserTableSeeder extends Seeder {
             'noTel'         => '04-7342673'
         ));
 
+        DB::table('officer')->insert(array(
+            'staffId'       => '1234',
+            'noKP'          => '750918026209',
+            'name'          => 'AHMAD KAMAL B AHMAD ALI',
+            'position'      => 'KIP'
+        ));
+
         DB::table('penempatan')->insert(array(
             'organisasi'    => 'BAHAGIAN PAROL DAN PERKHIDMATAN KOMUNITI, IBU PEJABAT PENJARA MALAYSIA',
             'alamat'        => 'IBU PEJABAT PENJARA MALAYSIA, BUKIT WIRA 04300 KAJANG, SELANGOR.',

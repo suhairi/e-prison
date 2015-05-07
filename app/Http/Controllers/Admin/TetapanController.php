@@ -58,7 +58,7 @@ class TetapanController extends Controller {
 
         $user = new User;
 
-        $user->name         = strtoupper(Request::input('name'));
+        $user->name         = Request::input('name');
         $user->email        = strtolower(Request::input('email'));
         $user->password     = Hash::make(Request::Input('password'));
         $user->level        = Request::Input('level');
@@ -75,6 +75,24 @@ class TetapanController extends Controller {
             ->with('users', $users);
     }
 
+    public function deleteRegister($id) {
+
+        $user = User::find($id);
+
+        if($user->delete()) {
+            \Session::flash('success', 'Berjaya Dihapus');
+        } else {
+            \Session::flash('fail', 'Gagal Dihapus');
+        }
+
+        $users = User::orderBy('level')->paginate(10);
+
+        return view('admin/tetapan/register')
+            ->with('users', $users);
+
+
+    }
+
     public function getStaff() {
 
         $officers = Officer::paginate(10);
@@ -83,8 +101,7 @@ class TetapanController extends Controller {
             ->with('officers', $officers);
     }
 
-    public function postStaff()
-    {
+    public function postStaff() {
 
         $request = Request::all();
 
@@ -92,11 +109,11 @@ class TetapanController extends Controller {
             'name' => 'required',
             'staffId' => 'required|numeric|min:7',
             'noKP' => 'required|numeric|min:12',
-            'pangkat' => 'required|min:4'
+            'pangkat' => 'required'
         ));
 
         if ($validation->fails()) {
-            return redirect('admin/tetapan/staff')
+            return redirect('admin/staff')
                 ->withInput()
                 ->withErrors($validation->errors());
         }
@@ -113,6 +130,22 @@ class TetapanController extends Controller {
 
         } else {
             \Seesion::flash('fail', 'Maklumat Pegawai Gagal Direkod!');
+        }
+
+        $officers = Officer::paginate(10);
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers);
+    }
+
+    public function deleteStaff($id) {
+
+        $staff = Officer::find($id);
+
+        if($staff->delete()) {
+            \Session::flash('success', 'Berjaya Dihapus');
+        } else {
+            \Session::flash('fail', 'Gagal Dihapus');
         }
 
         $officers = Officer::paginate(10);

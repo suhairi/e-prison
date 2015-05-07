@@ -8,10 +8,10 @@
 				<div class="panel-heading">Pendaftaran Pegawai-pegawai </div>
 				<div class="panel-body">
 				    @if(Session::has('success'))
-                      <div class="alert-box success">{{ Session::get('success') }}</div>
+                      <div class="alert alert-success">{{ Session::get('success') }}</div>
                     @endif
                     @if(Session::has('fail'))
-                      <div class="alert-box warning">{{ Session::get('fail') }}</div>
+                      <div class="alert alert-warning">{{ Session::get('fail') }}</div>
                     @endif
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
@@ -85,7 +85,7 @@
                                  <td>{{ $officer->staffId }}</td>
                                 <td>{{ $officer->name }}</td>
                                 <td align="center">{{ $officer->noKP }}</td>
-                                <td>[ Kemaskini ] [ Hapus ]</td>
+                                <td>[ Kemaskini ] [ <a href="{{ URL::route('deleteStaff', $officer->staffId) }}">Hapus</a> ]</td>
                             </tr>
 
 					    @endforeach

@@ -23,9 +23,17 @@ Route::post('admin', 'Clerk\ClerkController@carian');
 
 Route::get('admin/register', 'Admin\TetapanController@getRegister');
 Route::post('admin/register', 'Admin\TetapanController@postRegister');
+Route::get('admin/register/delete/{id}', [
+        'as'    => 'deleteRegister',
+        'uses'  => 'Admin\TetapanController@deleteRegister'
+]);
 
 Route::get('admin/staff', 'Admin\TetapanController@getStaff');
 Route::post('admin/staff', 'Admin\TetapanController@postStaff');
+Route::get('admin/staff/delete/{id}', [
+        'as'        => 'deleteStaff',
+        'uses'      => 'Admin\TetapanController@deleteStaff'
+]);
 
 Route::get('admin/prefix-no-kes', 'Admin\PrefixController@getNoCase');
 

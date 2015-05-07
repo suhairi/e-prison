@@ -30,12 +30,12 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Nama</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" pattern="[a-zA-Z]{50}" name="name" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Alamat E-Mail</label>
+							<label class="col-md-4 control-label">E-Mail</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
@@ -100,7 +100,7 @@
                                         KERANI
                                     @endif
                                 </td>
-                                <td>[ Hapus ]</td>
+                                <td>[ <a href="{{ URL::route('deleteRegister', $user->id) }}">Hapus</a> ]</td>
                             </tr>
 
                         @endforeach
