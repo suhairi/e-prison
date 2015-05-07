@@ -30,7 +30,7 @@ class AjaxController extends Controller {
     public function getTarikh() {
 
         $id = Request::input('data');
-        dd($id);
+        console.log(Request::input('data'));
         if(Request::ajax()) {
             if($id != '') {
 
@@ -38,7 +38,7 @@ class AjaxController extends Controller {
 
                 $output = $case->tarikhMasuk;
 
-                return $output;
+                console.log($output);
             }
         }
     }
