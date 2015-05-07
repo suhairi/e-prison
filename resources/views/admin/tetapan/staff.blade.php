@@ -85,7 +85,11 @@
                                  <td>{{ $officer->staffId }}</td>
                                 <td>{{ $officer->name }}</td>
                                 <td align="center">{{ $officer->noKP }}</td>
-                                <td>[ Kemaskini ] [ <a href="{{ URL::route('deleteStaff', $officer->staffId) }}">Hapus</a> ]</td>
+                                <td>
+                                    [ <a href="{{ URL::route('kemaskiniStaff', $officer->staffId) }}">Kemaskini</a> ]
+                                    [ <a href="{{ URL::route('deleteStaff', $officer->staffId) }}">Hapus</a> ]
+
+                                </td>
                             </tr>
 
 					    @endforeach

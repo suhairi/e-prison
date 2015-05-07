@@ -16,6 +16,8 @@
 	<link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
     {{--<script src="//code.jquery.com/jquery-1.10.2.js"></script>--}}
     <script src="{{ asset('/js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ asset('/js/jquery-1.11.2.min.js') }}"></script>
+
     {{--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--}}
     <script src="{{ asset('/js/jquery-ui.js') }}"></script>
 
@@ -65,6 +67,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Laporan <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('clerk/laporan/1') }}">m t</a></li>
+                                <li><a href="{{ URL::route('testPDF') }}">Test PDF</a> </li>
                             </ul>
                         </li>
 

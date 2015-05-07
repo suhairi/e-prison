@@ -16,6 +16,7 @@ class CreateKehadiransTable extends Migration {
 		{
 			$table->increments('id');
 			$table->text('desc');
+            $table->string('negeri');
 		});
 	}
 

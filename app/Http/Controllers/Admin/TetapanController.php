@@ -138,6 +138,20 @@ class TetapanController extends Controller {
             ->with('officers', $officers);
     }
 
+    public function kemaskiniStaff($id) {
+
+        $officer = Officer::find($id);
+
+        if(count($officer) <= 0) {
+            \Session::flash('fail', 'Ralat kemaskini!');
+
+            return redirect('admin/staff');
+        }
+
+        return view('admin/tetapan/kemaskiniStaff')
+            ->with('officer', $officer);
+    }
+
     public function deleteStaff($id) {
 
         $staff = Officer::find($id);
@@ -217,7 +231,11 @@ class TetapanController extends Controller {
 
         $penempatan = Penempatan::find($id);
 
-//        dd($penempatan->organisasi);
+        if(count($penempatan) <= 0) {
+            \Session::flash('fail', 'Ralat Kemaskini!');
+
+            return redirect('admin/penempatan');
+        }
 
         return view('admin/tetapan/kemaskiniPenempatan')
             ->with('penempatans', $penempatan);

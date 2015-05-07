@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Cases;
 use App\Profile;
+use App\Kehadiran;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -37,17 +38,22 @@ class LaporanController extends Controller {
         }
 
 
-        $cases = Cases::where('noKP', \Session::get('noPKW'))->first();
-        $profile = Profile::where('noKP', \Session::get('noPKW'))->first();
+        $cases      = Cases::where('noKP', \Session::get('noPKW'))->get();
 
-        $tarikhMasuk = explode('-', $cases->tarikhMasuk);
+//        foreach($cases as $case) {
+//            var_dump($case->memoTerima);
+//        }
+        $profile    = Profile::where('noKP', \Session::get('noPKW'))->first();
+        $kehadirans  = Kehadiran::all();
 
-        $tarikhMasuk =  $tarikhMasuk[2] . '/' . $tarikhMasuk[1] . '/' . $tarikhMasuk[0];
+//        $tarikhMasuk = explode('-', $cases->tarikhMasuk);
+//
+//        $tarikhMasuk =  $tarikhMasuk[2] . '/' . $tarikhMasuk[1] . '/' . $tarikhMasuk[0];
 
         return view('clerk/laporan/mt')
             ->with('cases', $cases)
             ->with('profile', $profile)
-            ->with('tarikhMasuk', $tarikhMasuk);
+            ->with('kehadirans', $kehadirans);
     }
 
     public function postOne() {

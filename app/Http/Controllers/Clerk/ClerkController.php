@@ -49,7 +49,7 @@ class ClerkController extends Controller {
 
     public function carian() {
 
-        $profiles = Profile::where('noKP', Request::input('noKP'))->first();
+        $profiles = Profile::where('noKP', Request::input('noKP'))->get();
 
         \Session::put('noPKWFound', false);
         \Session::flash('carian', true);

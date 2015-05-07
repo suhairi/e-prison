@@ -34,6 +34,10 @@ Route::get('admin/staff/delete/{id}', [
         'as'        => 'deleteStaff',
         'uses'      => 'Admin\TetapanController@deleteStaff'
 ]);
+Route::get('admin/staff/kemaskini/{id}', [
+    'as'        => 'kemaskiniStaff',
+    'uses'      => 'Admin\TetapanController@kemaskiniStaff'
+]);
 
 Route::get('admin/prefix-no-kes', 'Admin\PrefixController@getNoCase');
 
@@ -89,7 +93,27 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
 Route::post('clerk/laporan/1', 'Clerk\LaporanController@postOne');
 
+Route::get('clerk/laporan/test', [
+    'as'    => 'testPDF',
+    'uses'  => 'Clerk\MyPDFController@index'
+]);
 
+// ########################### AJAX ##########################
+
+Route::get('clerk/laporan/ajax/', [
+    'as'    => 'ajax',
+    'uses'  => 'Clerk\AjaxController@ajax'
+]);
+
+Route::get('clerk/laporan/ajax/kehadiran/{id}', [
+    'as'    => 'ajax-kehadiran',
+    'uses'  => 'Clerk\AjaxController@getNegeri'
+]);
+
+Route::post('clerk/laporan/ajax/rujukanFail/', [
+    'as'    => 'ajax-rujukanFail',
+    'uses'  => 'Clerk\AjaxController@getTarikh'
+]);
 
 
 
