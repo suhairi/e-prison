@@ -2730,49 +2730,6 @@
         ]
     },
     {
-        "name": "cossou/jasperphp",
-        "version": "v1.2.0",
-        "version_normalized": "1.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cossou/JasperPHP.git",
-            "reference": "f196d9a951ad43c37a961554e28049b38f4b276c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cossou/JasperPHP/zipball/f196d9a951ad43c37a961554e28049b38f4b276c",
-            "reference": "f196d9a951ad43c37a961554e28049b38f4b276c",
-            "shasum": ""
-        },
-        "time": "2015-04-28 10:10:36",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "JasperPHP": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Hélder Duarte",
-                "email": "cossou@gmail.com"
-            }
-        ],
-        "description": "Create Reports in PHP with JasperReports",
-        "homepage": "https://github.com/cossou/JasperPHP",
-        "keywords": [
-            "jasper",
-            "jasperreports",
-            "java",
-            "pdf",
-            "reports"
-        ]
-    },
-    {
         "name": "phpspec/prophecy",
         "version": "v1.4.1",
         "version_normalized": "1.4.1.0",
@@ -2993,5 +2950,48 @@
             }
         ],
         "description": "Fpdf allows to generate PDF files"
+    },
+    {
+        "name": "cossou/jasperphp",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cossou/JasperPHP.git",
+            "reference": "f196d9a951ad43c37a961554e28049b38f4b276c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cossou/JasperPHP/zipball/f196d9a951ad43c37a961554e28049b38f4b276c",
+            "reference": "f196d9a951ad43c37a961554e28049b38f4b276c",
+            "shasum": ""
+        },
+        "time": "2015-04-28 10:10:36",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "JasperPHP": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Hélder Duarte",
+                "email": "cossou@gmail.com"
+            }
+        ],
+        "description": "Create Reports in PHP with JasperReports",
+        "homepage": "https://github.com/cossou/JasperPHP",
+        "keywords": [
+            "jasper",
+            "jasperreports",
+            "java",
+            "pdf",
+            "reports"
+        ]
     }
 ]

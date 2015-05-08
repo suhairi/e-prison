@@ -47,8 +47,6 @@ td {
 				        <td colspan="3">&nbsp;</td>
 				    </tr>
 
-				    {{--###################################################################--}}
-
 				    <tr align="left">
 				        <td colspan="3">
 
@@ -211,7 +209,7 @@ td {
 
                                         <tr>
                                             <td colspan="2">
-                                                <select name="pegawai">
+                                                <select name="pegawai" class="officer">
                                                     <option value="" selected>Pegawai Bertugas</option>
 
                                                     @foreach($officers as $officer)
@@ -236,14 +234,199 @@ td {
 				        </td>
 				    </tr>
 
-				    {{--###################################################################--}}
+
 
 				</table>
-				</form>
+
+                    {{--############################         DUA         ###########################--}}
 
                 <br /><br />
 
-                <form method="post" action="#" role="form">
+                <table width="80%" border="0" style="border : solid 1px #000">
+                    <tr>
+                        <td align="center" colspan="3"><img src="{{ asset('images/logo_penjara.png') }}" border="0"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="3">BORANG PENGHANTARAN DOKUMEN</td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="3">TERPERINGKAT SULIT/TERHAD MELALUI FAKSIMILI</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+
+                    <tr align="left">
+                        <td colspan="3">
+
+                            <table align="center" width="90%" style="border : 1px solid #000">
+                                <tr>
+                                    <td valign="top" colspan="4">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="top" colspan="4"><strong>MAKLUMAT DOKUMEN</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>No Rujukan</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="noRujukan2"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>Tarikh Dokumen Dihantar</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="tarikhDokumen"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>Perkara/Tajuk</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah2"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>Bil Muka Surat</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="tarikh"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3"><hr color="#00" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="top" colspan="4"><strong>MAKLUMAT PENERIMA</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NAMA PEGAWAI</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="noRujukan"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NAMA ORGANISASI</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td>
+                                        <select name="penempatan" class="penempatan">
+                                            <option value="" selected>Organisasi Penerima</option>
+
+                                            @foreach($penempatans as $penempatan)
+                                                <option value="{{ $penempatan->id }}">{{ $penempatan->organisasi }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>ALAMAT</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah2"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NO TELEFAX</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="tarikh"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3"><hr color="#0FF" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td valign="top" colspan="4"><strong>MAKLUMAT PENGIRIM</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NAMA PEGAWAI</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="pengirim"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NAMA ORGANISASI</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td>
+
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>ALAMAT</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>NO TELEFAX</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top"><strong>PESANAN</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+
+
+                        </td>
+                    </tr>
+
+                </table>
+
+                {{--############################        TIGA        ###########################--}}
+
                     <table width="80%" border="0" style="border : solid 1px #000">
                         <tr>
                             <td align="center" colspan="3"><img src="{{ asset('images/logo_penjara.png') }}" border="0"></td>
@@ -257,8 +440,6 @@ td {
                         <tr>
                             <td colspan="3">&nbsp;</td>
                         </tr>
-
-                        {{--###################################################################--}}
 
                         <tr align="left">
                             <td colspan="3">
@@ -278,7 +459,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>No Rujukan</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="noRujukan"></font></td>
+                                        <td><font class="noRujukan3"></font></td>
                                     </tr>
 
                                     <tr>
@@ -287,7 +468,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>Tarikh Dokumen Dihantar</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="tarikhDokumen"></font></td>
+                                        <td><font class="tarikhDokumen2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -296,130 +477,117 @@ td {
                                     <tr>
                                         <td valign="top"><strong>Perkara/Tajuk</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah2"></font></td>
+                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah3"></font></td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="3">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td valign="top"><strong>Tarikh</strong></td>
+                                        <td valign="top"><strong>Bil Muka Surat</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="tarikh"></font></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3"><hr color="#00" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td valign="top" colspan="4"><strong>MAKLUMAT PENERIMA</strong></td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="3">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td valign="top"><strong>Perkara</strong></td>
+                                        <td valign="top"><strong>NAMA PEGAWAI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><strong>PENERIMAAN PESALAH KEHADIRAN WAJIB DAERAH <font class="daerah"></font> </strong></td>
+                                        <td></td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="3">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">
+                                        <td valign="top"><strong>NAMA ORGANISASI</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
+                                    </tr>
 
-                                            <table width="95%" border="0">
-                                                <tr>
-                                                    <td colspan="2">Tuan</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">&nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">Adalah saya dengan hormatnya merujuk kepada perkara di atas.</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>ALAMAT</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah3"></font></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td colspan="2">&nbsp;</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>NO TELEFAX</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td width="45">2.</td>
-                                                    <td>Bersama-sama ini disertakan :-</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3"><hr color="#0FF" /></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <br />
-                                                        1) Salinan Perintah Kehadiran Wajib, <br />
-                                                        2) Salinan Buku Daftar PKW Format 1, <br />
-                                                        3) Salinan Rekod Pesalah PKW Format 2,<br/>
-                                                        4) Salinan Borang PKW 4,<br />
-                                                        5) Remitan. <br />
-                                                    </td>
-                                                </tr>
+                                    <tr>
+                                        <td valign="top" colspan="4"><strong>MAKLUMAT PENGIRIM</strong></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>NAMA PEGAWAI</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td><font class="pengirim2"></font></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <table border="0" width="100%">
-                                                            <tr>
-                                                                <td colspan="2">bagi pesalah bernama</td>
-                                                                <td colspan="3" style="border-bottom: solid 1px #000">{{ $profile->nama }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td width="85">No. Daftar</td></td>
-                                                                <td colspan="2" style="border-bottom: solid 1px #000"><font class="noDaftar"></font></td>
-                                                                <td colspan="2">untuk makluman pihak tuan </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="3">selanjutnya.</td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>NAMA ORGANISASI</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>ALAMAT</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td colspan="2">Sekian, terima kasih.</td>
-                                                </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>NO TELEFAX</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
+                                    </tr>
 
-                                                <tr>
-                                                    <td><br /><br /></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td colspan="2">Saya yang menurut perintah,</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td colspan="2"><br /><br /></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td colspan="2">......................................................................</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <select name="pegawai">
-                                                            <option value="" selected>Pegawai Bertugas</option>
-
-                                                            @foreach($officers as $officer)
-                                                                <option value="{{ $officer->name }}">{{ $officer->name }} ( {{ $officer->position }} )</option>
-                                                            @endforeach
-
-                                                        </select>
-
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2"><br /><br /></td>
-                                                </tr>
-                                            </table>
-
-                                        </td>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top"><strong>PESANAN</strong></td>
+                                        <td valign="top"><strong>:</strong></td>
+                                        <td></td>
                                     </tr>
 
                                 </table>
@@ -428,9 +596,10 @@ td {
                             </td>
                         </tr>
 
-                        {{--###################################################################--}}
-
                     </table>
+
+
+
                 </form>
 
                 </div>
@@ -474,11 +643,12 @@ $(document).ready(function() {
                 data    : strData,
                 success : function(data) {
                     $('.daerah').html(data);
+                    $('.daerah2').html(data);
+
                 }
             }, 'json');
         }
-
-    })
+    });
 
     $('.memoTerima').change(function(e) {
 
@@ -495,6 +665,8 @@ $(document).ready(function() {
                     data    : strData,
                     success : function(data) {
                         $('.tarikh').html(data);
+                        $('.tarikhDokumen').html(data);
+                        $('.tarikhDokumen2').html(data);
                     }
                 }, 'json');
         }
@@ -513,7 +685,32 @@ $(document).ready(function() {
             }, 'json');
         }
 
-    })
+        var url = "{{ URL::route('ajax') }}";
+        url += "/cases/noKes/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.noRujukan2').html(data);
+                    $('.noRujukan3').html(data);
+
+                }
+            }, 'json');
+        }
+
+    });
+
+    $('.officer').change(function(){
+
+        $('.pengirim').html($('.officer').val());
+        $('.pengirim2').html($('.officer').val());
+
+
+
+    });
 
 })
 

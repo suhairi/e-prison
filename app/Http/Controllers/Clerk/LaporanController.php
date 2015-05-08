@@ -8,6 +8,7 @@ use App\Cases;
 use App\Profile;
 use App\Kehadiran;
 use App\Officer;
+use App\Penempatan;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -39,17 +40,19 @@ class LaporanController extends Controller {
         }
 
 
-        $cases      = Cases::where('noKP', \Session::get('noPKW'))->get();
-        $profile    = Profile::where('noKP', \Session::get('noPKW'))->first();
-        $kehadirans = Kehadiran::all();
-        $officers   = Officer::all();
+        $cases          = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $profile        = Profile::where('noKP', \Session::get('noPKW'))->first();
+        $kehadirans     = Kehadiran::all();
+        $officers       = Officer::all();
+        $penempatans    = Penempatan::all();
 
 
         return view('clerk/laporan/mt')
             ->with('cases', $cases)
             ->with('profile', $profile)
             ->with('kehadirans', $kehadirans)
-            ->with('officers', $officers);
+            ->with('officers', $officers)
+            ->with('penempatans', $penempatans);
     }
 
     public function postOne() {

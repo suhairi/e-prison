@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "16a617267604e25237d0f21e5a27bba2",
+    "hash": "5930ad8dcc89444c7648bc0ecf5c6396",
     "packages": [
         {
             "name": "anouar/fpdf",
@@ -105,7 +105,7 @@
         },
         {
             "name": "cossou/jasperphp",
-            "version": "v1.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cossou/JasperPHP.git",
@@ -2903,6 +2903,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cossou/jasperphp": 20,
         "anouar/fpdf": 20
     },
     "prefer-stable": false,

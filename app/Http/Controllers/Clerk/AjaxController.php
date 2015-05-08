@@ -55,7 +55,7 @@ class AjaxController extends Controller {
 
                 $output = explode('-', $output2);
 
-                $output = $output[2] . '/' . $output[1] . '/' . $output[0];
+                $output = $output[2] . '-' . $output[1] . '-' . $output[0];
 
                 return $output;
             }
@@ -70,6 +70,20 @@ class AjaxController extends Controller {
                 $case = Cases::find($id);
 
                 $output = $case->noDaftar;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getNoKes($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $case = Cases::find($id);
+
+                $output = $case->memoTerima;
 
                 return $output;
             }

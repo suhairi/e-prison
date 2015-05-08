@@ -125,6 +125,13 @@ Route::get('clerk/laporan/ajax/cases/noDaftar/{id}', [
     'uses'  => 'Clerk\AjaxController@getNoDaftar'
 ]);
 
+Route::get('clerk/laporan/ajax/cases/noKes/{id}', [
+    'as'    => 'ajax-noKes',
+    'uses'  => 'Clerk\AjaxController@getNoKes'
+]);
+
+
+
 
 
 

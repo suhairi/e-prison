@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-        "cossou/jasperphp": "~1.1",
+        "cossou/jasperphp": "dev-master",
         "anouar/fpdf" :"dev-master"
 	},
 	"require-dev": {
