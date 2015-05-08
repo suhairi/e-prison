@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 
 use App\Kehadiran;
 use App\Cases;
+use App\Officer;
+use App\Penempatan;
+use App\Penerima;
 
 
 class AjaxController extends Controller {
@@ -89,5 +92,82 @@ class AjaxController extends Controller {
             }
         }
     }
+
+    public function getNamaPengirim($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $pengirim = Officer::find($id);
+
+                $output = $pengirim->name;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getOrganisasiPengirim($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $pengirim = Officer::find($id);
+
+                $output = Penempatan::find($pengirim->penempatan);
+
+                $output = $output->organisasi;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getAlamatPengirim($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $pengirim = Officer::find($id);
+
+                $output = Penempatan::find($pengirim->penempatan);
+
+                $output = $output->alamat;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getNoTelPengirim($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $pengirim = Officer::find($id);
+
+                $output = Penempatan::find($pengirim->penempatan);
+
+                $output = $output->noTel;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getOrganisasiPenerima($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $penerima = Penerima::find($id);
+
+                $output = $penerima->organisasi;
+
+                return $output;
+            }
+        }
+    }
+
 
 }

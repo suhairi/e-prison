@@ -20,7 +20,6 @@ class TetapanController extends Controller {
 
     protected $redirectPath = 'admin';
 
-
     public function __construct(Guard $auth, Registrar $registrar) {
         $this->registrar = $registrar;
         $this->auth = $auth;
@@ -96,9 +95,11 @@ class TetapanController extends Controller {
     public function getStaff() {
 
         $officers = Officer::paginate(10);
+        $penempatans = Penempatan::all();
 
         return view('admin/tetapan/staff')
-            ->with('officers', $officers);
+            ->with('officers', $officers)
+            ->with('penempatans', $penempatans);
     }
 
     public function postStaff() {
@@ -106,10 +107,11 @@ class TetapanController extends Controller {
         $request = Request::all();
 
         $validation = Validator::make($request, array(
-            'name' => 'required',
-            'staffId' => 'required|numeric|min:7',
-            'noKP' => 'required|numeric|min:12',
-            'pangkat' => 'required'
+            'name'          => 'required',
+            'staffId'       => 'required|numeric|min:7',
+            'noKP'          => 'required|numeric|min:12',
+            'pangkat'       => 'required',
+            'penempatan'    => 'required'
         ));
 
         if ($validation->fails()) {
@@ -120,10 +122,11 @@ class TetapanController extends Controller {
 
         $staff = new Officer;
 
-        $staff->staffId = Request::input('staffId');
-        $staff->noKP = Request::input('noKP');
-        $staff->name = strtoupper(Request::input('name'));
-        $staff->position = strtoupper(Request::input('pangkat'));
+        $staff->staffId     = Request::input('staffId');
+        $staff->noKP        = Request::input('noKP');
+        $staff->name        = strtoupper(Request::input('name'));
+        $staff->position    = strtoupper(Request::input('pangkat'));
+        $staff->penempatan  = Request::input('penempatan');
 
         if ($staff->save()) {
             \Session::flash('success', 'Maklumat Pegawai Berjaya direkod!');
@@ -133,6 +136,7 @@ class TetapanController extends Controller {
         }
 
         $officers = Officer::paginate(10);
+        $penempatans = Penempatan::all();
 
         return view('admin/tetapan/staff')
             ->with('officers', $officers);

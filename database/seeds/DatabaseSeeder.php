@@ -115,7 +115,7 @@ class UserTableSeeder extends Seeder {
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH',
+            'organisasi'    => 'PP & PK NEGERI KEDAH',
             'alamat'        => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,
                                 TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,
                                 JALAN KAMPUNG BARU, 05000 ALOR SETAR, KEDAH.',
@@ -126,17 +126,18 @@ class UserTableSeeder extends Seeder {
             'staffId'       => '1234',
             'noKP'          => '750918026209',
             'name'          => 'AHMAD KAMAL B AHMAD ALI',
-            'position'      => 'KIP'
+            'position'      => 'KIP',
+            'penempatan'    => '1'
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'BAHAGIAN PAROL DAN PERKHIDMATAN KOMUNITI, IBU PEJABAT PENJARA MALAYSIA',
+            'organisasi'    => 'BP & PK, IBU PEJABAT PENJARA MALAYSIA',
             'alamat'        => 'IBU PEJABAT PENJARA MALAYSIA, BUKIT WIRA 04300 KAJANG, SELANGOR.',
             'noTel'         => '03-87341805'
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI, DAERAH BALING/SIK KEDAH',
+            'organisasi'    => 'PP & PK DAERAH BALING/SIK KEDAH',
             'alamat'        => 'NO 109, JALAN PERSISIRAN KOTA 4/5, PULAI, 09100 BALING KEDAH.',
             'noTel'         => '04-4746079'
         ));

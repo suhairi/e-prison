@@ -9,6 +9,7 @@ use App\Profile;
 use App\Kehadiran;
 use App\Officer;
 use App\Penempatan;
+use App\Penerima;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -45,6 +46,7 @@ class LaporanController extends Controller {
         $kehadirans     = Kehadiran::all();
         $officers       = Officer::all();
         $penempatans    = Penempatan::all();
+        $penerimas      = Penerima::all();
 
 
         return view('clerk/laporan/mt')
@@ -52,7 +54,8 @@ class LaporanController extends Controller {
             ->with('profile', $profile)
             ->with('kehadirans', $kehadirans)
             ->with('officers', $officers)
-            ->with('penempatans', $penempatans);
+            ->with('penempatans', $penempatans)
+            ->with('penerimas', $penerimas);
     }
 
     public function postOne() {

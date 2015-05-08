@@ -213,7 +213,7 @@ td {
                                                     <option value="" selected>Pegawai Bertugas</option>
 
                                                     @foreach($officers as $officer)
-                                                        <option value="{{ $officer->name }}">{{ $officer->name }} ( {{ $officer->position }} )</option>
+                                                        <option value="{{ $officer->staffId }}">{{ $officer->name }} ( {{ $officer->position }} )</option>
                                                     @endforeach
 
                                                 </select>
@@ -322,21 +322,12 @@ td {
                                 <tr>
                                     <td valign="top"><strong>NAMA PEGAWAI</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td><font class="noRujukan"></font></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td valign="top"><strong>NAMA ORGANISASI</strong></td>
-                                    <td valign="top"><strong>:</strong></td>
                                     <td>
-                                        <select name="penempatan" class="penempatan">
-                                            <option value="" selected>Organisasi Penerima</option>
+                                        <select name="penerima" class="penerima">
+                                            <option value="" selected>Nama Penerima</option>
 
-                                            @foreach($penempatans as $penempatan)
-                                                <option value="{{ $penempatan->id }}">{{ $penempatan->organisasi }}</option>
+                                            @foreach($penerimas as $penerima)
+                                                <option value="{{ $penerima->id }}">{{ $penerima->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -347,9 +338,18 @@ td {
                                     <td colspan="3">&nbsp;</td>
                                 </tr>
                                 <tr>
+                                    <td valign="top"><strong>NAMA ORGANISASI</strong></td>
+                                    <td valign="top"><strong>:</strong></td>
+                                    <td><font class="organisasiPenerima"></font></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
                                     <td valign="top"><strong>ALAMAT</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah2"></font></td>
+                                    <td><font class="alamatPenerima"></font></td>
                                 </tr>
 
                                 <tr>
@@ -358,7 +358,7 @@ td {
                                 <tr>
                                     <td valign="top"><strong>NO TELEFAX</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td><font class="tarikh"></font></td>
+                                    <td><font class="noTelPenerima"></font></td>
                                 </tr>
 
                                 <tr>
@@ -384,10 +384,7 @@ td {
                                 <tr>
                                     <td valign="top"><strong>NAMA ORGANISASI</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td>
-
-
-                                    </td>
+                                    <td><font class="organisasi"></font></td>
                                 </tr>
 
                                 <tr>
@@ -396,7 +393,7 @@ td {
                                 <tr>
                                     <td valign="top"><strong>ALAMAT</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td></td>
+                                    <td><font class="alamat"></font></td>
                                 </tr>
 
                                 <tr>
@@ -405,7 +402,7 @@ td {
                                 <tr>
                                     <td valign="top"><strong>NO TELEFAX</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td></td>
+                                    <td><font class="noTel"></font></td>
                                 </tr>
 
                                 <tr>
@@ -417,15 +414,23 @@ td {
                                     <td></td>
                                 </tr>
 
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+
                             </table>
 
 
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
 
                 </table>
 
                 {{--############################        TIGA        ###########################--}}
+                <br /><br />
 
                     <table width="80%" border="0" style="border : solid 1px #000">
                         <tr>
@@ -459,7 +464,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>No Rujukan</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="noRujukan3"></font></td>
+                                        <td><font class="noRujukan2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -468,7 +473,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>Tarikh Dokumen Dihantar</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="tarikhDokumen2"></font></td>
+                                        <td><font class="tarikhDokumen"></font></td>
                                     </tr>
 
                                     <tr>
@@ -477,7 +482,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>Perkara/Tajuk</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah3"></font></td>
+                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -486,7 +491,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>Bil Muka Surat</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="tarikh"></font></td>
                                     </tr>
 
                                     <tr>
@@ -507,7 +512,16 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA PEGAWAI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td>
+                                            <select name="penerima2" class="penerima2">
+                                                <option value="" selected>Nama Penerima</option>
+
+                                                @foreach($penerimas as $penerima)
+                                                    <option value="{{ $penerima->id }}">{{ $penerima->organisasi }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </td>
                                     </tr>
 
                                     <tr>
@@ -525,7 +539,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>ALAMAT</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td>Penerimaan Pesalah Kehadiran Wajib <font class="daerah3"></font></td>
+                                        <td></td>
                                     </tr>
 
                                     <tr>
@@ -560,7 +574,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA ORGANISASI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="organisasi2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -569,7 +583,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>ALAMAT</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="alamat2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -578,7 +592,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NO TELEFAX</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="noTel2"></font></td>
                                     </tr>
 
                                     <tr>
@@ -590,10 +604,17 @@ td {
                                         <td></td>
                                     </tr>
 
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
                                 </table>
 
 
                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">&nbsp;</td>
                         </tr>
 
                     </table>
@@ -703,12 +724,97 @@ $(document).ready(function() {
 
     });
 
-    $('.officer').change(function(){
+    $('.officer').change(function(e){
 
-        $('.pengirim').html($('.officer').val());
-        $('.pengirim2').html($('.officer').val());
+        e.preventDefault();
+
+        var strData = $('.officer').val();
+        var url = "{{ URL::route('ajax') }}";
+        url += "/officer/nama/" + strData;
+
+//        alert(url);
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.pengirim').html(data);
+                    $('.pengirim2').html(data);
+
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/officer/organisasi/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.organisasi').html(data);
+                    $('.organisasi2').html(data);
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/officer/alamat/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.alamat').html(data);
+                    $('.alamat2').html(data);
+
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/officer/notel/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.noTel').html(data);
+                    $('.noTel2').html(data);
+
+                }
+            }, 'json');
+        }
+
+    });
+
+    $('.penerima').change(function(e) {
 
 
+        e.preventDefault();
+
+        strData = $('.penerima').val();
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/organisasi/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.organisasiPenerima').html(data);
+                }
+            }, 'json');
+        }
 
     });
 

@@ -19,6 +19,7 @@ class CreateOfficerTable extends Migration {
 			$table->bigInteger('noKP');
             $table->string('name');
             $table->string('position');
+            $table->integer('penempatan');
 		});
 	}
 

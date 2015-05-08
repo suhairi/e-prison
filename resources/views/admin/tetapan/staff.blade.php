@@ -55,6 +55,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Penempatan (Tempat Bertugas)</label>
+                            <div class="col-md-6">
+                                <select name="penempatan">
+                                    <option value="" selected>Penempatan</option>
+
+                                    @foreach($penempatans as $penempatan)
+                                        <option value="{{ $penempatan->id }}">{{ $penempatan->organisasi }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">
@@ -73,18 +87,19 @@
                                     <th>ID Staff</th>
                                     <th>Nama</th>
                                     <th>No Kad Pengenalan</th>
+                                    <th>Penempatan</th>
                                     <th>Pilihan</th>
                                 </tr>
                             </thead>
 
 					    @foreach($officers as $officer)
 
-
                             <tr>
                                 <td align="center">{{ $officer->position }} </td>
                                  <td>{{ $officer->staffId }}</td>
                                 <td>{{ $officer->name }}</td>
                                 <td align="center">{{ $officer->noKP }}</td>
+                                {{--<td>{{ $penempatan->organisasi }}</td>--}}
                                 <td>
                                     [ <a href="{{ URL::route('kemaskiniStaff', $officer->staffId) }}">Kemaskini</a> ]
                                     [ <a href="{{ URL::route('deleteStaff', $officer->staffId) }}">Hapus</a> ]

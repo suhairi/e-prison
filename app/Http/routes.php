@@ -130,6 +130,32 @@ Route::get('clerk/laporan/ajax/cases/noKes/{id}', [
     'uses'  => 'Clerk\AjaxController@getNoKes'
 ]);
 
+Route::get('clerk/laporan/ajax/officer/nama/{id}', [
+    'as'    => 'ajax-pengirim',
+    'uses'  => 'Clerk\AjaxController@getNamaPengirim'
+]);
+
+Route::get('clerk/laporan/ajax/officer/organisasi/{id}', [
+    'as'    => 'ajax-pengirim',
+    'uses'  => 'Clerk\AjaxController@getOrganisasiPengirim'
+]);
+
+Route::get('clerk/laporan/ajax/officer/alamat/{id}', [
+    'as'    => 'ajax-pengirim',
+    'uses'  => 'Clerk\AjaxController@getAlamatPengirim'
+]);
+
+Route::get('clerk/laporan/ajax/officer/notel/{id}', [
+    'as'    => 'ajax-pengirim',
+    'uses'  => 'Clerk\AjaxController@getNoTelPengirim'
+]);
+
+Route::get('clerk/laporan/ajax/penerima/organisasi/{id}', [
+    'as'    => 'ajax-penerima',
+    'uses'  => 'Clerk\AjaxController@getOrganisasiPenerima'
+]);
+
+
 
 
 
