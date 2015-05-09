@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18f7df5e-db3e-4e49-a820-6ca66237b48d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Clerk/AjaxController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Clerk/AjaxController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Clerk/LaporanController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Clerk/LaporanController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/clerk/laporan/mt.blade.php" afterPath="$PROJECT_DIR$/resources/views/clerk/laporan/mt.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="prison.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,8 +85,8 @@
       <file leaf-file-name="LaporanController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Clerk/LaporanController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3355049" vertical-offset="831" max-vertical-offset="1598">
-              <caret line="92" column="51" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.6821963" vertical-offset="1001" max-vertical-offset="1853">
+              <caret line="114" column="59" selection-start-line="114" selection-start-column="59" selection-end-line="114" selection-end-column="59" />
               <folding>
                 <element signature="e#45#57#0#PHP" expanded="true" />
                 <element signature="e#524#741#0#PHP" expanded="false" />
@@ -105,10 +99,9 @@
       <file leaf-file-name="mt.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/clerk/laporan/mt.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.269231" vertical-offset="415" max-vertical-offset="1411">
-              <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+            <state vertical-scroll-proportion="-17.5" vertical-offset="565" max-vertical-offset="4913">
+              <caret line="60" column="65" selection-start-line="59" selection-start-column="36" selection-end-line="60" selection-end-column="65" />
               <folding>
-                <element signature="e#733#10562#0#HTML" expanded="false" />
                 <element signature="e#10712#19456#0#HTML" expanded="false" />
                 <element signature="e#19604#29334#0#HTML" expanded="false" />
                 <element signature="e#29520#30450#0#HTML" expanded="false" />
@@ -392,7 +385,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="776" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -508,7 +501,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="15793">
           <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
           <folding>
-            <element signature="e#733#10562#0#HTML" expanded="false" />
             <element signature="e#10712#19456#0#HTML" expanded="false" />
             <element signature="e#19604#29334#0#HTML" expanded="false" />
             <element signature="e#29520#30450#0#HTML" expanded="false" />
@@ -720,10 +712,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/clerk/laporan/mt.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.269231" vertical-offset="415" max-vertical-offset="1411">
-          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+        <state vertical-scroll-proportion="-17.5" vertical-offset="565" max-vertical-offset="4913">
+          <caret line="60" column="65" selection-start-line="59" selection-start-column="36" selection-end-line="60" selection-end-column="65" />
           <folding>
-            <element signature="e#733#10562#0#HTML" expanded="false" />
             <element signature="e#10712#19456#0#HTML" expanded="false" />
             <element signature="e#19604#29334#0#HTML" expanded="false" />
             <element signature="e#29520#30450#0#HTML" expanded="false" />
@@ -737,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Clerk/LaporanController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3355049" vertical-offset="831" max-vertical-offset="1598">
-          <caret line="92" column="51" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.6821963" vertical-offset="1001" max-vertical-offset="1853">
+          <caret line="114" column="59" selection-start-line="114" selection-start-column="59" selection-end-line="114" selection-end-column="59" />
           <folding>
             <element signature="e#45#57#0#PHP" expanded="true" />
             <element signature="e#524#741#0#PHP" expanded="false" />

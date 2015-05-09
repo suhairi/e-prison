@@ -87,6 +87,7 @@ class LaporanController extends Controller {
             $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
         }
 
+
         $pdf = new Fpdf('P','mm','A4');
         $pdf->AliasNbPages();
         $pdf->SetTitle("e-Prison - Laporan MT");
@@ -96,8 +97,22 @@ class LaporanController extends Controller {
         // Halaman 1
         $pdf->AddPage();
 
-        $pdf->SetFont('arial','',7);
+        $pdf->SetFont('arial', 'B', 14);
         $pdf->SetXY(20,20);
+        $pdf->Image(public_path() . '\images\logo_penjara.png', 90, 5, 30);
+        $pdf->Ln(20);
+        $pdf->Cell(190, 5, "MEMO", 0, 1, 'C');
+        $pdf->Cell(190, 5, "JABATAN PENJARA MALAYSIA", 0, 1, 'C');
+        $pdf->Cell(190, 5, "PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK KEDAH", 0, 1, 'C');
+        $pdf->Ln(5);
+
+        $pdf->SetFont('arial', '', 12);
+        $pdf->Cell(30, 5, "KEPADA", 0, 0, 'L');
+        $pdf->Cell( 4, 5, ":", 0, 0, 'C');
+        $pdf->Cell(77, 5, 'Pengarah Parol Dan Perkhidmatan Komuniti', 0, 1, 'L');
+        $pdf->Cell(30, 5, "", 0, 0, 'L');
+        $pdf->Cell( 4, 5, "", 0, 0, 'C');
+        $pdf->Cell(77, 5, 'Ibu Pejabat Penjara Malaysia', 0, 1, 'L');
 
 
 
