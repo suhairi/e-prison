@@ -155,6 +155,15 @@ Route::get('clerk/laporan/ajax/penerima/organisasi/{id}', [
     'uses'  => 'Clerk\AjaxController@getOrganisasiPenerima'
 ]);
 
+Route::get('clerk/laporan/ajax/penerima/alamat/{id}', [
+    'as'    => 'ajax-penerima',
+    'uses'  => 'Clerk\AjaxController@getAlamatPenerima'
+]);
+
+Route::get('clerk/laporan/ajax/penerima/notel/{id}', [
+    'as'    => 'ajax-penerima',
+    'uses'  => 'Clerk\AjaxController@getNoTelPenerima'
+]);
 
 
 

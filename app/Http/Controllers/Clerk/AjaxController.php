@@ -169,5 +169,33 @@ class AjaxController extends Controller {
         }
     }
 
+    public function getAlamatPenerima($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $penerima = Penerima::find($id);
+
+                $output = $penerima->alamat;
+
+                return $output;
+            }
+        }
+    }
+
+    public function getNoTelPenerima($id) {
+
+        if(Request::ajax()) {
+            if($id != '') {
+
+                $penerima = Penerima::find($id);
+
+                $output = $penerima->noTel;
+
+                return $output;
+            }
+        }
+    }
+
 
 }

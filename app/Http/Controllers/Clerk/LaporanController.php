@@ -15,6 +15,8 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Anouar\Fpdf\Fpdf;
+
 
 class LaporanController extends Controller {
 
@@ -60,7 +62,57 @@ class LaporanController extends Controller {
 
     public function postOne() {
 
-        return 'here';
+        function Header()
+        {
+            // Logo
+            $this->Image('logo.png',10,6,30);
+            // Arial bold 15
+            $this->SetFont('Arial','B',15);
+            // Move to the right
+            $this->Cell(80);
+            // Title
+            $this->Cell(30,10,'Title',1,0,'C');
+            // Line break
+            $this->Ln(20);
+        }
+
+        // Page footer
+        function Footer()
+        {
+            // Position at 1.5 cm from bottom
+            $this->SetY(-15);
+            // Arial italic 8
+            $this->SetFont('Arial','I',8);
+            // Page number
+            $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        }
+
+        $pdf = new Fpdf('P','mm','A4');
+        $pdf->AliasNbPages();
+        $pdf->SetTitle("e-Prison - Laporan MT");
+        $pdf->SetAuthor(Request::input('pengirim'));
+        $pdf->SetMargins(10, 10, 7);
+
+        // Halaman 1
+        $pdf->AddPage();
+
+        $pdf->SetFont('arial','',7);
+        $pdf->SetXY(20,20);
+
+
+
+        // Halaman 2
+        $pdf->addPage();
+        $pdf->Cell(150,100, "Laporan 2");
+
+        // Halaman 3
+        $pdf->addPage();
+        $pdf->Cell(150,100, "Laporan 2");
+
+
+        // Send to browser
+        $pdf->Output("Laporan MT - " . \Session::get('noPKW') . ".pdf","D");
+        exit;
 
     }
 

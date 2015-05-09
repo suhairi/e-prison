@@ -29,7 +29,10 @@ td {
 
 				<div class="panel-body" align="center">
 
-				<form method="post" action="#" role="form">
+				<form method="post" action="{{ url('clerk/laporan/1') }}" role="form">
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
+                {{--############################         SATU         ###########################--}}
 				<table width="80%" border="0" style="border : solid 1px #000">
 				    <tr>
 				        <td align="center" colspan="3"><img src="{{ asset('images/logo_penjara.png') }}" border="0"></td>
@@ -238,7 +241,7 @@ td {
 
 				</table>
 
-                    {{--############################         DUA         ###########################--}}
+                {{--############################         DUA         ###########################--}}
 
                 <br /><br />
 
@@ -301,7 +304,7 @@ td {
                                 <tr>
                                     <td valign="top"><strong>Bil Muka Surat</strong></td>
                                     <td valign="top"><strong>:</strong></td>
-                                    <td><font class="tarikh"></font></td>
+                                    <td>(10) termasuk halaman ini</td>
                                 </tr>
 
                                 <tr>
@@ -432,7 +435,7 @@ td {
                 {{--############################        TIGA        ###########################--}}
                 <br /><br />
 
-                    <table width="80%" border="0" style="border : solid 1px #000">
+                <table width="80%" border="0" style="border : solid 1px #000">
                         <tr>
                             <td align="center" colspan="3"><img src="{{ asset('images/logo_penjara.png') }}" border="0"></td>
                         </tr>
@@ -530,7 +533,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA ORGANISASI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="organisasiPenerima2" </td>
                                     </tr>
 
                                     <tr>
@@ -539,7 +542,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>ALAMAT</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="alamatPenerima2" </td>
                                     </tr>
 
                                     <tr>
@@ -548,7 +551,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NO TELEFAX</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td></td>
+                                        <td><font class="noTelPenerima2" </td>
                                     </tr>
 
                                     <tr>
@@ -565,7 +568,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA PEGAWAI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="pengirim2"></font></td>
+                                        <td><font class="pengirim"></font></td>
                                     </tr>
 
                                     <tr>
@@ -617,6 +620,15 @@ td {
                             <td colspan="3">&nbsp;</td>
                         </tr>
 
+                        <tr width="90%">
+                            <td colspan="2" align="right"><input type="submit" value="Jana Laporan" class="btn btn-primary"></td>
+                            <td>&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">&nbsp;</td>
+                        </tr>
+
                     </table>
 
 
@@ -654,8 +666,6 @@ $(document).ready(function() {
 
         var url = "{{ URL::route('ajax') }}";
         url += '/kehadiran/daerah/' + strData;
-
-//        alert(url);
 
         if(strData != '') {
             $.ajax({
@@ -798,7 +808,6 @@ $(document).ready(function() {
 
     $('.penerima').change(function(e) {
 
-
         e.preventDefault();
 
         strData = $('.penerima').val();
@@ -816,10 +825,86 @@ $(document).ready(function() {
             }, 'json');
         }
 
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/alamat/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.alamatPenerima').html(data);
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/notel/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.noTelPenerima').html(data);
+                }
+            }, 'json');
+        }
+
+    });
+
+    $('.penerima2').change(function(e) {
+
+        e.preventDefault();
+
+        strData = $('.penerima2').val();
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/organisasi/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.organisasiPenerima2').html(data);
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/alamat/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.alamatPenerima2').html(data);
+                }
+            }, 'json');
+        }
+
+        var url = "{{ URL::route('ajax') }}";
+        url += "/penerima/notel/" + strData;
+
+        if(strData != '') {
+            $.ajax({
+                type    : 'GET',
+                url     : url,
+                data    : strData,
+                success : function(data) {
+                    $('.noTelPenerima2').html(data);
+                }
+            }, 'json');
+        }
+
     });
 
 })
-
 
 </script>
 
