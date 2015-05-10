@@ -29,7 +29,7 @@ td {
 
 				<div class="panel-body" align="center">
 
-				<form method="post" action="{{ url('clerk/laporan/1') }}" role="form">
+				<form method="post" action="{{ url('clerk/laporan/mt/1') }}" target="_blank" role="form">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                 {{--############################         SATU         ###########################--}}
@@ -68,7 +68,7 @@ td {
                             <tr>
                                 <td valign="top"><strong>Daripada</strong></td>
                                 <td valign="top"><strong>:</strong></td>
-                                <td>Pegawai Pusat Kehadiran Wajib Daerah
+                                <td>Pegawai
                                     <select class="kehadiran" name="kehadiran">
                                         <option value="" selected>Pusat Kehadiran</option>
 

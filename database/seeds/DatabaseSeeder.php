@@ -139,7 +139,7 @@ class UserTableSeeder extends Seeder {
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'BALING/SIK KEDAH',
+            'organisasi'    => 'BALING / SIK KEDAH',
             'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI DAERAH BALING/SIK KEDAH',
             'alamat'        => 'NO 109, JALAN PERSISIRAN KOTA 4/5, PULAI, 09100 BALING KEDAH.',
             'noTel'         => '04-4746079'
@@ -165,7 +165,7 @@ class UserTableSeeder extends Seeder {
         ));
 
         DB::table('kehadiran')->insert(array(
-            'desc'          => 'PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK KEDAH',
+            'desc'          => 'PUSAT KEHADIRAN WAJIB DAERAH BALING / SIK KEDAH',
             'negeri'        => 'KEDAH'
         ));
 

@@ -91,7 +91,7 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 // ######################## Laporan #######################
 
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
-Route::post('clerk/laporan/1', 'Clerk\LaporanController@postOne');
+Route::post('clerk/laporan/mt/1', 'Clerk\Laporan\MtController@postOne');
 
 Route::get('clerk/laporan/test', [
     'as'    => 'testPDF',
@@ -164,10 +164,6 @@ Route::get('clerk/laporan/ajax/penerima/notel/{id}', [
     'as'    => 'ajax-penerima',
     'uses'  => 'Clerk\AjaxController@getNoTelPenerima'
 ]);
-
-
-
-
 
 
 // ######################## LARAVEL ##########################
