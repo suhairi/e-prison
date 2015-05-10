@@ -176,7 +176,7 @@ class AjaxController extends Controller {
 
                 $penerima = Penerima::find($id);
 
-                $output = $penerima->alamat;
+                $output = $penerima->alamat1 . '<br />' . $penerima->alamat2 . '<br />' . $penerima->alamat3 . '<br />' . $penerima->alamat4;
 
                 return $output;
             }

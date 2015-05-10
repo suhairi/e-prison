@@ -16,6 +16,7 @@ class CreatePenempatansTable extends Migration {
 		{
 			$table->increments('id');
             $table->text('organisasi');
+            $table->text('namaPenuh');
             $table->text('alamat');
             $table->string('noTel');
 		});

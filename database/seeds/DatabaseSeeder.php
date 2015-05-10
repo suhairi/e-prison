@@ -114,14 +114,6 @@ class UserTableSeeder extends Seeder {
             'phone'         => ''
         ));
 
-        DB::table('penempatan')->insert(array(
-            'organisasi'    => 'PP & PK NEGERI KEDAH',
-            'alamat'        => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,
-                                TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,
-                                JALAN KAMPUNG BARU, 05000 ALOR SETAR, KEDAH.',
-            'noTel'         => '04-7342673'
-        ));
-
         DB::table('officer')->insert(array(
             'staffId'       => '1234',
             'noKP'          => '750918026209',
@@ -131,20 +123,50 @@ class UserTableSeeder extends Seeder {
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'BP & PK, IBU PEJABAT PENJARA MALAYSIA',
+            'organisasi'    => 'KEDAH',
+            'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH',
+            'alamat'        => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,
+                                TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,
+                                JALAN KAMPUNG BARU, 05000 ALOR SETAR, KEDAH.',
+            'noTel'         => '04-7342673'
+        ));
+
+        DB::table('penempatan')->insert(array(
+            'organisasi'    => 'IBU PEJABAT PENJARA MALAYSIA',
+            'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI IBU PEJABAT PENJARA MALAYSIA',
             'alamat'        => 'IBU PEJABAT PENJARA MALAYSIA, BUKIT WIRA 04300 KAJANG, SELANGOR.',
             'noTel'         => '03-87341805'
         ));
 
         DB::table('penempatan')->insert(array(
-            'organisasi'    => 'PP & PK DAERAH BALING/SIK KEDAH',
+            'organisasi'    => 'BALING/SIK KEDAH',
+            'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI DAERAH BALING/SIK KEDAH',
             'alamat'        => 'NO 109, JALAN PERSISIRAN KOTA 4/5, PULAI, 09100 BALING KEDAH.',
             'noTel'         => '04-4746079'
         ));
 
+        DB::table('penerima')->insert(array(
+            'name'          => 'Pengarah Parol Dan Perkhidmatan Komuniti, Negeri Kedah.',
+            'organisasi'    => 'Pejabat Parol Dan Perkhidmatan Komuniti, Negeri Kedah.',
+            'alamat1'       => 'Pejabat Parol Dan Perkhidmatan Komuniti Negeri Kedah, Tingkat Bawah,',
+            'alamat2'       => 'Negeri Kedah, Tingkat Bawah,',
+            'alamat3'       => 'Bangunan Wisma Persekutuan Alor Setar,',
+            'alamat4'       => 'Jalan Kampung Baru, 05000 Alor Setar, Kedah.',
+            'noTel'         => '04-7342673'
+        ));
+
+        DB::table('penerima')->insert(array(
+            'name'          => 'Pengarah Parol Dan Perkhidmatan Komuniti, Ibu Pejabat Penjara Malaysia.',
+            'organisasi'    => 'Pejabat Parol Dan Perkhidmatan Komuniti, Ibu Pejabat Penjara Malaysia.',
+            'alamat1'       => 'Ibu Pejabat Penjara Malaysia',
+            'alamat2'       => 'Bukit Wira, 4300 Kajang,',
+            'alamat3'       => 'Selangor.',
+            'noTel'         => '04-7342673'
+        ));
+
         DB::table('kehadiran')->insert(array(
-           'desc'           => 'BALING/SIK',
-           'negeri'         => 'KEDAH'
+            'desc'          => 'PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK KEDAH',
+            'negeri'        => 'KEDAH'
         ));
 
         // #################   Mesej Selesai   #######################

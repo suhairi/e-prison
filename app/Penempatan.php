@@ -6,7 +6,7 @@ class Penempatan extends Model {
 
 	protected $table = 'penempatan';
 
-    protected $fillable = ['organisasi', 'alamat', 'noTel', 'penempatan'];
+    protected $fillable = ['organisasi', 'namaPenuh', 'alamat', 'noTel', 'penempatan'];
 
     public $timestamps = false;
 

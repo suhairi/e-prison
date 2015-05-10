@@ -17,7 +17,10 @@ class CreatePenerimasTable extends Migration {
 			$table->increments('id');
             $table->text('name');
             $table->text('organisasi');
-            $table->text('alamat');
+            $table->text('alamat1');
+            $table->text('alamat2');
+            $table->text('alamat3');
+            $table->text('alamat4');
             $table->string('noTel');
 		});
 	}
