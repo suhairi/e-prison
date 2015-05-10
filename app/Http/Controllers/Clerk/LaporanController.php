@@ -60,4 +60,8 @@ class LaporanController extends Controller {
             ->with('penerimas', $penerimas);
     }
 
+    public function pkw1() {
+        return view('clerk/laporan/pkw1');
+    }
+
 }

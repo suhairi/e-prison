@@ -23,6 +23,7 @@ class CreateCasesTable extends Migration {
             $table->string('memoSelesai');
             $table->string('noDaftar');
             $table->text('hukuman');
+            $table->integer('mahkamah');
             $table->date('tarikhMasuk');
         });
     }

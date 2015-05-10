@@ -93,10 +93,12 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
 Route::post('clerk/laporan/mt/1', 'Clerk\Laporan\MtController@postOne');
 
-Route::get('clerk/laporan/test', [
-    'as'    => 'testPDF',
-    'uses'  => 'Clerk\MyPDFController@index'
-]);
+Route::get('clerk/laporan/pkw1', 'Clerk\LaporanController@pkw1');
+
+//Route::get('clerk/laporan/test', [
+//    'as'    => 'testPDF',
+//    'uses'  => 'Clerk\MyPDFController@index'
+//]);
 
 // ########################### AJAX ##########################
 

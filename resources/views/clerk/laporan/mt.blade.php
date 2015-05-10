@@ -123,7 +123,7 @@ td {
                             <tr>
                                 <td valign="top"><strong>Perkara</strong></td>
                                 <td valign="top"><strong>:</strong></td>
-                                <td><strong>PENERIMAAN PESALAH KEHADIRAN WAJIB DAERAH <font class="daerah"></font> </strong></td>
+                                <td><strong>PENERIMAAN PESALAH <font class="daerah"></font> </strong></td>
                             </tr>
 
                             <tr>
@@ -533,7 +533,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA ORGANISASI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="organisasiPenerima2" </td>
+                                        <td><font class="organisasiPenerima2"></font> </td>
                                     </tr>
 
                                     <tr>
@@ -542,7 +542,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>ALAMAT</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="alamatPenerima2" </td>
+                                        <td><font class="alamatPenerima2"></font> </td>
                                     </tr>
 
                                     <tr>
@@ -551,7 +551,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NO TELEFAX</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="noTelPenerima2" </td>
+                                        <td><font class="noTelPenerima2"></font> </td>
                                     </tr>
 
                                     <tr>
@@ -568,7 +568,7 @@ td {
                                     <tr>
                                         <td valign="top"><strong>NAMA PEGAWAI</strong></td>
                                         <td valign="top"><strong>:</strong></td>
-                                        <td><font class="pengirim"></font></td>
+                                        <td><font class="pengirim2"></font></td>
                                     </tr>
 
                                     <tr>

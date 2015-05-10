@@ -9,6 +9,7 @@ return array(
     'CreateCasesTable' => $baseDir . '/database/migrations/2015_04_13_070559_create_cases_table.php',
     'CreateKehadiransTable' => $baseDir . '/database/migrations/2015_05_06_065353_create_kehadirans_table.php',
     'CreateLevelTable' => $baseDir . '/database/migrations/2015_04_02_031101_create_level_table.php',
+    'CreateMahkamahsTable' => $baseDir . '/database/migrations/2015_05_10_073421_create_mahkamahs_table.php',
     'CreateOfficerTable' => $baseDir . '/database/migrations/2015_04_02_031458_create_officer_table.php',
     'CreateParentTable' => $baseDir . '/database/migrations/2015_04_02_031317_create_parent_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

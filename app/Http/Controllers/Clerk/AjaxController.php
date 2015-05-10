@@ -116,7 +116,7 @@ class AjaxController extends Controller {
 
                 $output = Penempatan::find($pengirim->penempatan);
 
-                $output = $output->organisasi;
+                $output = $output->namaPenuh;
 
                 return $output;
             }
@@ -132,9 +132,16 @@ class AjaxController extends Controller {
 
                 $output = Penempatan::find($pengirim->penempatan);
 
-                $output = $output->alamat;
+                $output = $output->alamat1 .'<br />' . $output->alamat2;
+
+//                if($output->alamat3 != '')
+//                    $output .= $output->alamat3 .'<br />';
+//
+//                if($output->alamat4 != '')
+//                    $output .= $output->alamat4 .'<br />';
 
                 return $output;
+
             }
         }
     }

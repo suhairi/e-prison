@@ -6,7 +6,7 @@ class Penerima extends Model {
 
 	protected $table = 'penerima';
 
-    protected $fillable = ['name', 'organisasi', 'alamat', 'noTel'];
+    protected $fillable = ['name', 'organisasi', 'alamat1', 'alamat2', 'alamat3', 'alamat4', 'noTel'];
 
     public $timestamps = false;
 

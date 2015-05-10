@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->command->info(' ');
         $this->call('UserTableSeeder');
     }
 
@@ -21,8 +23,6 @@ class DatabaseSeeder extends Seeder
 class UserTableSeeder extends Seeder {
 
     public function run() {
-
-//        DB::table('users')->delete();
 
         DB::table('users')->insert(array(
                 'name'      => 'suhairi',
@@ -95,6 +95,7 @@ class UserTableSeeder extends Seeder {
             'memoSelesai'       => 'JP/PRL/PKW/BLG/20/3(14)',
             'noDaftar'          => 'PKW 0002-14-02-04',
             'hukuman'           => '3 BULAN DAN 4 JAM',
+            'mahkamah'          => 1,
             'tarikhMasuk'       => '2014-01-09'
         ));
 
@@ -119,29 +120,34 @@ class UserTableSeeder extends Seeder {
             'noKP'          => '750918026209',
             'name'          => 'AHMAD KAMAL B AHMAD ALI',
             'position'      => 'KIP',
-            'penempatan'    => '1'
+            'penempatan'    => 3
         ));
 
         DB::table('penempatan')->insert(array(
             'organisasi'    => 'KEDAH',
             'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH',
-            'alamat'        => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,
-                                TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,
-                                JALAN KAMPUNG BARU, 05000 ALOR SETAR, KEDAH.',
+            'alamat1'       => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH,',
+            'alamat2'       => 'TINGKAT BAWAH, BANGUNAN WISMA PERSEKUTUAN ALOR SETAR,',
+            'alamat3'       => 'JALAN KAMPUNG BARU, 05000 ALOR SETAR,',
+            'alamat4'       => 'KEDAH.',
             'noTel'         => '04-7342673'
         ));
 
         DB::table('penempatan')->insert(array(
             'organisasi'    => 'IBU PEJABAT PENJARA MALAYSIA',
             'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI IBU PEJABAT PENJARA MALAYSIA',
-            'alamat'        => 'IBU PEJABAT PENJARA MALAYSIA, BUKIT WIRA 04300 KAJANG, SELANGOR.',
+            'alamat1'       => 'IBU PEJABAT PENJARA MALAYSIA,',
+            'alamat2'       => 'BUKIT WIRA 04300 KAJANG,',
+            'alamat3'       => 'SELANGOR.',
             'noTel'         => '03-87341805'
         ));
 
         DB::table('penempatan')->insert(array(
             'organisasi'    => 'BALING / SIK KEDAH',
-            'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI DAERAH BALING/SIK KEDAH',
-            'alamat'        => 'NO 109, JALAN PERSISIRAN KOTA 4/5, PULAI, 09100 BALING KEDAH.',
+            'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI DAERAH BALING / SIK KEDAH',
+            'alamat1'       => 'NO 109, JALAN PERSISIRAN KOTA 4/5,',
+            'alamat2'       => 'PULAI, 09100 BALING',
+            'alamat3'       => 'KEDAH.',
             'noTel'         => '04-4746079'
         ));
 
@@ -159,7 +165,7 @@ class UserTableSeeder extends Seeder {
             'name'          => 'Pengarah Parol Dan Perkhidmatan Komuniti, Ibu Pejabat Penjara Malaysia.',
             'organisasi'    => 'Pejabat Parol Dan Perkhidmatan Komuniti, Ibu Pejabat Penjara Malaysia.',
             'alamat1'       => 'Ibu Pejabat Penjara Malaysia',
-            'alamat2'       => 'Bukit Wira, 4300 Kajang,',
+            'alamat2'       => 'Bukit Wira, 04300 Kajang,',
             'alamat3'       => 'Selangor.',
             'noTel'         => '04-7342673'
         ));
@@ -179,6 +185,7 @@ class UserTableSeeder extends Seeder {
 
     public function messaging() {
 
+        $this->command->info(' ');
         $this->command->info('Proses seeding Selesai!');
 
     }
