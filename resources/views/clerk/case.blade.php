@@ -106,6 +106,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Mahkamah</label>
+                            <div class="col-md-6">
+                                <select name="mahkamah">
+                                    <option value="">Senarai Mahkamah</option>
+                                    @foreach($mahkamahs as $mahkamah)
+                                        <option value="{{ $mahkamah->id }}">{{ $mahkamah->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+
 						<div class="form-group">
                             <label class="col-md-4 control-label">Tarikh Daftar Masuk</label>
                             <div class="col-md-6">

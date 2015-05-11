@@ -123,6 +123,10 @@ class UserTableSeeder extends Seeder {
             'penempatan'    => 3
         ));
 
+        DB::table('mahkamah')->insert(array(
+            'name'          => 'Mahkamah Majistret Pengkalan Hulu, Perak'
+        ));
+
         DB::table('penempatan')->insert(array(
             'organisasi'    => 'KEDAH',
             'namaPenuh'     => 'PEJABAT PAROL DAN PERKHIDMATAN KOMUNITI NEGERI KEDAH',

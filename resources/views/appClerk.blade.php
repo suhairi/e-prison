@@ -68,7 +68,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Laporan <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('clerk/laporan/1') }}">m t</a></li>
-                                <li><a href="{{ url('clerk/laporan/pkw1') }}">PKW Format 1</a></li>
+                                <li><a href="{{ url('clerk/laporan/pkw1') }}" target="_blank">PKW Format 1</a></li>
+                                <li><a href="{{ url('clerk/laporan/pkw2') }}" target="_blank">PKW Format 2</a></li>
+
 
 
                             </ul>

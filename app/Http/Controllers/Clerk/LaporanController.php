@@ -35,7 +35,7 @@ class LaporanController extends Controller {
 
 	public function getOne() {
 
-        if(!\Session::get('noPKWFound')){
+        if(\Session::get('noPKW') == null){
 
             \Session::flash('message', 'Sila buat carian No KP dahulu.');
 

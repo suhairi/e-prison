@@ -12,6 +12,7 @@ use App\Prefixes;
 use App\Parents;
 use App\Remitance;
 use App\User;
+use App\Mahkamah;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -199,6 +200,7 @@ class ClerkController extends Controller {
         }
 
         $cases = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $mahkamahs = Mahkamah::all();
 
         \Session::flash('message', 'Profil ini mempunyai ' . count($cases) . ' rekod kes lampau.');
 
@@ -206,7 +208,8 @@ class ClerkController extends Controller {
 
 
         return view('clerk/case')
-            ->with('prefixes', $prefixes);
+            ->with('prefixes', $prefixes)
+            ->with('mahkamahs', $mahkamahs);
     }
 
     public function postCase() {
@@ -221,6 +224,8 @@ class ClerkController extends Controller {
             'memoSelesai'       => 'required',
             'noDaftar'          => 'required',
             'tarikhDaftar'      => 'required',
+            'hukuman'           => 'required',
+            'mahkamah'          => 'required',
             'seksyenKesalahan'  => 'required'
 
         ));
@@ -261,6 +266,7 @@ class ClerkController extends Controller {
 
         $case->noDaftar     = strtoupper(Request::input('noDaftar'));
         $case->hukuman      = strtoupper(Request::input('hukuman'));
+        $case->mahkamah     = Request::input('mahkamah');
         $case->tarikhMasuk  = $tarikhDaftar;
 
         if($case->save()) {
