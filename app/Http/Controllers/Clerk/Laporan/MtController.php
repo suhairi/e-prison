@@ -140,7 +140,7 @@ class MtController extends Controller {
 
         $pdf->Cell(30, 5, "1) Salinan Perintah Kehadiran Wajib,", 0, 1, 'L');
         $pdf->Cell(30, 5, "2) Salinan Buku Daftar PKW Format 1,", 0, 1, 'L');
-        $pdf->Cell(30, 5, "3) Salinan Rekod Pesalah PKD Format 2,", 0, 1, 'L');
+        $pdf->Cell(30, 5, "3) Salinan Rekod Pesalah PKW Format 2,", 0, 1, 'L');
         $pdf->Cell(30, 5, "4) Salinan Borang PKW 4,", 0, 1, 'L');
         $pdf->Cell(30, 5, "5) Remitan.", 0, 1, 'L');
         $pdf->Ln(5);
