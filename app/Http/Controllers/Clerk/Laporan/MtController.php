@@ -35,6 +35,33 @@ class MtController extends Controller {
         $this->middleware('userLevelTwo');
     }
 
+    public function getOne() {
+
+        if(\Session::get('noPKW') == null){
+
+            \Session::flash('message', 'Sila buat carian No KP dahulu.');
+
+            return view('clerk/dashboard');
+        }
+
+
+        $cases          = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $profile        = Profile::where('noKP', \Session::get('noPKW'))->first();
+        $kehadirans     = Kehadiran::all();
+        $officers       = Officer::all();
+        $penempatans    = Penempatan::all();
+        $penerimas      = Penerima::all();
+
+
+        return view('clerk/laporan/mt')
+            ->with('cases', $cases)
+            ->with('profile', $profile)
+            ->with('kehadirans', $kehadirans)
+            ->with('officers', $officers)
+            ->with('penempatans', $penempatans)
+            ->with('penerimas', $penerimas);
+    }
+
     public function postOne() {
 
         $request = Request::all();

@@ -4,6 +4,7 @@ use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Profile;
 use App\Kehadiran;
 use App\Cases;
 use App\Officer;

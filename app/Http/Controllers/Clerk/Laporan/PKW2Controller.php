@@ -28,6 +28,14 @@ class PKW2Controller extends Controller {
         $this->middleware('userLevelTwo');
     }
 
+    public function PKW2() {
+
+        $mahkamahs = Mahkamah::paginate(10);
+
+        return view('clerk/laporan/pkw1', compact('mahkamahs'));
+
+    }
+
     public function generatePKW2() {
 
         if(\Session::get('noPKW') == null){

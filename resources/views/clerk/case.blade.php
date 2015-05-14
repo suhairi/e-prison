@@ -100,6 +100,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-4 control-label">Pegawai Bertanggungjawab</label>
+                            <div class="col-md-6">
+                                <select name="officer">
+                                    <option value="">Pegawai Bertanggungjawab</option>
+                                    @foreach($officers as $officer)
+                                        <option value="{{ $officer->id }}">{{ $officer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-md-4 control-label">Hukuman</label>
                             <div class="col-md-6">
                                 <textarea class="form-control" name="hukuman"></textarea>
@@ -117,8 +129,6 @@
                                 </select>
                             </div>
                         </div>
-
-
 
 						<div class="form-group">
                             <label class="col-md-4 control-label">Tarikh Daftar Masuk</label>

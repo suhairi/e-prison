@@ -2,11 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mahkamah extends Model {
+class Penyelia extends Model {
 
-	protected $table = 'mahkamah';
-
-    protected $primaryKey = 'id';
+	protected $table = 'penyelia';
 
     protected $fillable = ['name'];
 

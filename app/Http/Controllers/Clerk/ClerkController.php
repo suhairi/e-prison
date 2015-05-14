@@ -13,6 +13,7 @@ use App\Parents;
 use App\Remitance;
 use App\User;
 use App\Mahkamah;
+use App\Officer;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -199,8 +200,10 @@ class ClerkController extends Controller {
             return view('clerk/dashboard');
         }
 
-        $cases = Cases::where('noKP', \Session::get('noPKW'))->get();
-        $mahkamahs = Mahkamah::all();
+        $cases      = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $mahkamahs  = Mahkamah::all();
+        $officers   = Officer::all();
+        $penyelias  = Penyelia::all();
 
         \Session::flash('message', 'Profil ini mempunyai ' . count($cases) . ' rekod kes lampau.');
 
@@ -209,12 +212,15 @@ class ClerkController extends Controller {
 
         return view('clerk/case')
             ->with('prefixes', $prefixes)
-            ->with('mahkamahs', $mahkamahs);
+            ->with('mahkamahs', $mahkamahs)
+            ->with('officers', $officers);
     }
 
     public function postCase() {
 
         $request = Request::all();
+
+        dd($request);
 
         $validation = Validator::make($request, array(
             'noKes'             => 'required',
@@ -224,6 +230,7 @@ class ClerkController extends Controller {
             'memoSelesai'       => 'required',
             'noDaftar'          => 'required',
             'tarikhDaftar'      => 'required',
+            'officer'           => 'required',
             'hukuman'           => 'required',
             'mahkamah'          => 'required',
             'seksyenKesalahan'  => 'required'
@@ -259,14 +266,13 @@ class ClerkController extends Controller {
                 $case->memoSelesai  = $prefix->details . '(' . Request::input('memoSelesai') . ')';
         }
 
-//        dd($request);
-
         $tarikhDaftar = explode('/', Request::input('tarikhDaftar'));
         $tarikhDaftar = $tarikhDaftar[2] . '-' . $tarikhDaftar[0] . '-' . $tarikhDaftar[1];
 
         $case->noDaftar     = strtoupper(Request::input('noDaftar'));
         $case->hukuman      = strtoupper(Request::input('hukuman'));
         $case->mahkamah     = Request::input('mahkamah');
+        $case->officer      = Request::input('officer');
         $case->tarikhMasuk  = $tarikhDaftar;
 
         if($case->save()) {

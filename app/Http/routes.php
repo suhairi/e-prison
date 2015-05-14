@@ -52,19 +52,34 @@ Route::post('admin/prefix-memo-selesai', 'Admin\PrefixController@postMemoSelesai
 
 Route::get('admin/penempatan', 'Admin\TetapanController@getPenempatan');
 Route::post('admin/penempatan', 'Admin\TetapanController@postPenempatan');
+
 Route::get('admin/penempatan/delete/{id}', [
-    'as' => 'deletePenempatan',
-    'uses' =>'Admin\TetapanController@deletePenempatan'
+    'as'    => 'deletePenempatan',
+    'uses'  =>'Admin\TetapanController@deletePenempatan'
 ]);
 Route::get('admin/penempatan/kemaskini/{id}', [
-    'as' => 'kemaskiniPenempatan',
-    'uses' =>'Admin\TetapanController@kemaskiniPenempatan'
+    'as'    => 'kemaskiniPenempatan',
+    'uses'  =>'Admin\TetapanController@kemaskiniPenempatan'
 ]);
 
 Route::post('admin/penempatan/kemaskini/{id}', [
-    'as' => 'kemaskiniPenempatan',
-    'uses' =>'Admin\TetapanController@postKemaskiniPenempatan'
+    'as'    => 'kemaskiniPenempatan',
+    'uses'  =>'Admin\TetapanController@postKemaskiniPenempatan'
 ]);
+
+Route::get('admin/mahkamah', 'Admin\TetapanController@getMahkamah');
+Route::post('admin/mahkamah', 'Admin\TetapanController@postMahkamah');
+
+Route::get('admin/mahkamah/kemaskini/{id}', [
+    'as'    => 'kemaskiniMahkamah',
+    'uses'  => 'Admin\TetapanController@kemaskiniMahkamah'
+]);
+Route::get('admin/mahkamah/delete/{id}', [
+    'as'    => 'deleteMahkamah',
+    'uses'  => 'Admin\TetapanController@deleteMahkamah'
+]);
+
+
 
 
 // ######################## CLERK ##########################
@@ -90,10 +105,13 @@ Route::post('clerk/parent', 'Clerk\ClerkController@postParent');
 
 // ######################## Laporan #######################
 
-Route::get('clerk/laporan/1', 'Clerk\LaporanController@getOne');
+Route::get('clerk/laporan/1', 'Clerk\Laporan\MtController@getOne');
 Route::post('clerk/laporan/mt/1', 'Clerk\Laporan\MtController@postOne');
 
-Route::get('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@generatePKW1');
+Route::get('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@PKW1');
+Route::post('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@generatePKW1');
+
+Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
 Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
 
 
@@ -132,6 +150,11 @@ Route::get('clerk/laporan/ajax/cases/noDaftar/{id}', [
 Route::get('clerk/laporan/ajax/cases/noKes/{id}', [
     'as'    => 'ajax-noKes',
     'uses'  => 'Clerk\AjaxController@getNoKes'
+]);
+
+Route::get('clerk/laporan/ajax/cases/noKesKP/{id}', [
+    'as'    => 'ajax-noKes',
+    'uses'  => 'Clerk\AjaxController@getNoKesKP'
 ]);
 
 Route::get('clerk/laporan/ajax/officer/nama/{id}', [

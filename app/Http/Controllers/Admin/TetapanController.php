@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Officer;
 use App\User;
 use App\Penempatan;
+use App\Mahkamah;
 
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -263,6 +264,65 @@ class TetapanController extends Controller {
 
         return view('admin/tetapan/penempatan')
             ->with('penempatans', $penempatans);
+    }
+
+    public function getMahkamah() {
+
+        $mahkamahs = Mahkamah::paginate(10);
+
+        return view('admin/tetapan/mahkamah', compact('mahkamahs'));
+    }
+
+    public function postMahkamah() {
+
+        //validation
+        $input = Request::all();
+
+        $validation = Validator::make($input, array(
+            'mahkamah'    => 'required|min:15'
+        ));
+
+        if($validation->fails()) {
+            return redirect('admin/mahkamah')
+                ->withInputs($input)
+                ->withErrors($validation);
+        }
+
+        $mahkamah = new Mahkamah;
+
+        $mahkamah->name = Request::input('mahkamah');
+
+        if($mahkamah->save()){
+            \Session::flash('success', 'Berjaya Direkod');
+        } else {
+            \Session::flash('fail', 'Gagal Direkod');
+        }
+
+        $mahkamahs = Mahkamah::paginate(10);
+
+        return view('admin.tetapan.mahkamah', compact('mahkamahs'));
+
+    }
+
+    public function kemaskiniMahkamah($id) {
+        $mahkamahs = Mahkamah::find($id);
+
+        return $mahkamahs;
+    }
+
+    public function deleteMahkamah($id) {
+
+        $mahkamahs = Mahkamah::findOrFail($id);
+
+        if($mahkamahs->delete()){
+            \Session::flash('success', 'Berjaya Dihapus.');
+        } else {
+            \Session::flash('fail', 'Gagal Dihapus');
+        }
+
+        $mahkamahs = Mahkamah::paginate(10);
+
+        return view('admin/tetapan/mahkamah', compact('mahkamahs'));
     }
 
 

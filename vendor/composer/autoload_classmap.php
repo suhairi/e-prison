@@ -15,6 +15,7 @@ return array(
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePenempatansTable' => $baseDir . '/database/migrations/2015_05_06_051814_create_penempatans_table.php',
     'CreatePenerimasTable' => $baseDir . '/database/migrations/2015_05_08_134129_create_penerimas_table.php',
+    'CreatePenyeliasTable' => $baseDir . '/database/migrations/2015_05_14_051357_create_penyelias_table.php',
     'CreatePrefixesTable' => $baseDir . '/database/migrations/2015_04_16_064358_create_prefixes_table.php',
     'CreateProfileExtTable' => $baseDir . '/database/migrations/2015_04_02_031432_create_profileExt_table.php',
     'CreateProfileTable' => $baseDir . '/database/migrations/2015_04_02_031354_create_profile_table.php',
