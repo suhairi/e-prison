@@ -173,6 +173,86 @@ class TetapanController extends Controller {
             ->with('officers', $officers);
     }
 
+    public function getPenyelia() {
+
+        $officers = Officer::paginate(10);
+        $penempatans = Penempatan::all();
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers)
+            ->with('penempatans', $penempatans);
+    }
+
+    public function postPenyelia() {
+
+        $request = Request::all();
+
+        $validation = Validator::make($request, array(
+            'name'          => 'required',
+            'staffId'       => 'required|numeric|min:7',
+            'noKP'          => 'required|numeric|min:12',
+            'pangkat'       => 'required',
+            'penempatan'    => 'required'
+        ));
+
+        if ($validation->fails()) {
+            return redirect('admin/staff')
+                ->withInput()
+                ->withErrors($validation->errors());
+        }
+
+        $staff = new Officer;
+
+        $staff->staffId     = Request::input('staffId');
+        $staff->noKP        = Request::input('noKP');
+        $staff->name        = strtoupper(Request::input('name'));
+        $staff->position    = strtoupper(Request::input('pangkat'));
+        $staff->penempatan  = Request::input('penempatan');
+
+        if ($staff->save()) {
+            \Session::flash('success', 'Maklumat Pegawai Berjaya direkod!');
+
+        } else {
+            \Seesion::flash('fail', 'Maklumat Pegawai Gagal Direkod!');
+        }
+
+        $officers = Officer::paginate(10);
+        $penempatans = Penempatan::all();
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers);
+    }
+
+    public function kemaskiniPenyelia($id) {
+
+        $officer = Officer::find($id);
+
+        if(count($officer) <= 0) {
+            \Session::flash('fail', 'Ralat kemaskini!');
+
+            return redirect('admin/staff');
+        }
+
+        return view('admin/tetapan/kemaskiniStaff')
+            ->with('officer', $officer);
+    }
+
+    public function deletePenyelia($id) {
+
+        $staff = Officer::find($id);
+
+        if($staff->delete()) {
+            \Session::flash('success', 'Berjaya Dihapus');
+        } else {
+            \Session::flash('fail', 'Gagal Dihapus');
+        }
+
+        $officers = Officer::paginate(10);
+
+        return view('admin/tetapan/staff')
+            ->with('officers', $officers);
+    }
+
     public function getPenempatan() {
 
         $penempatans = Penempatan::paginate(10);

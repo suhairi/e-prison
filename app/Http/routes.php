@@ -39,6 +39,17 @@ Route::get('admin/staff/kemaskini/{id}', [
     'uses'      => 'Admin\TetapanController@kemaskiniStaff'
 ]);
 
+Route::get('admin/penyelia', 'Admin\TetapanController@getStaff');
+Route::post('admin/penyelia', 'Admin\TetapanController@postStaff');
+Route::get('admin/penyelia/delete/{id}', [
+    'as'        => 'deletePenyelia',
+    'uses'      => 'Admin\TetapanController@deletePenyelia'
+]);
+Route::get('admin/penyelia/kemaskini/{id}', [
+    'as'        => 'kemaskiniPenyelia',
+    'uses'      => 'Admin\TetapanController@kemaskiniPenyelia'
+]);
+
 Route::get('admin/prefix-no-kes', 'Admin\PrefixController@getNoCase');
 
 Route::get('admin/prefix-memo-terima', 'Admin\PrefixController@getMemoTerima');

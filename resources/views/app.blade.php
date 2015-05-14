@@ -52,6 +52,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('admin/register') }}">Pendaftaran Pengguna Sistem</a></li>
                                 <li><a href="{{ url('admin/staff') }}">Daftar Pegawai</a> </li>
+                                <li><a href="{{ url('admin/penyelia') }}">Daftar Penyelia</a> </li>
                                 <li><a href="{{ url('admin/penempatan') }}">Penempatan</a> </li>
                                 <li><a href="{{ url('admin/mahkamah') }}">Mahkamah</a> </li>
 
