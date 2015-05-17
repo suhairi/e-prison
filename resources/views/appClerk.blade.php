@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>e-Prison - Sistem Penerimaan PKW</title>
+	<title>e-Daftar - Sistem Penerimaan PKW</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -39,7 +39,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">e - Prison</a>
+				<a class="navbar-brand" href="#">e - Daftar</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
