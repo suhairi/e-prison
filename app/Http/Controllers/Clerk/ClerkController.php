@@ -14,6 +14,7 @@ use App\Remitance;
 use App\User;
 use App\Mahkamah;
 use App\Officer;
+use App\Penyelia;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -185,10 +186,14 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar Profil Tambahan Gagal');
         }
 
-        $prefixes = Prefixes::where('status', 'active')->get();
+        $prefixes   = Prefixes::where('status', 'active')->get();
+        $officers   = Officer::all();
+        $mahkamahs  = Mahkamah::all();
 
         return view('clerk/case')
-            ->with('prefixes', $prefixes);
+            ->with('prefixes', $prefixes)
+            ->with('officers', $officers)
+            ->with('mahkamahs', $mahkamahs);
     }
 
     public function getCase() {
@@ -213,14 +218,15 @@ class ClerkController extends Controller {
         return view('clerk/case')
             ->with('prefixes', $prefixes)
             ->with('mahkamahs', $mahkamahs)
-            ->with('officers', $officers);
+            ->with('officers', $officers)
+            ->with('penyelias', $penyelias);
     }
 
     public function postCase() {
 
         $request = Request::all();
 
-        dd($request);
+//        dd($request);
 
         $validation = Validator::make($request, array(
             'noKes'             => 'required',
@@ -266,6 +272,7 @@ class ClerkController extends Controller {
                 $case->memoSelesai  = $prefix->details . '(' . Request::input('memoSelesai') . ')';
         }
 
+        // changing date format from form input to suit MySQL date format
         $tarikhDaftar = explode('/', Request::input('tarikhDaftar'));
         $tarikhDaftar = $tarikhDaftar[2] . '-' . $tarikhDaftar[0] . '-' . $tarikhDaftar[1];
 
@@ -273,6 +280,7 @@ class ClerkController extends Controller {
         $case->hukuman      = strtoupper(Request::input('hukuman'));
         $case->mahkamah     = Request::input('mahkamah');
         $case->officer      = Request::input('officer');
+        $case->penyelia     = Request::input('penyelia');
         $case->tarikhMasuk  = $tarikhDaftar;
 
         if($case->save()) {
@@ -420,7 +428,7 @@ class ClerkController extends Controller {
             \Session::flash('fail', 'Daftar Maklumat Waris Gagal');
         }
 
-        return redirect('clerk/lapoarn/1');
+        return redirect('clerk/laporan/1');
     }
 
 

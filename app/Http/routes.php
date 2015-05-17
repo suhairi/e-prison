@@ -39,8 +39,8 @@ Route::get('admin/staff/kemaskini/{id}', [
     'uses'      => 'Admin\TetapanController@kemaskiniStaff'
 ]);
 
-Route::get('admin/penyelia', 'Admin\TetapanController@getStaff');
-Route::post('admin/penyelia', 'Admin\TetapanController@postStaff');
+Route::get('admin/penyelia', 'Admin\TetapanController@getPenyelia');
+Route::post('admin/penyelia', 'Admin\TetapanController@postPenyelia');
 Route::get('admin/penyelia/delete/{id}', [
     'as'        => 'deletePenyelia',
     'uses'      => 'Admin\TetapanController@deletePenyelia'

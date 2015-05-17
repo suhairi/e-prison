@@ -105,7 +105,19 @@
                                 <select name="officer">
                                     <option value="">Pegawai Bertanggungjawab</option>
                                     @foreach($officers as $officer)
-                                        <option value="{{ $officer->id }}">{{ $officer->name }}</option>
+                                        <option value="{{ $officer->staffId }}">{{ $officer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Pegawai Penyelia</label>
+                            <div class="col-md-6">
+                                <select name="penyelia">
+                                    <option value="">Pegawai Penyelia</option>
+                                    @foreach($penyelias as $penyelia)
+                                        <option value="{{ $penyelia->id }}">{{ $penyelia->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

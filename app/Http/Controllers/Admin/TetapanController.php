@@ -10,6 +10,7 @@ use App\Officer;
 use App\User;
 use App\Penempatan;
 use App\Mahkamah;
+use App\Penyelia;
 
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -140,7 +141,8 @@ class TetapanController extends Controller {
         $penempatans = Penempatan::all();
 
         return view('admin/tetapan/staff')
-            ->with('officers', $officers);
+            ->with('officers', $officers)
+            ->with('penempatans', $penempatans);
     }
 
     public function kemaskiniStaff($id) {
@@ -175,12 +177,10 @@ class TetapanController extends Controller {
 
     public function getPenyelia() {
 
-        $officers = Officer::paginate(10);
-        $penempatans = Penempatan::all();
+        $penyelias = Penyelia::paginate(10);
 
-        return view('admin/tetapan/staff')
-            ->with('officers', $officers)
-            ->with('penempatans', $penempatans);
+        return view('admin/tetapan/penyelia')
+            ->with('penyelias', $penyelias);
     }
 
     public function postPenyelia() {
@@ -189,38 +189,29 @@ class TetapanController extends Controller {
 
         $validation = Validator::make($request, array(
             'name'          => 'required',
-            'staffId'       => 'required|numeric|min:7',
-            'noKP'          => 'required|numeric|min:12',
-            'pangkat'       => 'required',
-            'penempatan'    => 'required'
         ));
 
         if ($validation->fails()) {
-            return redirect('admin/staff')
+            return redirect('admin/penyelia')
                 ->withInput()
                 ->withErrors($validation->errors());
         }
 
-        $staff = new Officer;
+        $penyelia = new Penyelia;
 
-        $staff->staffId     = Request::input('staffId');
-        $staff->noKP        = Request::input('noKP');
-        $staff->name        = strtoupper(Request::input('name'));
-        $staff->position    = strtoupper(Request::input('pangkat'));
-        $staff->penempatan  = Request::input('penempatan');
+        $penyelia->name     = strtoupper(strtolower(Request::input('name')));
 
-        if ($staff->save()) {
-            \Session::flash('success', 'Maklumat Pegawai Berjaya direkod!');
+        if ($penyelia->save()) {
+            \Session::flash('success', 'Maklumat Penyelia Berjaya direkod!');
 
         } else {
             \Seesion::flash('fail', 'Maklumat Pegawai Gagal Direkod!');
         }
 
-        $officers = Officer::paginate(10);
-        $penempatans = Penempatan::all();
+        $penyelias = Penyelia::paginate(10);
 
-        return view('admin/tetapan/staff')
-            ->with('officers', $officers);
+        return view('admin/tetapan/penyelia')
+            ->with('penyelias', $penyelias);
     }
 
     public function kemaskiniPenyelia($id) {
@@ -239,18 +230,19 @@ class TetapanController extends Controller {
 
     public function deletePenyelia($id) {
 
-        $staff = Officer::find($id);
 
-        if($staff->delete()) {
+        $penyelia = Penyelia::find($id);
+
+        if($penyelia->delete()) {
             \Session::flash('success', 'Berjaya Dihapus');
         } else {
             \Session::flash('fail', 'Gagal Dihapus');
         }
 
-        $officers = Officer::paginate(10);
+        $penyelias = Penyelia::paginate(10);
 
-        return view('admin/tetapan/staff')
-            ->with('officers', $officers);
+        return view('admin/tetapan/penyelia')
+            ->with('penyelias', $penyelias);
     }
 
     public function getPenempatan() {
