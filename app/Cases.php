@@ -12,6 +12,7 @@ class Cases extends Model {
         'caseNo',
         'noKP',
         'seksyenKesalahan',
+        'placeArrested',
         'memoTerima',
         'memoPolis',
         'memoSelesai',
@@ -20,6 +21,7 @@ class Cases extends Model {
         'penyelia',
         'hukuman',
         'mahkamah',
+        'kehadiran',
         'tarikhDaftar'
     ];
 

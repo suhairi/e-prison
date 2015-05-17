@@ -125,11 +125,9 @@ Route::post('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@generatePKW1');
 Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@PKW2');
 Route::post('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
 
+Route::get('clerk/laporan/pkw2b', 'Clerk\Laporan\PKW2bController@PKW2b');
+Route::post('clerk/laporan/pkw2b', 'Clerk\Laporan\PKW2bController@generatePKW2b');
 
-//Route::get('clerk/laporan/test', [
-//    'as'    => 'testPDF',
-//    'uses'  => 'Clerk\MyPDFController@index'
-//]);
 
 // ########################### AJAX ##########################
 

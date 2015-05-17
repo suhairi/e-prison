@@ -15,6 +15,7 @@ use App\User;
 use App\Mahkamah;
 use App\Officer;
 use App\Penyelia;
+use App\Kehadiran;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -169,7 +170,7 @@ class ClerkController extends Controller {
         $profileExt->hairColor  = strtoupper(Request::input('hairColor'));
         $profileExt->skinColor  = strtoupper(Request::input('skinColor'));
         $profileExt->weight     = Request::input('weight');
-        $profileExt->weight     = Request::input('height');
+        $profileExt->height     = Request::input('height');
         $profileExt->placeOB    = strtoupper(Request::input('placeOB'));
         $profileExt->education  = strtoupper(Request::input('education'));
         $profileExt->marks      = strtoupper(Request::input('marks'));
@@ -211,6 +212,7 @@ class ClerkController extends Controller {
         $mahkamahs  = Mahkamah::all();
         $officers   = Officer::all();
         $penyelias  = Penyelia::all();
+        $kehadirans = Kehadiran::all();
 
         \Session::flash('message', 'Profil ini mempunyai ' . count($cases) . ' rekod kes lampau.');
 
@@ -221,7 +223,8 @@ class ClerkController extends Controller {
             ->with('prefixes', $prefixes)
             ->with('mahkamahs', $mahkamahs)
             ->with('officers', $officers)
-            ->with('penyelias', $penyelias);
+            ->with('penyelias', $penyelias)
+            ->with('kehadirans', $kehadirans);
     }
 
     public function postCase() {
@@ -241,7 +244,8 @@ class ClerkController extends Controller {
             'officer'           => 'required',
             'hukuman'           => 'required',
             'mahkamah'          => 'required',
-            'seksyenKesalahan'  => 'required'
+            'seksyenKesalahan'  => 'required',
+            'placeArrested'     => 'required'
 
         ));
 
@@ -256,8 +260,9 @@ class ClerkController extends Controller {
         $case = new Cases;
 
         $case->noKP             = Request::input('noKP');
-        $case->caseNo           = Request::input('noKes');
-        $case->seksyenKesalahan = Request::input('seksyenKesalahan');
+        $case->caseNo           = strtoupper(Request::input('noKes'));
+        $case->seksyenKesalahan = strtoupper(Request::input('seksyenKesalahan'));
+        $case->placeArrested    = strtoupper(Request::input('placeArrested'));
 
         foreach($prefixes as $prefix) {
             if($prefix->desc == 'memoTerima')
@@ -281,6 +286,7 @@ class ClerkController extends Controller {
         $case->noDaftar     = strtoupper(Request::input('noDaftar'));
         $case->hukuman      = strtoupper(Request::input('hukuman'));
         $case->mahkamah     = Request::input('mahkamah');
+        $case->kehadiran    = Request::input('kehadiran');
         $case->officer      = Request::input('officer');
         $case->penyelia     = Request::input('penyelia');
         $case->tarikhMasuk  = $tarikhDaftar;

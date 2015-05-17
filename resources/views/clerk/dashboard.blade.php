@@ -19,7 +19,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">No KP KPW</label>
+                            <label class="col-md-4 control-label">No KP PKW</label>
                             <div class="col-md-6">
                                 <input type="number" class="form-control" name="noKP" placeholder="Sampel : 900918026209" value="{{ Session::get('noPKW') }}" required="">
                             </div>

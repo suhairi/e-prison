@@ -18,6 +18,7 @@ class CreateCasesTable extends Migration {
             $table->string('caseNo');
             $table->bigInteger('noKP');
             $table->string('seksyenKesalahan');
+            $table->text('placeArrested');
             $table->string('memoTerima');
             $table->string('memoPolis');
             $table->string('memoSelesai');
@@ -26,6 +27,7 @@ class CreateCasesTable extends Migration {
             $table->integer('penyelia');
             $table->text('hukuman');
             $table->integer('mahkamah');
+            $table->integer('kehadiran');
             $table->date('tarikhMasuk');
         });
     }

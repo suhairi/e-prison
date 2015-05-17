@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 
 use App\Mahkamah;
 use App\Cases;
+use App\Kehadiran;
+use App\Profile;
+use App\Parents;
+use App\Remitance;
+use App\Profileext;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -52,8 +57,15 @@ class PKW2Controller extends Controller {
         }
 
         $cases      = Cases::where('caseNo', Request::input('noKes'))->first();
+        $kehadiran  = Kehadiran::where('id', $cases->kehadiran)->first();
+        $profile    = Profile::find(\Session::get('noPKW'));
+        $parent     = Parents::where('noKP', \Session::get('noPKW'))->first();
+        $mahkamah   = Mahkamah::find($cases->mahkamah);
+        $remitance  = Remitance::where('caseNo', $cases->caseNo)->first();
+        $profileExt = Profileext::find($cases->noKP);
 
-//        dd($cases->noDaftar);
+
+//        dd($parent);
 
         $nodaftar = str_replace(' ', '', $cases->noDaftar);
 
@@ -92,7 +104,7 @@ class PKW2Controller extends Controller {
 
         // ################    GAMBAR   #######################
 
-        $pdf->Image(public_path() . '/uploads/images/900918026209.jpg', 152, 36, 25);
+        $pdf->Image(public_path() . '/uploads/images/' . $profile->noKP . '.jpg', 152, 36, 25);
 
         // ###############   SECTION 1   ######################
 
@@ -101,42 +113,42 @@ class PKW2Controller extends Controller {
         $pdf->Cell(5, 7, 'A. ', 0, 0, 'L');
         $pdf->Cell(35, 7, 'BUTIR-BUTIR PERIBADI', 0, 2, 'L');
         $pdf->Cell(15, 7, 'Pusat :', 0, 0, 'L');
-        $pdf->Cell(35, 7, 'PUSAT KEHADIRAN WAJIB DAERAH BALING/SIK', 0, 2, 'L');
+        $pdf->Cell(35, 7, $kehadiran->desc, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(35, 7, 'Nama (Huruf Besar) :', 0, 0, 'L');
-        $pdf->Cell(35, 7, 'SABU BIN HASSAN', 0, 2, 'L');
+        $pdf->Cell(35, 7, $profile->nama, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(37, 7, 'No. Kad Pengenalan :', 0, 0, 'L');
-        $pdf->Cell(30, 7, '900918-02-6209', 0, 2, 'L');
+        $pdf->Cell(30, 7, $profile->noKP, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Tarikh Lahir :', 0, 0, 'L');
         $pdf->Cell(63, 7, '18/09/1990', 0, 0, 'L');
         $pdf->Cell(40, 7, 'Umur Masa masuk : ', 0, 0, 'L');
-        $pdf->Cell(40, 7, '23 Thn 4 Bln', 0, 2, 'L');
+        $pdf->Cell(40, 7, '???', 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Pekerjaan :', 0, 0, 'L');
-        $pdf->Cell(63, 7, 'Pembantu kedai makan', 0, 0, 'L');
+        $pdf->Cell(63, 7, $profile->jobDesc, 0, 0, 'L');
         $pdf->Cell(40, 7, 'Bekerja/Tidak Masa Ditangkap *', 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Keturunan :', 0, 0, 'L');
-        $pdf->Cell(63, 7, 'Melayu', 0, 0, 'L');
+        $pdf->Cell(63, 7, $profile->race, 0, 0, 'L');
         $pdf->Cell(15, 7, 'Ugama : ', 0, 0, 'L');
-        $pdf->Cell(40, 7, 'Islam', 0, 2, 'L');
+        $pdf->Cell(40, 7, $profile->religion, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Nama Waris :', 0, 0, 'L');
-        $pdf->Cell(63, 7, 'Mohd Jasni Bin Ab Sani', 0, 0, 'L');
+        $pdf->Cell(63, 7, $parent->name, 0, 0, 'L');
         $pdf->Cell(28, 7, 'Persaudaraan  : ', 0, 0, 'L');
-        $pdf->Cell(40, 7, 'Bapa', 0, 2, 'L');
+        $pdf->Cell(40, 7, $parent->relationship, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(58, 7, 'No. Telefon Yang Boleh Dihubungi :', 0, 0, 'L');
-        $pdf->Cell(63, 7, '012-5780003', 0, 2, 'L');
+        $pdf->Cell(63, 7, $parent->phone, 0, 2, 'L');
 
         // ############### SECTION 2 ######################
 
@@ -148,7 +160,7 @@ class PKW2Controller extends Controller {
 
         $pdf->SetX(20);
         $pdf->Cell(42, 7, 'Alamat Masa Ditangkap :', 0, 0, 'L');
-        $pdf->Cell(35, 7, 'Pengkalan Hulu, Perak', 0, 1, 'L');
+        $pdf->Cell(35, 7, $cases->placeArrested, 0, 1, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'No Waran ', 0, 0, 'L');
@@ -156,76 +168,84 @@ class PKW2Controller extends Controller {
         $pdf->Cell(60, 7, 'Tiada ', 0, 0, 'L');
         $pdf->Cell(30, 7, 'No. Kes ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, '83RS-01-01/2014 ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $cases->caseNo, 0, 2, 'L');
 
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Kesalahan ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, 'Sek 380 KK ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $cases->seksyenKesalahan, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Hukuman ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, '3 bulan dan 4 jam sehari ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $cases->hukuman, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Mahkamah ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, 'Mahkamah Majistret Pengkalan Hulu, Perak ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $mahkamah->name, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Tarikh Dibicara ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(60, 7, '3 bulan dan 4 jam sehari ', 0, 0, 'L');
+        $pdf->Cell(60, 7, $this->tarikhReFormat($remitance->tarikhHukum), 0, 0, 'L');
         $pdf->Cell(30, 7, 'Tarikh Dibicara ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, '3 bulan dan 4 jam sehari ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $this->tarikhReFormat($remitance->tarikhHukum), 0, 2, 'L');
+
+        $pdf->SetX(20);
+        $pdf->Cell(30, 7, 'Tarikh Dihukum ', 0, 0, 'L');
+        $pdf->Cell(3, 7, ':', 0, 0, 'L');
+        $pdf->Cell(60, 7, $this->tarikhReFormat($remitance->tarikhHukum), 0, 0, 'L');
+        $pdf->Cell(30, 7, 'Tarikh Tamat ', 0, 0, 'L');
+        $pdf->Cell(3, 7, ':', 0, 0, 'L');
+        $pdf->Cell(30, 7, $this->tarikhReFormat($remitance->tarikhAwal), 0, 2, 'L');
 
 
         // ############### SECTION 3 ######################
 
-        $pdf->Line(15, 164, 210-10, 164);
+        $pdf->Line(15, 170, 210-10, 170);
 
-        $pdf->SetXY(15, 166);
+        $pdf->SetXY(15, 172);
         $pdf->Cell(5, 7, "C.", 0, 0, 'L');
         $pdf->Cell(40, 7, "CIRI-CIRI FIZIKAL", 0, 1);
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Warna Rambut ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(60, 7, 'Hitam ', 0, 0, 'L');
+        $pdf->Cell(60, 7, $profileExt->hairColor, 0, 0, 'L');
         $pdf->Cell(30, 7, 'Warna Kulit ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, 'Hitam Manis ', 0, 2, 'L');
+        $pdf->Cell(30, 7, $profileExt->skinColor, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Berat Badan ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(60, 7, '51 KG ', 0, 0, 'L');
+        $pdf->Cell(60, 7, $profileExt->weight . ' kg', 0, 0, 'L');
         $pdf->Cell(30, 7, 'Tinggi ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, '163 cm', 0, 2, 'L');
+        $pdf->Cell(30, 7, $profileExt->height . ' cm', 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(30, 7, 'Tempat Lahir ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(60, 7, 'Hospital Daerah Baling, Kedah ', 0, 0, 'L');
+        $pdf->Cell(60, 7, $profileExt->placeOB, 0, 0, 'L');
         $pdf->Cell(30, 7, 'Pelajaran', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, 'Tingkatan 5', 0, 2, 'L');
+        $pdf->Cell(30, 7, $profileExt->education, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(37, 7, 'Tanda-tanda Di Tubuh ', 0, 0, 'L');
         $pdf->Cell(3, 7, ':', 0, 0, 'L');
-        $pdf->Cell(30, 7, 'Parut cacar di lengan kiri dan parut luka dibawah lengan kiri', 0, 2, 'L');
+        $pdf->Cell(30, 7, $profileExt->marks, 0, 2, 'L');
 
 
         // ############### SECTION 3 ######################
 
-        $pdf->Line(15, 204, 215-10, 204);
+        $pdf->Line(15, 209, 215-10, 209);
 
-        $pdf->SetXY(15, 205);
+        $pdf->SetXY(15, 209);
         $pdf->Cell(5, 7, "C.", 0, 0, 'L');
         $pdf->Cell(40, 7, "PENGAKUAN", 0, 1);
 
@@ -242,8 +262,8 @@ class PKW2Controller extends Controller {
         $pdf->Cell(50, 7, "Tanda Tangan Pegawai PKW ", 0, 2, 'L');
 
         $pdf->SetXY(20, 275);
-        $pdf->Cell(130, 7, "Tarikh : 09/01/2014", 0, 0, 'L');
-        $pdf->Cell(50, 7, "Tarikh : 09/01/2014", 0, 2, 'L');
+        $pdf->Cell(130, 7, "Tarikh : " . $this->tarikhReFormat($remitance->tarikhHukum), 0, 0, 'L');
+        $pdf->Cell(50, 7, "Tarikh : " . $this->tarikhReFormat($remitance->tarikhHukum), 0, 2, 'L');
 
 
 
@@ -257,6 +277,16 @@ class PKW2Controller extends Controller {
         $pdf->Output("Laporan PKW Format 2 - " . \Session::get('noPKW') . ".pdf", "I");
         exit;
 
+    }
+
+
+    function tarikhReFormat($date) {
+
+        $tarikh = explode('-', $date);
+
+        $tarikh = $tarikh[2] . '/' . $tarikh[1] . '/' . $tarikh[0];
+
+        return $tarikh;
     }
 
 

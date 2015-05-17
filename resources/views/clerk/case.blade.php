@@ -55,6 +55,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Alamat Ditangkap</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="placeArrested">
+                            </div>
+                        </div>
+
 						<div class="form-group">
 							<label class="col-md-4 control-label">No Rujukan Memo Terima</label>
 							<div class="col-md-6">
@@ -137,6 +144,18 @@
                                     <option value="">Senarai Mahkamah</option>
                                     @foreach($mahkamahs as $mahkamah)
                                         <option value="{{ $mahkamah->id }}">{{ $mahkamah->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Pusat Kehadiran</label>
+                            <div class="col-md-6">
+                                <select name="kehadiran">
+                                    <option value="" selected>Pusat Kehadiran</option>
+                                    @foreach($kehadirans as $kehadiran)
+                                        <option value="{{ $kehadiran->id }}">{{ $kehadiran->desc }}</option>
                                     @endforeach
                                 </select>
                             </div>
