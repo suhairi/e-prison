@@ -70,6 +70,8 @@
                                 <li><a href="{{ url('clerk/laporan/1') }}">m t</a></li>
                                 <li><a href="{{ url('clerk/laporan/pkw1') }}">PKW Format 1</a></li>
                                 <li><a href="{{ url('clerk/laporan/pkw2') }}">PKW Format 2</a></li>
+                                <li><a href="{{ url('clerk/laporan/pkw4') }}">PKW Format 4</a></li>
+                                <li><a href="{{ url('clerk/laporan/remitance') }}">Remitance</a></li>
 
 
 

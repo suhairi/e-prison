@@ -53,13 +53,6 @@
                         </div>
                     </div>
 
-                    {{--<div class="form-group">--}}
-                        {{--<label class="col-md-4 control-label">Catatan</label>--}}
-                        {{--<div class="col-md-6">--}}
-                            {{--<textarea name="catatan" class="form-control" placeholder="Contoh : Terima Pesalah daripada"></textarea>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">

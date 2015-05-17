@@ -4,6 +4,9 @@ use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Mahkamah;
+use App\Cases;
+
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -30,9 +33,12 @@ class PKW2Controller extends Controller {
 
     public function PKW2() {
 
-        $mahkamahs = Mahkamah::paginate(10);
+        $cases      = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $mahkamahs  = Mahkamah::paginate(10);
 
-        return view('clerk/laporan/pkw1', compact('mahkamahs'));
+        return view('clerk/laporan/pkw2')
+            ->with('mahkamahs', $mahkamahs)
+            ->with('cases', $cases);
 
     }
 
@@ -45,8 +51,15 @@ class PKW2Controller extends Controller {
             return view('clerk/dashboard');
         }
 
-//        dd(\Session::get('noPKWFound'));
-//
+        $cases      = Cases::where('caseNo', Request::input('noKes'))->first();
+
+//        dd($cases->noDaftar);
+
+        $nodaftar = str_replace(' ', '', $cases->noDaftar);
+
+        for($i=0; $i<strlen($nodaftar); $i++)
+            $noDaftar[] =substr($nodaftar, $i, 1);
+
         // ###############      Settings      #############
 
         $pdf = new Fpdf('P','mm','A4');
@@ -68,23 +81,9 @@ class PKW2Controller extends Controller {
         $pdf->SetX(10);
         $pdf->SetFont('Arial', 'B', 18);
         $pdf->Cell(35, 7, 'No Daftar', 0, 0, 'L');
-        $pdf->Cell(7, 7, 'P', 1, 0, 'C');
-        $pdf->Cell(7, 7, 'K', 1, 0, 'C');
-        $pdf->Cell(7, 7, 'W', 1, 0, 'C');
-        $pdf->Cell(7, 7, '0', 1, 0, 'C');
-        $pdf->Cell(7, 7, '0', 1, 0, 'C');
-        $pdf->Cell(7, 7, '0', 1, 0, 'C');
-        $pdf->Cell(7, 7, '2', 1, 0, 'C');
-        $pdf->Cell(7, 7, '-', 1, 0, 'C');
-        $pdf->Cell(7, 7, '1', 1, 0, 'C');
-        $pdf->Cell(7, 7, '4', 1, 0, 'C');
-        $pdf->Cell(7, 7, '-', 1, 0, 'C');
-        $pdf->Cell(7, 7, '0', 1, 0, 'C');
-        $pdf->Cell(7, 7, '2', 1, 0, 'C');
-        $pdf->Cell(7, 7, '-', 1, 0, 'C');
-        $pdf->Cell(7, 7, '0', 1, 0, 'C');
-        $pdf->Cell(7, 7, '4', 1, 1, 'C');
-        $pdf->Ln(5);
+        for($i=0; $i<count($noDaftar); $i++)
+            $pdf->Cell(7, 7, $noDaftar[$i], 1, 0, 'C');
+        $pdf->Ln(10);
 
         $pdf->SetX(15);
         $pdf->SetFont('Arial', 'U', 14);

@@ -188,12 +188,14 @@ class ClerkController extends Controller {
 
         $prefixes   = Prefixes::where('status', 'active')->get();
         $officers   = Officer::all();
+        $penyelias  = Penyelia::all();
         $mahkamahs  = Mahkamah::all();
 
         return view('clerk/case')
             ->with('prefixes', $prefixes)
             ->with('officers', $officers)
-            ->with('mahkamahs', $mahkamahs);
+            ->with('mahkamahs', $mahkamahs)
+            ->with('penyelias', $penyelias);
     }
 
     public function getCase() {
@@ -416,9 +418,9 @@ class ClerkController extends Controller {
 
         $parent->noKP           = Request::input('noKP');
         $parent->noKPParent     = Request::input('noKPParent');
-        $parent->name           = Request::input('name');
-        $parent->relationship   = Request::input('relationship');
-        $parent->address        = Request::input('address');
+        $parent->name           = strtoupper(Request::input('name'));
+        $parent->relationship   = strtoupper(Request::input('relationship'));
+        $parent->address        = strtoupper(Request::input('address'));
         $parent->phone          = Request::input('phone');
 
         if($parent->save()) {

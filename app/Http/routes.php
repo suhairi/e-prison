@@ -122,8 +122,8 @@ Route::post('clerk/laporan/mt/1', 'Clerk\Laporan\MtController@postOne');
 Route::get('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@PKW1');
 Route::post('clerk/laporan/pkw1', 'Clerk\Laporan\PKW1Controller@generatePKW1');
 
-Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
-Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
+Route::get('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@PKW2');
+Route::post('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
 
 
 //Route::get('clerk/laporan/test', [

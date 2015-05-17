@@ -123,6 +123,10 @@ class UserTableSeeder extends Seeder {
             'penempatan'    => 3
         ));
 
+        DB::table('penyelia')->insert(array(
+            'name'          => 'SABARI BIN ABU BAKAR'
+        ));
+
         DB::table('mahkamah')->insert(array(
             'name'          => 'Mahkamah Majistret Pengkalan Hulu, Perak'
         ));

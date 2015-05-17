@@ -15,7 +15,6 @@ class CreateMahkamahsTable extends Migration {
 		Schema::create('mahkamah', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->primary('id');
             $table->text('name');
 		});
 	}

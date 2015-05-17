@@ -1,53 +1,76 @@
 @extends('appClerk')
 
 @section('content')
-
-<style>
-
-table {
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-}
-
-td {
-    padding-left: 5px;
-    font-family: arial, helvetica, sans-serif;
-}
-
-
-
-
-</style>
-
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Janaan Laporan PKW 1</div>
+				<div class="panel-heading">Laporan PKW 1</div>
+				<div class="panel-body">
 
-				<div class="panel-body" align="center">
+				    @if(Session::has('message'))
+                        <div class="alert alert-warning">{{ Session::get('message') }}</div>
+                    @endif
 
-				<form method="post" action="{{ url('clerk/laporan/mt/1') }}" target="_blank" role="form">
-                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+				    @if(Session::has('success'))
+                      <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                      <div class="alert alert-warning">{{ Session::get('fail') }}</div>
+                    @endif
+					@if (count($errors) > 0)
+						<div class="alert alert-danger">
+							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Mahkamah</label>
-                    <div class="col-md-6">
-                        <select name="mahkamah">
-                            <option value="">Senarai Mahkamah</option>
-                        </select>
+
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('clerk/laporan/pkw2') }}" target="_blank">
+                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">No KP</label>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" name="noKP" value="{{ Session::get('noPKW') }}" readonly>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">No Kes PKW</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="noKes">
+                                <option value="">Pilih No Kes</option>
+                                @foreach($cases as $case)
+                                    <option value="{{ $case->caseNo }}">{{ $case->caseNo }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                Jana Laporan PKW 2
+                            </button>
+                        </div>
+                    </div>
 
 
-                </form>
+                    </form>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@endsection
+
 
 @stop

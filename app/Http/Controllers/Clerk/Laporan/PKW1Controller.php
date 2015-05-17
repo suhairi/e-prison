@@ -9,6 +9,8 @@ use App\Cases;
 use App\Profile;
 use App\Parents;
 use App\Officer;
+use App\Penyelia;
+use App\Remitance;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -40,9 +42,8 @@ class PKW1Controller extends Controller {
             return view('clerk/dashboard');
         }
 
-
-        $mahkamahs  = Mahkamah::paginate(10);
         $cases      = Cases::where('noKP', \Session::get('noPKW'))->get();
+        $mahkamahs  = Mahkamah::paginate(10);
 
         return view('clerk/laporan/pkw1', compact('mahkamahs', 'cases'));
     }
@@ -61,7 +62,9 @@ class PKW1Controller extends Controller {
         $profile    = Profile::find($noKP);
         $parent     = Parents::where('noKP', $noKP)->first();
         $mahkamah   = Mahkamah::find($cases->mahkamah);
-        $officer     = Officer::find($cases->officer);
+        $officer    = Officer::find($cases->officer);
+        $penyelia   = Penyelia::find($cases->penyelia);
+        $remitance  = Remitance::where('caseNo', Request::input('noKes'))->first();
 
         // ###############      Settings      #############
 
@@ -92,18 +95,17 @@ class PKW1Controller extends Controller {
 
         $pdf->SetFont('Arial', '', 10);
         $pdf->SetX(10);
-        $pdf->Cell(282, 130, "", 1, 0, 'C');
+        $pdf->Cell(282, 150, "", 1, 0, 'C');
 
         $pdf->Line(10, 60, 292, 60);            // Border
-        $pdf->Line(23, 38, 293-270, 168);       // 1st Row (w:13)
-        $pdf->Line(53, 38, 293-240, 168);       // 2nd Row (w: 30)
-        $pdf->Line(83, 38, 293-210, 168);       // 3rd Row (w: 30)
-        $pdf->Line(128, 38, 293-165, 168);      // 4th Row (w: 45)
-        $pdf->Line(158, 38, 293-135, 168);      // 5th Row (w: 30)
-        $pdf->Line(193, 38, 293-100, 168);      // 6th Row (w: 35)
-        $pdf->Line(223, 38, 293-70, 168);       // 7th Row (w: 30)
-        $pdf->Line(263, 38, 293-30, 168);       // 8th Row (w: 40)
-
+        $pdf->Line(23, 38, 293-270, 188);       // 1st Row (w:13)
+        $pdf->Line(53, 38, 293-240, 188);       // 2nd Row (w: 30)
+        $pdf->Line(83, 38, 293-210, 188);       // 3rd Row (w: 30)
+        $pdf->Line(128, 38, 293-165, 188);      // 4th Row (w: 45)
+        $pdf->Line(158, 38, 293-135, 188);      // 5th Row (w: 30)
+        $pdf->Line(193, 38, 293-100, 188);      // 6th Row (w: 35)
+        $pdf->Line(223, 38, 293-70, 188);       // 7th Row (w: 30)
+        $pdf->Line(263, 38, 293-30, 188);       // 8th Row (w: 40)
 
         // ###########   COULUMN 1   ###############
 
@@ -112,7 +114,6 @@ class PKW1Controller extends Controller {
 
         $pdf->SetY(65);
         $pdf->Cell(13, 4, "1.", 0, 1, 'C');
-
 
         // ###########   COULUMN 2   ###############
 
@@ -126,7 +127,7 @@ class PKW1Controller extends Controller {
         $pdf->SetXY(23, 65);        // Line 2
         $pdf->Cell(30, 4, "Nama Pesalah : ", 0, 2, 'L');
         for($i=0; $i<count($name); $i++) {
-            $pdf->Cell(30, 4, $name[$i], 0, 2, "L");
+            $pdf->Cell(30, 4, ucWords(strtolower($name[$i])), 0, 2, "L");
         }
 
         $pdf->SetXY(23, 90);        // Line 3
@@ -135,13 +136,13 @@ class PKW1Controller extends Controller {
 
         $address = $this->strTrim($parent->address);
 
-        $pdf->SetXY(23, 120);       //Line 4
+        $pdf->SetXY(23, 125);       //Line 4
         $pdf->Cell(30, 4, "Alamat : ", 0, 2, 'L');
         for($i=0; $i<count($address); $i++) {
-            $pdf->Cell(30, 4, $address[$i], 0, 2, "L");
+            $pdf->Cell(30, 4, ucWords(strtolower($address[$i])), 0, 2, "L");
         }
 
-        $pdf->SetXY(23, 150);       //Line 5
+        $pdf->SetXY(23, 160);       //Line 5
         $pdf->Cell(30, 4, "No. Telefon : ", 0, 2, 'L');
         $pdf->Cell(30, 4, $parent->phone, 0, 1, 'L');
 
@@ -192,16 +193,16 @@ class PKW1Controller extends Controller {
         $pdf->Cell(30, 4, "Tempoh ", 0, 2, 'L');
         $pdf->Cell(30, 4, "Perintah PKW : ", 0, 2, 'L');
         for($i=0; $i<count($hukuman); $i++) {
-            $pdf->Cell(30, 4, $hukuman[$i], 0, 2, "L");
+            $pdf->Cell(30, 4, ucWords(strtolower($hukuman[$i])), 0, 2, "L");
         }
 
         $pdf->SetXY(128, 90);        // Line 2
         $pdf->Cell(30, 4, "Tarikh Mula : ", 0, 2, 'L');
-        $pdf->Cell(30, 4, $cases->tarikhMasuk, 0, 1, 'L');
+        $pdf->Cell(30, 4, $this->tarikhReFormat($remitance->tarikhHukum), 0, 1, 'L');
 
-        $pdf->SetXY(128, 120);        // Line 3
+        $pdf->SetXY(128, 125);        // Line 3
         $pdf->Cell(30, 4, "Tarikh Akhir : ", 0, 2, 'L');
-        $pdf->Cell(30, 4, "???", 0, 1, 'L');
+        $pdf->Cell(30, 4, $this->tarikhReFormat($remitance->tarikhAwal), 0, 1, 'L');
 
         // ###########    COULUMN 6   ###############
 
@@ -216,17 +217,18 @@ class PKW1Controller extends Controller {
         $pdf->SetXY(158, 65);        // Line 1
         $pdf->Cell(35, 4, "Nama Waris :", 0, 2, 'L');
         for($i=0; $i<count($parent->name); $i++) {
-            $pdf->Cell(35, 4, $parent->name[$i], 0, 2, "L");
+            $pdf->Cell(35, 4, ucWords(strtolower($parent->name[$i])), 0, 2, "L");
         }
 
+        $address = $this->strTrim3($parent->address);
 
         $pdf->SetXY(158, 90);        // Line 2
         $pdf->Cell(35, 4, "Alamat : ", 0, 2, 'L');
         for($i=0; $i<count($address); $i++) {
-            $pdf->Cell(35, 4, $address[$i], 0, 2, "L");
+            $pdf->Cell(35, 4, ucWords(strtolower($address[$i])), 0, 2, "L");
         }
 
-        $pdf->SetXY(158, 120);        // Line 3
+        $pdf->SetXY(158, 125);        // Line 3
         $pdf->Cell(35, 4, "No Telefon : ", 0, 2, 'L');
         $pdf->Cell(35, 4, $parent->phone, 0, 1, 'L');
 
@@ -236,10 +238,12 @@ class PKW1Controller extends Controller {
         $pdf->Cell(30, 4, "Nama  ", 0, 2, 'C');
         $pdf->Cell(30, 4, "Penyelia ", 0, 1, 'C');
 
-        $pdf->SetXY(193, 65);        // Line 1
-        $pdf->Cell(30, 4, "?? ", 0, 2, 'L');
-        $pdf->Cell(30, 4, "?? ", 0, 1, 'L');
+        $penyelia = $this->strTrim($penyelia->name);
 
+        $pdf->SetXY(193, 65);        // Line 1
+        for($i=0; $i<count($penyelia); $i++) {
+            $pdf->Cell(30, 4, ucWords(strtolower($penyelia[$i])), 0, 2, 'L');
+        }
 
         // ###########    COULUMN 8   ###############
 
@@ -252,7 +256,7 @@ class PKW1Controller extends Controller {
 
         $pdf->SetXY(223, 65);        // Line 1
         for($i=0; $i<count($officer); $i++) {
-            $pdf->Cell(40, 4, $officer[$i], 0, 2, 'L');
+            $pdf->Cell(40, 4, ucWords(strtolower($officer[$i])), 0, 2, 'L');
         }
 
         // ###########    COULUMN 9   ###############
@@ -318,6 +322,50 @@ class PKW1Controller extends Controller {
         $str[] = substr($string, $length);
 
         return $str;
+    }
+
+    function strTrim3($str) {
+
+        $address = explode(' ', $str);
+
+        $addressLine[] = '';
+        $j = 0;
+        $str = '';
+        $strCombined = false;
+
+        for($i=0; $i<count($address); $i++) {
+
+            if($j > 0) {
+                $k = $j - 1;
+                $str = $addressLine[$k] . ' ' . $address[$i];
+                $strCombined = true;
+            } else {
+                $str = $address[$i];
+            }
+
+            if(strlen($str) <= 16){
+
+                if($strCombined)
+                    $j = $j - 1;
+                $addressLine[$j] = $str;
+                $j++;
+            } else {
+                $addressLine[$j] = $address[$i];
+                $j++;
+            }
+            $strCombined = false;
+        }
+
+        return $addressLine;
+    }
+
+    function tarikhReFormat($date) {
+
+        $tarikh = explode('-', $date);
+
+        $tarikh = $tarikh[2] . '/' . $tarikh[1] . '/' . $tarikh[0];
+
+        return $tarikh;
     }
 
 
