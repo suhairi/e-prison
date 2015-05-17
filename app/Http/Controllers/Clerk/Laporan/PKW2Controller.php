@@ -64,8 +64,7 @@ class PKW2Controller extends Controller {
         $remitance  = Remitance::where('caseNo', $cases->caseNo)->first();
         $profileExt = Profileext::find($cases->noKP);
 
-
-//        dd($parent);
+        \Session::put('caseNo', $cases->caseNo);
 
         $nodaftar = str_replace(' ', '', $cases->noDaftar);
 
