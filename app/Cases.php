@@ -27,4 +27,11 @@ class Cases extends Model {
 
     public $timestamps = false;
 
+    public function getNamaKehadiran($id) {
+
+        $output = DB::table('kehadiran')->where('id', $id);
+
+        return $output;
+    }
+
 }

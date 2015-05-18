@@ -128,6 +128,8 @@ Route::post('clerk/laporan/pkw2', 'Clerk\Laporan\PKW2Controller@generatePKW2');
 Route::get('clerk/laporan/pkw2b', 'Clerk\Laporan\PKW2bController@PKW2b');
 Route::post('clerk/laporan/pkw2b', 'Clerk\Laporan\PKW2bController@generatePKW2b');
 
+Route::get('clerk/laporan/pkw4', 'Clerk\Laporan\PKW4Controller@PKW4');
+Route::post('clerk/laporan/pkw4', 'Clerk\Laporan\PKW4Controller@generatePKW4');
 
 // ########################### AJAX ##########################
 
