@@ -62,6 +62,7 @@ class RemitanceController extends Controller {
         $remitance      = Remitance::where('caseNo', \Session::get('caseNo'))->first();
         $mahkamah       = Mahkamah::find($cases->mahkamah);
         $kehadiran      = Kehadiran::find($cases->kehadiran);
+        $penyelia       = Penyelia::find($cases->penyelia);
 
         // ###############      Settings      #############
 
@@ -216,16 +217,26 @@ class RemitanceController extends Controller {
 
 
 
+        // ###############     Section 3    ######################
 
 
+        $pdf->SetXY(15, 186);
+        $pdf->Cell(40, 10, 'Disahkan : ', 0, 1, 'L');
+
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Line(25, 233, 80, 233);
+        $pdf->Line(120, 233, 188, 233);
+
+        $pdf->SetXY(25, 233);
+        $pdf->Cell(55, 5, 'Disediakan oleh : ', 0, 2, 'C');
+        $pdf->Cell(55, 5, '(' . $penyelia->name . ')', 0, 2, 'C');
+        $pdf->Cell(55, 5, 'Tarikh : ' . $this->tarikhReFormat($remitance->tarikhHukum), 0, 2, 'C');
 
 
-
-
-
-
-
-
+        $pdf->SetXY(125, 233);
+        $pdf->Cell(55, 5, 'Penyesahan', 0, 2, 'C');
+        $pdf->Cell(55, 5, 'Pegawai Pusat Kehadiran Wajib', 0, 2, 'C');
+        $pdf->Cell(55, 5, 'Tarikh : ' . $this->tarikhReFormat($remitance->tarikhHukum), 0, 2, 'C');
 
 
         // ################   OUTPUT #####################
@@ -233,6 +244,15 @@ class RemitanceController extends Controller {
         $pdf->Output("Laporan PKW Format 2 - " . \Session::get('noPKW') . ".pdf", "I");
         exit;
 
+    }
+
+    function tarikhReFormat($date) {
+
+        $tarikh = explode('-', $date);
+
+        $tarikh = $tarikh[2] . '/' . $tarikh[1] . '/' . $tarikh[0];
+
+        return $tarikh;
     }
 
 }
