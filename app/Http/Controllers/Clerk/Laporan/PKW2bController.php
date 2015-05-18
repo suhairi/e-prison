@@ -66,7 +66,15 @@ class PKW2bController extends Controller {
             return view('clerk/dashboard');
         }
 
-        dd(Request::all());
+        $cases  = DB::table('cases')
+            ->join('mahkamah', 'mahkamah.id', '=', 'cases.mahkamah')
+            ->join('kehadiran', 'kehadiran.id', '=', 'cases.kehadiran')
+            ->select('cases.tarikhMasuk', 'cases.seksyenKesalahan', 'cases.hukuman', 'mahkamah.name', 'kehadiran.desc')
+            ->where('noKP', \Session::get('noPKW'))
+            ->where('caseNo', '!=', \Session::get('caseNo'))
+            ->get();
+
+//        dd($cases);
 
         // ###############      Settings      #############
 
@@ -113,6 +121,53 @@ class PKW2bController extends Controller {
         $pdf->Cell(30, 7, 'Mahkamah', 0, 0, 'C');
         $pdf->Cell(30, 7, 'Penjara', 0, 0, 'C');
         $pdf->Ln(5);
+
+        if(count($cases) > 0){
+            $pdf->Ln(3);
+            $pdf->SetX(15);
+            $pdf->SetFont('Arial', '', 9);
+
+            foreach($cases as $case) {
+                $hukuman    = $this->strTrim($case->hukuman, 8);
+                $mahkamah   = $this->strTrim($case->name, 8);
+                $penjara    = $this->strTrim($case->desc, 8);
+
+
+                $pdf->Cell(30, 4, $case->tarikhMasuk, 0, 0, 'C');
+                $pdf->Cell(30, 4, $case->seksyenKesalahan, 0, 0, 'C');
+                for($i=0; $i<count($hukuman); $i++){
+                    $pdf->SetX(75);
+                    $pdf->Cell(30, 4, $hukuman[$i], 0, 2, 'C');
+                }
+
+                $pdf->SetY($pdf->GetY() - (4 * count($hukuman)));
+
+                for($i=0; $i<count($mahkamah); $i++){
+                    $pdf->SetX(105);
+                    $pdf->Cell(30, 4, $mahkamah[$i], 0, 2, 'C');
+                }
+
+                $pdf->SetY($pdf->GetY() - (4 * count($mahkamah)));
+
+                for($i=0; $i<count($penjara); $i++){
+                    $pdf->SetX(135);
+                    $pdf->Cell(30, 4, $penjara[$i], 0, 2, 'C');
+                }
+
+                $pdf->Ln(5);
+            }
+
+        } else {
+            $pdf->Ln(5);
+            $pdf->SetX(15);
+            $pdf->SetFont('Arial', '', 9);
+            $pdf->Cell(30, 7, 'Tiada', 0, 0, 'C');
+            $pdf->Cell(30, 7, 'Tiada', 0, 0, 'C');
+            $pdf->Cell(30, 7, 'Tiada', 0, 0, 'C');
+            $pdf->Cell(30, 7, 'Tiada', 0, 0, 'C');
+            $pdf->Cell(30, 7, 'Tiada', 0, 0, 'C');
+            $pdf->Ln(5);
+        }
 
         // ###############   ROW 2   ######################
 
