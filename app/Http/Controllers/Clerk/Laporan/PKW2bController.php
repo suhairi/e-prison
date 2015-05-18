@@ -66,6 +66,8 @@ class PKW2bController extends Controller {
             return view('clerk/dashboard');
         }
 
+        dd(Request::all());
+
         // ###############      Settings      #############
 
         $pdf = new Fpdf('P','mm','A4');
@@ -85,7 +87,7 @@ class PKW2bController extends Controller {
         $pdf->Ln(5);
 
         $pdf->SetX(15);
-        $pdf->SetFont('Arial', '', 14);
+        $pdf->SetFont('Arial', 'B', 14);
         $pdf->Cell(35, 7, 'E. REKOD KESALAHAN LAMPAU', 0, 1, 'L');
         $pdf->Ln(5);
 
@@ -103,22 +105,115 @@ class PKW2bController extends Controller {
 
         // ###############   ROW 1   ######################
 
-        $pdf->SetX(18);
+        $pdf->SetX(15);
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(17, 7, 'Tarikh', 0, 0, 'C');
+        $pdf->Cell(30, 7, 'Tarikh', 0, 0, 'C');
         $pdf->Cell(30, 7, 'Kesalahan', 0, 0, 'C');
-        $pdf->Cell(20, 7, 'Hukuman', 0, 0, 'C');
-        $pdf->Cell(20, 7, 'Mahkamah', 0, 0, 'C');
-        $pdf->Cell(20, 7, 'Penjara', 0, 0, 'C');
+        $pdf->Cell(30, 7, 'Hukuman', 0, 0, 'C');
+        $pdf->Cell(30, 7, 'Mahkamah', 0, 0, 'C');
+        $pdf->Cell(30, 7, 'Penjara', 0, 0, 'C');
+        $pdf->Ln(5);
+
+        // ###############   ROW 2   ######################
+
+        $pdf->Line(10, 130, 200, 130);
+
+        $pdf->SetXY(15, 135);
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(35, 7, 'F. PEKERJAAN / AKTIVITI / PROGRAM YANG DITENTUKAN', 0, 1, 'L');
+        $pdf->Ln(5);
+
+        $catatan = $this->strTrim(Request::input('catatan'), 100);
+
+        $pdf->SetFont('Arial', 'U', 10);
+        for($i=0; $i<count($catatan); $i++) {
+            $pdf->Cell(30, 7, $catatan[$i], 0, 2, 'L');
+        }
+
+        for($j=0; $j<(8-count($catatan)); $j++)
+            $pdf->Ln(5);
+
+        // ###############   ROW 3   ######################
+
+        $pdf->SetXY(15, 160);
+
+        $pdf->SetX(15);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Rect(35, 210, 30, 40);
+        $pdf->Line(35, 218, 65, 218);
+        $pdf->SetXY(35, 211);
+        $pdf->Cell(30, 6, 'CIJK - Masuk', 0, 1, 'C');
+
+        $pdf->Rect(125, 210, 30, 40);
+        $pdf->Line(125, 218, 155, 218);
+        $pdf->SetXY(125, 211);
+        $pdf->Cell(30, 6, 'CIJK - Masuk', 0, 1, 'C');
+        $pdf->Ln(5);
+
+        // ###############   ROW 4   ######################
+
+        $pdf->SetXY(25, 160);
+
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Line(25, 273, 75, 273);
+        $pdf->Line(115, 273, 165, 273);
+
+        $pdf->SetXY(27, 273);
+        $pdf->Cell(30, 5, 'Tandatangan Pegawai PKW', 0, 2, 'L');
+        $pdf->Cell(30, 5, 'Tarikh : ', 0, 0, 'L');
+
+        $pdf->SetXY(117, 273);
+        $pdf->Cell(30, 5, 'Tandatangan Pegawai PKW', 0, 2, 'L');
+        $pdf->Cell(30, 5, 'Tarikh : ', 0, 0, 'L');
+
+
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(27, 290);
+        $pdf->Cell(170, 5, '*CIJK - Cop ibu jari kanan pesalah', 0, 0, 'L');
 
 
         // ################   OUTPUT #####################
 
-        $pdf->Output("Laporan PKW Format 2 - " . \Session::get('noPKW') . ".pdf", "I");
+        $pdf->Output("Laporan PKW Format 2 (b) - " . \Session::get('noPKW') . ".pdf", "I");
         exit;
 
     }
 
+    function strTrim($str, $length) {
+
+        $address = explode(' ', $str);
+
+        $addressLine[] = '';
+        $j = 0;
+        $str = '';
+        $strCombined = false;
+
+        for($i=0; $i<count($address); $i++) {
+
+            if($j > 0) {
+                $k = $j - 1;
+                $str = $addressLine[$k] . ' ' . $address[$i];
+                $strCombined = true;
+            } else {
+                $str = $address[$i];
+            }
+
+            if(strlen($str) <= $length){
+
+                if($strCombined)
+                    $j = $j - 1;
+                $addressLine[$j] = $str;
+                $j++;
+            } else {
+                $addressLine[$j] = $address[$i];
+                $j++;
+            }
+            $strCombined = false;
+        }
+
+        return $addressLine;
+    }
 
 
 }

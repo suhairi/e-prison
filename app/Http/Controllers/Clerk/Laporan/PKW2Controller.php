@@ -122,11 +122,25 @@ class PKW2Controller extends Controller {
         $pdf->Cell(37, 7, 'No. Kad Pengenalan :', 0, 0, 'L');
         $pdf->Cell(30, 7, $profile->noKP, 0, 2, 'L');
 
+        $dobYear    = substr($profile->noKP, 0, 2);
+        $dobMonth   = substr($profile->noKP, 2, 2);
+        $dobDay     = substr($profile->noKP, 4, 2);
+
+        if(substr($dobYear, 0, 1) <= 1)
+            $dob = '20' . $dobYear . '-' . $dobMonth . '-' . $dobDay;
+        else
+            $dob = '19' . $dobYear . '-' . $dobMonth . '-' . $dobDay;
+
+        $dob = new \Carbon\Carbon($dob);
+        $dateOfArrest = new \Carbon\Carbon($remitance->tarikhHukum);
+
+        $age = $dateOfArrest->diff($dob)->y . ' Thn ' . ($dateOfArrest->diff($dob)->m + 1) . ' Bln';
+
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Tarikh Lahir :', 0, 0, 'L');
-        $pdf->Cell(63, 7, '18/09/1990', 0, 0, 'L');
+        $pdf->Cell(63, 7, $dob, 0, 0, 'L');
         $pdf->Cell(40, 7, 'Umur Masa masuk : ', 0, 0, 'L');
-        $pdf->Cell(40, 7, '???', 0, 2, 'L');
+        $pdf->Cell(40, 7, $age, 0, 2, 'L');
 
         $pdf->SetX(20);
         $pdf->Cell(22, 7, 'Pekerjaan :', 0, 0, 'L');
